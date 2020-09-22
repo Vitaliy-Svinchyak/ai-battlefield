@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Life</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preload" href="images/house.png" as="image">
+    <link rel="preload" href="images/grass.jpg" as="image">
+    <link rel="preload" href="images/rock.png" as="image">
+    <link rel="preload" href="images/human.png" as="image">
+    <link rel="preload" href="images/tree.png" as="image">
+    <link rel="preload" href="images/gold.png" as="image">
+    <link rel="preload" href="images/food.png" as="image">
+    <link rel="apple-touch-icon icon" href="images/house.png">
+    <script src="core/field.js"></script>
+    <script src="core/game_field_generator.js"></script>
+    <script src="core/painter.js"></script>
+</head>
+<body>
+<canvas id="canvas-field"></canvas>
+
+<script>
+    window.game = {
+        gameField: new Field(gameFieldGenerator.gameMap(30, 30))
+    };
+</script>
+</body>
+</html>
