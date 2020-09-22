@@ -1,5 +1,10 @@
 export default class ExampleAi {
-    tick() {
-
+    /**
+     * @param {TeamApi} api
+     */
+    tick(api) {
+        console.log(api.getUnits())
+        console.log(api.getResources())
+        return []
     }
 }

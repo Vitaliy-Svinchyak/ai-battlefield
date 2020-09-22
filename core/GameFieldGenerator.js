@@ -2,12 +2,13 @@
 
 import Rock from "./entity/solid/rock.js"
 import Empty from "./entity/empty.js"
-import Peasant from "./entity/unit/peasant.js"
+import Peasant from "./entity/unit/Peasant.js"
 import TownHall from "./entity/building/townHall.js"
 import Gold from "./entity/resource/gold.js"
 import Food from "./entity/resource/food.js"
 import Tree from "./entity/solid/tree.js"
 import Point from "./Point.js"
+import Field from "./Field.js"
 
 let lastNumber = 0
 const positionSymbol = Symbol('position')
@@ -62,7 +63,7 @@ export default class GameFieldGenerator {
 
         GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
-        return fieldMap
+        return new Field(fieldMap)
     }
 
     static setCivilisations(fieldMap, maxY, maxX) {
@@ -74,13 +75,13 @@ export default class GameFieldGenerator {
         fieldMap.get(3).set(5, generateFood(3, 5))
         fieldMap.get(2).set(5, generateFood(2, 5))
 
-        fieldMap.get(maxY - 4).set(maxX - 4, generatePeasant(maxY - 4, maxX - 4, 2))
-        fieldMap.get(maxY - 2).set(maxX - 2, generatePeasant(maxY - 2, maxX - 2, 2))
-        fieldMap.get(maxY - 3).set(maxX - 3, generateTownHall(maxY - 3, maxX - 3, 2))
-        fieldMap.get(maxY - 6).set(maxX - 4, generateGold(maxY - 6, maxX - 4))
-        fieldMap.get(maxY - 6).set(maxX - 3, generateGold(maxY - 6, maxX - 3))
-        fieldMap.get(maxY - 4).set(maxX - 6, generateFood(maxY - 4, maxX - 6))
-        fieldMap.get(maxY - 3).set(maxX - 6, generateFood(maxY - 3, maxX - 6))
+        fieldMap.get(maxY - 3).set(maxX - 3, generatePeasant(maxY - 3, maxX - 3, 2))
+        fieldMap.get(maxY - 1).set(maxX - 1, generatePeasant(maxY - 1, maxX - 1, 2))
+        fieldMap.get(maxY - 2).set(maxX - 2, generateTownHall(maxY - 2, maxX - 2, 2))
+        fieldMap.get(maxY - 5).set(maxX - 3, generateGold(maxY - 5, maxX - 3))
+        fieldMap.get(maxY - 5).set(maxX - 2, generateGold(maxY - 5, maxX - 2))
+        fieldMap.get(maxY - 3).set(maxX - 5, generateFood(maxY - 3, maxX - 5))
+        fieldMap.get(maxY - 2).set(maxX - 5, generateFood(maxY - 2, maxX - 5))
     }
 
     static generateChain(y, x, type, maxY, maxX, fieldMap) {

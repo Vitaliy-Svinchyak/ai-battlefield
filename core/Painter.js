@@ -1,6 +1,6 @@
 "use strict"
 
-import Peasant from "./entity/unit/peasant.js"
+import Peasant from "./entity/unit/Peasant.js"
 import Rock from "./entity/solid/rock.js"
 import Tree from "./entity/solid/tree.js"
 import TownHall from "./entity/building/townHall.js"
@@ -82,10 +82,9 @@ export default class Painter {
 
         for (let y = 0; y < fieldSize.rows; y++) {
             let xDraw = this.defaultX
-            const yMap = fieldMap.get(y)
 
             for (let x = 0; x < fieldSize.cells; x++) {
-                this.drawImage(yMap.get(x).image, xDraw, yDraw)
+                this.drawImage(fieldMap.getImage(y, x), xDraw, yDraw)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
             yDraw += this.pointSize.y + this.pointSize.margin
@@ -94,10 +93,6 @@ export default class Painter {
 
     drawImage(image, xDraw, yDraw) {
         this.context.drawImage(image, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-    }
-
-    drawHuman(xDraw, yDraw) {
-        this.context.drawImage(this.humanImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
 
     clearRect(xDraw, yDraw) {

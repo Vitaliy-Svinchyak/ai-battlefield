@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="">
 <head>
     <meta charset="utf-8">
     <title>Life</title>
@@ -16,11 +16,8 @@
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
 
-    console.time('generation')
-    window.game = {
-        gameField: new Engine(GameFieldGenerator.gameMap(30, 30))
-    }
-    console.timeEnd('generation')
+    window.game = new Engine(GameFieldGenerator.gameMap(30, 30))
+    window.game.start()
 </script>
 </body>
 </html>
