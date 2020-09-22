@@ -1,6 +1,13 @@
 "use strict"
 
-class Painter {
+import Peasant from "./entity/unit/peasant.js"
+import Rock from "./entity/solid/rock.js"
+import Tree from "./entity/solid/tree.js"
+import TownHall from "./entity/building/townHall.js"
+import Gold from "./entity/resource/gold.js"
+import Food from "./entity/resource/food.js"
+
+export default class Painter {
     /**
      * @param {HTMLCanvasElement} canvas
      * @param {Field} field
@@ -17,7 +24,7 @@ class Painter {
         this.treeImg = new Image(this.pointSize.x, this.pointSize.y)
         this.treeImg.src = 'images/tree.png'
         this.humanImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.humanImg.src = 'images/human.png'
+        this.humanImg.src = 'images/peasant.png'
         this.houseImg = new Image(this.pointSize.x, this.pointSize.y)
         this.houseImg.src = 'images/house.png'
         this.foodImg = new Image(this.pointSize.x, this.pointSize.y)
@@ -36,7 +43,7 @@ class Painter {
             images[arr[i]] = img
         }
 
-        function imageLoaded(e) {
+        function imageLoaded() {
             loadedImageCount++
             if (loadedImageCount >= arr.length) {
                 callback()
@@ -46,7 +53,7 @@ class Painter {
 
     draw() {
         this.preLoadImages(
-            [this.wallImg, this.treeImg, this.humanImg, this.houseImg, this.foodImg, this.goldImg],
+            [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image],
             () => {
                 if (!this.fieldReady) {
                     this.drawCanvasField()
@@ -54,7 +61,7 @@ class Painter {
                     for (const move of this.fieldMap.movesOnThisStep) {
                         const formYDraw = this.defaultY + (move.from.y * this.pointSize.y) + move.from.y
                         const formXDraw = this.defaultX + (move.from.x * this.pointSize.x) + move.from.x
-                        this.drawTrack(formXDraw, formYDraw)
+                        this.clearRect(formXDraw, formYDraw)
 
                         const yDraw = this.defaultY + (move.to.y * this.pointSize.y) + move.to.y
                         const xDraw = this.defaultX + (move.to.x * this.pointSize.x) + move.to.x
@@ -62,12 +69,8 @@ class Painter {
                     }
                 }
             })
-
     }
 
-    /**
-     * For first draw
-     */
     drawCanvasField() {
         this.fieldReady = true
         this.context = this.canvas.getContext("2d")
@@ -87,83 +90,21 @@ class Painter {
             const yMap = this.fieldMap.fieldMap.get(y)
 
             for (let x = 0; x < this.fieldMap.fieldSize.cells; x++) {
-                switch (yMap.get(x)) {
-                    case type.rock:
-                        this.drawWall(xDraw, yDraw)
-                        break
-                    case type.tree:
-                        this.drawTree(xDraw, yDraw)
-                        break
-                    case type.human:
-                        this.drawHuman(xDraw, yDraw)
-                        break
-                    case type.house:
-                        this.drawHouse(xDraw, yDraw)
-                        break
-                    case type.food:
-                        this.drawFood(xDraw, yDraw)
-                        break
-                    case type.gold:
-                        this.drawGold(xDraw, yDraw)
-                        break
-                }
+                this.drawImage(yMap.get(x).image, xDraw, yDraw)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
             yDraw += this.pointSize.y + this.pointSize.margin
         }
     }
 
-    /**
-     * @param {int} xDraw
-     * @param {int} yDraw
-     */
-    drawWall(xDraw, yDraw) {
-        this.context.drawImage(this.wallImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
+    drawImage(image, xDraw, yDraw) {
+        this.context.drawImage(image, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
 
-    /**
-     * @param {int} xDraw
-     * @param {int} yDraw
-     */
     drawHuman(xDraw, yDraw) {
         this.context.drawImage(this.humanImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
 
-    drawHouse(xDraw, yDraw) {
-        this.context.drawImage(this.houseImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-    }
-
-    drawFood(xDraw, yDraw) {
-        this.context.drawImage(this.foodImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-    }
-
-    drawGold(xDraw, yDraw) {
-        this.context.drawImage(this.goldImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-    }
-
-    /**
-     * @param {int} xDraw
-     * @param {int} yDraw
-     */
-    drawTree(xDraw, yDraw) {
-        this.context.drawImage(this.treeImg, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-    }
-
-    /**
-     * @param {int} xDraw
-     * @param {int} yDraw
-     */
-    drawTrack(xDraw, yDraw) {
-        this.clearRect(xDraw, yDraw)
-        this.context.fillStyle = 'rgba(128, 128, 128, 0.35)'
-        this.context.fillRect(xDraw, yDraw, this.pointSize.x, this.pointSize.y)
-        this.context.fill()
-    }
-
-    /**
-     * @param {int} xDraw
-     * @param {int} yDraw
-     */
     clearRect(xDraw, yDraw) {
         this.context.clearRect(xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
