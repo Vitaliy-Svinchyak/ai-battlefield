@@ -1,153 +1,147 @@
-"use strict";
+"use strict"
 const type = {
     rock: '■',
     human: 'o',
     tree: '֏',
     empty: ' ',
-    track: 'x',
-    route: 'w',
     house: 'h',
     food: 'f',
     gold: 'g',
-};
+}
 
-const solidObjects = [type.rock, type.tree, type.house, type.food, type.gold];
+let lastNumber = 0
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    // if (lastNumber > max) {
+    //     lastNumber = 0
+    // } else {
+    //     lastNumber++
+    // }
+    //
+    // return lastNumber
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 class GameFieldGenerator {
 
-    gameMap(rows, cells) {
-        this.size = {y: rows, x: cells};
-        this.fieldMap = this.empty(rows, cells);
-        let item;
+    static gameMap(rows, cells) {
+        const fieldMap = GameFieldGenerator.emptyMap(rows, cells)
+        const saveRadius = 8
 
-        for (let y = 0; y <= rows; y++) {
-            const yMap = this.fieldMap.get(y);
+        for (let y = 1; y < rows; y++) {
+            for (let x = 1; x < cells; x++) {
+                let chanceToSpawn = getRandomInt(0, 100)
+                const isTopLeftCorner = (x < saveRadius && y < saveRadius)
+                const isBottomRightCorner = (x > rows - saveRadius && y > cells - saveRadius)
 
-            for (let x = 0; x <= cells; x++) {
-                if (y === 0 || y === rows || x === 0 || x === cells) {
-                    item = type.rock;
-                } else {
-                    let rand = getRandomInt(0, 100);
-                    if ((x < 10 && y < 10) || (x > rows - 10 && y > cells - 10)) {
-                        rand = 0;
-                    }
+                if (isTopLeftCorner || isBottomRightCorner) {
+                    chanceToSpawn = 0
+                }
 
-                    switch (rand) {
-                        case 3:
-                            this.generateChain(y, x, type.rock, rows, cells);
-                            break;
-                        case 4:
-                            this.generateChain(y, x, type.tree, rows, cells);
-                            break;
-                        default:
-                            break;
-                    }
+                switch (chanceToSpawn) {
+                    case 3:
+                        GameFieldGenerator.generateChain(y, x, type.rock, rows, cells, fieldMap)
+                        break
+                    case 4:
+                        GameFieldGenerator.generateChain(y, x, type.tree, rows, cells, fieldMap)
+                        break
                 }
             }
         }
 
-        this.fieldMap.get(3).set(3, type.human);
-        this.fieldMap.get(1).set(1, type.human);
-        this.fieldMap.get(2).set(2, type.house);
-        this.fieldMap.get(5).set(3, type.gold);
-        this.fieldMap.get(5).set(2, type.gold);
-        this.fieldMap.get(3).set(5, type.food);
-        this.fieldMap.get(2).set(5, type.food);
+        fieldMap.get(3).set(3, type.human)
+        fieldMap.get(1).set(1, type.human)
+        fieldMap.get(2).set(2, type.house)
+        fieldMap.get(5).set(3, type.gold)
+        fieldMap.get(5).set(2, type.gold)
+        fieldMap.get(3).set(5, type.food)
+        fieldMap.get(2).set(5, type.food)
 
-        this.fieldMap.get(this.fieldMap.size - 4).set(this.fieldMap.get(0).size - 4, type.human);
-        this.fieldMap.get(this.fieldMap.size - 2).set(this.fieldMap.get(0).size - 2, type.human);
-        this.fieldMap.get(this.fieldMap.size - 3).set(this.fieldMap.get(0).size - 3, type.house);
+        fieldMap.get(rows - 4).set(cells - 4, type.human)
+        fieldMap.get(rows - 2).set(cells - 2, type.human)
+        fieldMap.get(rows - 3).set(cells - 3, type.house)
+        fieldMap.get(rows - 6).set(cells - 4, type.gold)
+        fieldMap.get(rows - 6).set(cells - 3, type.gold)
+        fieldMap.get(rows - 4).set(cells - 6, type.food)
+        fieldMap.get(rows - 3).set(cells - 6, type.food)
 
-        this.fieldMap.get(this.fieldMap.size - 6).set(this.fieldMap.get(0).size - 4, type.gold);
-        this.fieldMap.get(this.fieldMap.size - 6).set(this.fieldMap.get(0).size - 3, type.gold);
-        this.fieldMap.get(this.fieldMap.size - 4).set(this.fieldMap.get(0).size - 6, type.food);
-        this.fieldMap.get(this.fieldMap.size - 3).set(this.fieldMap.get(0).size - 6, type.food);
-
-        return this.fieldMap;
+        return fieldMap
     }
 
-    generateChain(y, x, type, rows, cells) {
-        let startY = y;
-        let startX = x;
-
+    static generateChain(y, x, type, maxY, maxX, fieldMap) {
         for (let i = 0; i < 5; i++) {
-            const variant = this.getRandomVariant(startY, startX);
+            const variant = GameFieldGenerator.getRandomVariant(y, x, fieldMap)
 
-            if (variant) {
-                startY = variant.y;
-                startX = variant.x;
-                this.fieldMap.get(startY).set(startX, type);
-                let duplicatedY = rows - startY;
-                let duplicatedX = cells - startX;
-                this.fieldMap.get(duplicatedY).set(duplicatedX, type);
+            if (variant !== undefined) {
+                y = variant.y
+                x = variant.x
+                fieldMap.get(y).set(x, type)
+
+                let duplicatedY = maxY - y
+                let duplicatedX = maxX - x
+                fieldMap.get(duplicatedY).set(duplicatedX, type)
             }
         }
     }
 
-    getRandomVariant(y, x) {
-        const variants = this.getPossiblePointsToGo(y, x);
+    static getRandomVariant(y, x, fieldMap) {
+        const variants = GameFieldGenerator.getVariantsToPutSolidObject(y, x, fieldMap)
+
         return variants[getRandomInt(0, variants.length - 1)]
     }
 
-    getPossiblePointsToGo(startY, startX) {
-        const variants = [];
+    static getVariantsToPutSolidObject(startY, startX, fieldMap) {
+        const variants = []
 
         for (let y = startY - 1; y <= startY + 1; y++) {
-            const yMap = this.fieldMap.get(y);
+            const yMap = fieldMap.get(y)
 
             for (let x = startX - 1; x <= startX + 1; x++) {
-                if (!(y === 0 || y === this.size.y || x === 0 || x === this.size.x)
-                    && solidObjects.indexOf(yMap.get(x)) === -1
-                    && this.nearIsEmpty(y, x)
-                ) {
-                    variants.push({x: x, y: y});
+                if (yMap.get(x) === type.empty && GameFieldGenerator.nearIsEmpty(y, x, fieldMap)) {
+                    variants.push({x: x, y: y})
                 }
             }
         }
 
-        return variants;
+        return variants
     }
 
-    nearIsEmpty(startY, startX) {
-        let count = 0;
+    static nearIsEmpty(startY, startX, fieldMap) {
+        let count = 0
         for (let y = startY - 1; y <= startY + 1; y++) {
-            const yMap = this.fieldMap.get(y);
+            const yMap = fieldMap.get(y)
 
             for (let x = startX - 1; x <= startX + 1; x++) {
-                if (solidObjects.indexOf(yMap.get(x)) !== -1) {
-                    count++;
+                if (yMap.get(x) !== type.empty) {
+                    count++
                 }
             }
         }
 
-        return count <= 2;
+        return count <= 2
     }
 
-    empty(rows, cells) {
-        let field = new Map();
-        let item;
+    static emptyMap(rows, cells) {
+        let field = new Map()
+        let item
 
         for (let y = 0; y <= rows; y++) {
-            const yMap = new Map();
+            const yMap = new Map()
 
             for (let x = 0; x <= cells; x++) {
-                if (y === 0 || y === rows || x === 0 || x === cells) {
-                    item = type.rock;
+                const isBorder = y === 0 || y === rows || x === 0 || x === cells
+
+                if (isBorder) {
+                    item = type.rock
                 } else {
-                    item = type.empty;
+                    item = type.empty
                 }
 
-                yMap.set(x, item);
-                field.set(y, yMap);
+                yMap.set(x, item)
+                field.set(y, yMap)
             }
         }
 
-        return field;
+        return field
     }
 }
-
-const gameFieldGenerator = new GameFieldGenerator();
