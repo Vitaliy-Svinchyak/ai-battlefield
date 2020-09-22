@@ -7,7 +7,7 @@ import TownHall from "./entity/building/townHall.js"
 import Gold from "./entity/resource/gold.js"
 import Food from "./entity/resource/food.js"
 import Tree from "./entity/solid/tree.js"
-import Point from "./point.js"
+import Point from "./Point.js"
 
 let lastNumber = 0
 const positionSymbol = Symbol('position')

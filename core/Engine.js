@@ -1,6 +1,6 @@
 "use strict"
 
-import Painter from "./painter.js"
+import Painter from "./Painter.js"
 
 export default class Engine {
 
