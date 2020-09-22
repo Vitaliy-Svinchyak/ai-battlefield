@@ -1,4 +1,5 @@
 "use strict"
+
 import Rock from "./entity/solid/rock.js"
 import Empty from "./entity/empty.js"
 import Peasant from "./entity/unit/peasant.js"
@@ -6,9 +7,31 @@ import TownHall from "./entity/building/townHall.js"
 import Gold from "./entity/resource/gold.js"
 import Food from "./entity/resource/food.js"
 import Tree from "./entity/solid/tree.js"
+import Point from "./point.js"
 
 let lastNumber = 0
 const positionSymbol = Symbol('position')
+
+const generatePeasant = (y, x, team) => {
+    const peasant = new Peasant(team)
+    peasant[positionSymbol] = new Point(y, x)
+    return peasant
+}
+const generateTownHall = (y, x, team) => {
+    const hall = new TownHall(team)
+    hall[positionSymbol] = new Point(y, x)
+    return hall
+}
+const generateGold = (y, x) => {
+    const gold = new Gold()
+    gold[positionSymbol] = new Point(y, x)
+    return gold
+}
+const generateFood = (y, x) => {
+    const food = new Food()
+    food[positionSymbol] = new Point(y, x)
+    return food
+}
 
 export default class GameFieldGenerator {
 
@@ -37,23 +60,27 @@ export default class GameFieldGenerator {
             }
         }
 
-        fieldMap.get(3).set(3, new Peasant())
-        fieldMap.get(1).set(1, new Peasant())
-        fieldMap.get(2).set(2, new TownHall())
-        fieldMap.get(5).set(3, new Gold())
-        fieldMap.get(5).set(2, new Gold())
-        fieldMap.get(3).set(5, new Food())
-        fieldMap.get(2).set(5, new Food())
-
-        fieldMap.get(rows - 4).set(cells - 4, new Peasant())
-        fieldMap.get(rows - 2).set(cells - 2, new Peasant())
-        fieldMap.get(rows - 3).set(cells - 3, new TownHall())
-        fieldMap.get(rows - 6).set(cells - 4, new Gold())
-        fieldMap.get(rows - 6).set(cells - 3, new Gold())
-        fieldMap.get(rows - 4).set(cells - 6, new Food())
-        fieldMap.get(rows - 3).set(cells - 6, new Food())
+        GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
         return fieldMap
+    }
+
+    static setCivilisations(fieldMap, maxY, maxX) {
+        fieldMap.get(3).set(3, generatePeasant(3, 3, 1))
+        fieldMap.get(1).set(1, generatePeasant(1, 1, 1))
+        fieldMap.get(2).set(2, generateTownHall(2, 2, 1))
+        fieldMap.get(5).set(3, generateGold(5, 3))
+        fieldMap.get(5).set(2, generateGold(5, 2))
+        fieldMap.get(3).set(5, generateFood(3, 5))
+        fieldMap.get(2).set(5, generateFood(2, 5))
+
+        fieldMap.get(maxY - 4).set(maxX - 4, generatePeasant(maxY - 4, maxX - 4, 2))
+        fieldMap.get(maxY - 2).set(maxX - 2, generatePeasant(maxY - 2, maxX - 2, 2))
+        fieldMap.get(maxY - 3).set(maxX - 3, generateTownHall(maxY - 3, maxX - 3, 2))
+        fieldMap.get(maxY - 6).set(maxX - 4, generateGold(maxY - 6, maxX - 4))
+        fieldMap.get(maxY - 6).set(maxX - 3, generateGold(maxY - 6, maxX - 3))
+        fieldMap.get(maxY - 4).set(maxX - 6, generateFood(maxY - 4, maxX - 6))
+        fieldMap.get(maxY - 3).set(maxX - 6, generateFood(maxY - 3, maxX - 6))
     }
 
     static generateChain(y, x, type, maxY, maxX, fieldMap) {

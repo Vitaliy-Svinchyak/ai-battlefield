@@ -8,16 +8,11 @@ import Gold from "./entity/resource/gold.js"
 import Food from "./entity/resource/food.js"
 
 export default class Painter {
-    /**
-     * @param {HTMLCanvasElement} canvas
-     * @param {Field} field
-     */
-    constructor(canvas, field) {
+    constructor(canvas, fieldSize) {
         this.canvas = canvas
-        this.fieldMap = field
-        this.pointSize = this.calculatePointSize()
+        this.pointSize = this.calculatePointSize(fieldSize)
         this.fieldReady = false
-        this.setCanvasSize()
+        this.setCanvasSize(fieldSize)
 
         this.wallImg = new Image(this.pointSize.x, this.pointSize.y)
         this.wallImg.src = 'images/rock.png'
@@ -51,27 +46,27 @@ export default class Painter {
         }
     }
 
-    draw() {
+    draw(fieldSize, fieldMap) {
         this.preLoadImages(
             [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image],
             () => {
                 if (!this.fieldReady) {
-                    this.drawCanvasField()
+                    this.drawCanvasField(fieldSize, fieldMap)
                 } else {
-                    for (const move of this.fieldMap.movesOnThisStep) {
-                        const formYDraw = this.defaultY + (move.from.y * this.pointSize.y) + move.from.y
-                        const formXDraw = this.defaultX + (move.from.x * this.pointSize.x) + move.from.x
-                        this.clearRect(formXDraw, formYDraw)
-
-                        const yDraw = this.defaultY + (move.to.y * this.pointSize.y) + move.to.y
-                        const xDraw = this.defaultX + (move.to.x * this.pointSize.x) + move.to.x
-                        this.drawHuman(xDraw, yDraw)
-                    }
+                    // for (const move of this.fieldMap.movesOnThisStep) {
+                    //     const formYDraw = this.defaultY + (move.from.y * this.pointSize.y) + move.from.y
+                    //     const formXDraw = this.defaultX + (move.from.x * this.pointSize.x) + move.from.x
+                    //     this.clearRect(formXDraw, formYDraw)
+                    //
+                    //     const yDraw = this.defaultY + (move.to.y * this.pointSize.y) + move.to.y
+                    //     const xDraw = this.defaultX + (move.to.x * this.pointSize.x) + move.to.x
+                    //     this.drawHuman(xDraw, yDraw)
+                    // }
                 }
             })
     }
 
-    drawCanvasField() {
+    drawCanvasField(fieldSize, fieldMap) {
         this.fieldReady = true
         this.context = this.canvas.getContext("2d")
 
@@ -79,17 +74,17 @@ export default class Painter {
             this.defaultY = 0
             this.defaultX = 0
         } else {
-            this.defaultY = Math.floor((window.innerHeight - ((this.pointSize.y + 1) * this.fieldMap.fieldSize.rows)) / 2)
-            this.defaultX = Math.floor((window.innerWidth - ((this.pointSize.x + 1) * this.fieldMap.fieldSize.cells)) / 2)
+            this.defaultY = Math.floor((window.innerHeight - ((this.pointSize.y + 1) * fieldSize.rows)) / 2)
+            this.defaultX = Math.floor((window.innerWidth - ((this.pointSize.x + 1) * fieldSize.cells)) / 2)
         }
 
         let yDraw = this.defaultY
 
-        for (let y = 0; y < this.fieldMap.fieldSize.rows; y++) {
+        for (let y = 0; y < fieldSize.rows; y++) {
             let xDraw = this.defaultX
-            const yMap = this.fieldMap.fieldMap.get(y)
+            const yMap = fieldMap.get(y)
 
-            for (let x = 0; x < this.fieldMap.fieldSize.cells; x++) {
+            for (let x = 0; x < fieldSize.cells; x++) {
                 this.drawImage(yMap.get(x).image, xDraw, yDraw)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
@@ -109,9 +104,9 @@ export default class Painter {
         this.context.clearRect(xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
 
-    calculatePointSize() {
-        let xSize = Math.floor((window.innerHeight - this.fieldMap.fieldSize.cells) / (this.fieldMap.fieldSize.cells + 1))
-        let ySize = Math.floor((window.innerWidth - this.fieldMap.fieldSize.rows) / (this.fieldMap.fieldSize.rows + 1))
+    calculatePointSize(fieldSize) {
+        let xSize = Math.floor((window.innerHeight - fieldSize.cells) / (fieldSize.cells + 1))
+        let ySize = Math.floor((window.innerWidth - fieldSize.rows) / (fieldSize.rows + 1))
 
         let size = ySize > xSize ? xSize : ySize
         if (size < 8) {
@@ -124,12 +119,12 @@ export default class Painter {
         return {y: size, x: size, margin: 1}
     }
 
-    setCanvasSize() {
+    setCanvasSize(fieldSize) {
         const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
         const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
-        let height = (this.pointSize.y + 1) * this.fieldMap.fieldSize.rows
-        let width = (this.pointSize.x + 1) * this.fieldMap.fieldSize.cells
+        let height = (this.pointSize.y + 1) * fieldSize.rows
+        let width = (this.pointSize.x + 1) * fieldSize.cells
 
         if (height < h && width < w) {
             height = h

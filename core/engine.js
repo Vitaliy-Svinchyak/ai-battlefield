@@ -2,18 +2,18 @@
 
 import Painter from "./painter.js"
 
-export default class Field {
+export default class Engine {
 
     constructor(field) {
         this.fieldMap = field
 
         this.detectFieldSize()
-        this.painter = new Painter(document.querySelector('#canvas-field'), this)
+        this.painter = new Painter(document.querySelector('#canvas-field'), this.fieldSize)
         this.draw()
     }
 
     draw() {
-        this.painter.draw()
+        this.painter.draw(this.fieldSize, this.fieldMap)
     }
 
     detectFieldSize() {

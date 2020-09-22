@@ -12,12 +12,13 @@
 <canvas id="canvas-field"></canvas>
 
 <script type="module">
+    "use strict"
     import GameFieldGenerator from "./core/game_field_generator.js"
-    import Field from "./core/field.js"
+    import Engine from "./core/engine.js"
 
     console.time('generation')
     window.game = {
-        gameField: new Field(GameFieldGenerator.gameMap(30, 30))
+        gameField: new Engine(GameFieldGenerator.gameMap(30, 30))
     }
     console.timeEnd('generation')
 </script>

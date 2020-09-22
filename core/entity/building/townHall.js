@@ -3,4 +3,8 @@ image.src = 'images/house.png'
 
 export default class TownHall {
     image = image
+
+    constructor(team) {
+        this.team = team
+    }
 }
