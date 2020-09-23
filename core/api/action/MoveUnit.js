@@ -1,6 +1,7 @@
 import IAction from "./IACtion.js"
 import Empty from "../../entity/Empty.js"
 import * as symbol from "../../symbol.js"
+import Point from "../../Point.js"
 
 export default class MoveUnit extends IAction {
     /**
@@ -25,13 +26,19 @@ export default class MoveUnit extends IAction {
         }
 
         if (!(api.getObject(this.newPosition) instanceof Empty)) {
-            console.error(this.newPosition, 'is not empty!')
+            console.error(this, 'is not empty!')
             return false
         }
 
         // diagonal
         if (this.unit.position.y !== this.newPosition.y && this.unit.position.x !== this.newPosition.x) {
+            const wall1 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
+            const wall2 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
 
+            if (!(wall1 instanceof Empty) && !(wall2 instanceof Empty)) {
+                console.error(this, ' wall on the way!')
+                return false
+            }
         }
 
         return true

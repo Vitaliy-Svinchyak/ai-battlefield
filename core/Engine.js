@@ -3,6 +3,7 @@
 import Painter from "./Painter.js"
 import Api from "./api/Api.js"
 import ExampleAi from "../example/ExampleAi.js"
+import EmptyAi from "../example/EmptyAi.js"
 
 export default class Engine {
 
@@ -19,16 +20,16 @@ export default class Engine {
     start() {
         const api = new Api(this.field)
         const ai1 = new ExampleAi()
-        const ai2 = new ExampleAi()
+        const ai2 = new EmptyAi()
 
         setInterval(() => {
-            let changes = []
+            let changes
             const actions1 = ai1.tick(api.team(1))
             changes = this.performActions(actions1, api)
 
             const actions2 = ai2.tick(api.team(2))
             changes = [...changes, ...this.performActions(actions2, api)]
-            console.log('tick')
+
             this.draw(changes)
         }, 1000)
     }

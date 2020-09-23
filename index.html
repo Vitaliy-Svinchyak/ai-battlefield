@@ -15,8 +15,11 @@
     "use strict"
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
+    import Empty from "./core/entity/Empty.js"
 
-    const game = new Engine(GameFieldGenerator.gameMap(30, 30))
+    const map = GameFieldGenerator.gameMap(30, 30)
+    map.fieldMap.get(8).set(8, new Empty())
+    const game = new Engine(map)
     game.start()
 </script>
 </body>

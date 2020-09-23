@@ -1,12 +1,15 @@
+import IEntity from "../IEntity.js"
+import * as symbol from "../../symbol.js"
+
 const image = new Image()
 image.src = 'images/peasant.png'
 const teamSymbol = Symbol('team')
-import * as symbol from "../../symbol.js"
 
-export default class Peasant {
+export default class Peasant extends IEntity {
     image = image
 
     constructor(team) {
+        super()
         this[teamSymbol] = team
     }
 

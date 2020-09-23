@@ -9,10 +9,6 @@ body {
     background-size: 150px 150px;
 }
 
-#modal {
-    display: none;
-}
-
 #modal textarea {
     width: 100vw;
     height: 100vh;

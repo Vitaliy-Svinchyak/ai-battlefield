@@ -43,7 +43,7 @@ export default class Api {
 
     /**
      * @param {Point} point
-     * @return {Empty}
+     * @return {IEntity}
      */
     getObject(point) {
         return this.field.getObject(point.y, point.x)

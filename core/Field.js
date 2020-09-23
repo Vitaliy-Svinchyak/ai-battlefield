@@ -10,9 +10,10 @@ export default class Field {
     }
 
     /**
-     * @param {Map<int, Map<int, Empty>>} fieldMap
+     * @param {Map<int, Map<int, IEntity>>} fieldMap
      */
     constructor(fieldMap) {
+        console.log(fieldMap)
         this.fieldMap = fieldMap
     }
 
@@ -40,7 +41,7 @@ export default class Field {
     }
 
     /**
-     * @param {Peasant} object
+     * @param {IEntity} object
      * @param {Point} from
      * @param {Point} to
      */

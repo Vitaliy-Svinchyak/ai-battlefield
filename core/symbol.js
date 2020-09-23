@@ -1,3 +1,4 @@
 export default {
-    position: Symbol('position')
+    position: Symbol('position'),
+    id: Symbol('id'),
 }

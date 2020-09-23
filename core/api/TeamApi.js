@@ -1,7 +1,9 @@
 import MoveUnit from "./action/MoveUnit.js"
 import Point from "../Point.js"
+import * as symbol from "../symbol.js"
 
 const teamSymbol = Symbol('team')
+const idSymbol = symbol.default.id
 export default class TeamApi {
     /**
      * @param {int} team
@@ -20,7 +22,7 @@ export default class TeamApi {
      * @return {Peasant[]}
      */
     getUnits() {
-        return this.api.getOwnUnits(this[teamSymbol])
+        return this.api.getOwnUnits(this[teamSymbol]).sort((a, b) => a[idSymbol] - b[idSymbol])
     }
 
     getResources() {

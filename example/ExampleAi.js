@@ -1,11 +1,12 @@
 export default class ExampleAi {
     /**
      * @param {TeamApi} api
+     * @return {IAction[]}
      */
     tick(api) {
         const units = api.getUnits()
-        const y = units[0].position.y
-        const move = api.move(units[0], y === 1 ? 2 : 1, units[0].position.x)
+        const unit = units[0]
+        const move = api.move(unit, unit.position.y + 1, unit.position.x + 1)
 
         return [move]
     }

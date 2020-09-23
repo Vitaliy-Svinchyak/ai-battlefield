@@ -1,11 +1,11 @@
 "use strict"
 
 import Peasant from "./entity/unit/Peasant.js"
-import Rock from "./entity/solid/rock.js"
-import Tree from "./entity/solid/tree.js"
-import TownHall from "./entity/building/townHall.js"
-import Gold from "./entity/resource/gold.js"
-import Food from "./entity/resource/food.js"
+import Rock from "./entity/solid/Rock.js"
+import Tree from "./entity/solid/Tree.js"
+import TownHall from "./entity/building/TownHall.js"
+import Gold from "./entity/resource/Gold.js"
+import Food from "./entity/resource/Food.js"
 
 export default class Painter {
     constructor(canvas, fieldSize) {
