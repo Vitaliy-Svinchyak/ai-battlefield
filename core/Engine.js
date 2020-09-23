@@ -51,8 +51,6 @@ export default class Engine {
         for (const action of actions) {
             if (action.validate(api)) {
                 changes = [...changes, ...action.perform(this)]
-            } else {
-                console.log('Not valid action', action)
             }
         }
 

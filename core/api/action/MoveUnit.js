@@ -3,8 +3,10 @@ import Empty from "../../entity/Empty.js"
 import * as symbol from "../../symbol.js"
 import Point from "../../Point.js"
 import UnitActionRegistry from "../UnitActionRegistry.js"
+import IMovable from "../../entity/IMovable.js"
 
 export default class MoveUnit extends IAction {
+
     /**
      * @param {Peasant} unit
      * @param {Point} position
@@ -16,25 +18,49 @@ export default class MoveUnit extends IAction {
     }
 
     validate(api) {
-        if (UnitActionRegistry.didAction(this.unit[symbol.default.id])) {
-            console.error(this, ' already did action!')
+        return this._validateParams(api) && this._validateAction() && this._validateMove(api)
+    }
+
+    perform(engine) {
+        UnitActionRegistry.addAction(this.unit[symbol.default.id])
+
+        const oldPosition = this.unit.position
+        engine.field.moveObject(this.unit, this.unit.position, this.newPosition)
+        this.unit[symbol.default.position] = this.newPosition
+
+        return [oldPosition, this.newPosition]
+    }
+
+    _validateParams(api) {
+        if (!this.newPosition.validate(api)) {
+            console.error(this, ' invalid params!')
             return false
         }
+        if (!(this.unit instanceof IMovable)) {
+            console.error(this, ' invalid params!')
+            return false
+        }
+        if (this.unit[symbol.default.id] === undefined) {
+            console.error(this, ' invalid params!')
+            return false
+        }
+
+        return true
+    }
+
+    _validateMove(api) {
         if (Math.abs(this.unit.position.y - this.newPosition.y) > 1) {
             console.error(this, ' too big distance!')
             return false
         }
-
         if (Math.abs(this.unit.position.x - this.newPosition.x) > 1) {
             console.error(this, ' too big distance!')
             return false
         }
-
         if (!(api.getObject(this.newPosition) instanceof Empty)) {
             console.error(this, 'is not empty!')
             return false
         }
-
         // diagonal
         if (this.unit.position.y !== this.newPosition.y && this.unit.position.x !== this.newPosition.x) {
             const wall1 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
@@ -49,12 +75,12 @@ export default class MoveUnit extends IAction {
         return true
     }
 
-    perform(engine) {
-        UnitActionRegistry.addAction(this.unit[symbol.default.id])
-        const oldPosition = this.unit.position
-        engine.field.moveObject(this.unit, this.unit.position, this.newPosition)
-        this.unit[symbol.default.position] = this.newPosition
+    _validateAction() {
+        if (UnitActionRegistry.didAction(this.unit[symbol.default.id])) {
+            console.error(this, ' already did action!')
+            return false
+        }
 
-        return [oldPosition, this.newPosition]
+        return true
     }
 }

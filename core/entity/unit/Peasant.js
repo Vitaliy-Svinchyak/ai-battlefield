@@ -1,11 +1,11 @@
-import IEntity from "../IEntity.js"
 import * as symbol from "../../symbol.js"
+import IMovable from "../IMovable.js"
 
 const image = new Image()
 image.src = 'images/peasant.png'
 const teamSymbol = Symbol('team')
 
-export default class Peasant extends IEntity {
+export default class Peasant extends IMovable {
     image = image
 
     constructor(team) {

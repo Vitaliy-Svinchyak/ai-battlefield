@@ -37,6 +37,10 @@ export default class Field {
     }
 
     getObject(y, x) {
+        if (!this.fieldMap.has(y)) {
+            return undefined
+        }
+
         return this.fieldMap.get(y).get(x)
     }
 
