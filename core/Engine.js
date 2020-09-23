@@ -4,6 +4,7 @@ import Painter from "./Painter.js"
 import Api from "./api/Api.js"
 import ExampleAi from "../example/ExampleAi.js"
 import EmptyAi from "../example/EmptyAi.js"
+import UnitActionRegistry from "./api/UnitActionRegistry.js"
 
 export default class Engine {
 
@@ -23,6 +24,7 @@ export default class Engine {
         const ai2 = new EmptyAi()
 
         setInterval(() => {
+            UnitActionRegistry.clear()
             let changes
             const actions1 = ai1.tick(api.team(1))
             changes = this.performActions(actions1, api)

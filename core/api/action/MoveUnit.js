@@ -2,6 +2,7 @@ import IAction from "./IACtion.js"
 import Empty from "../../entity/Empty.js"
 import * as symbol from "../../symbol.js"
 import Point from "../../Point.js"
+import UnitActionRegistry from "../UnitActionRegistry.js"
 
 export default class MoveUnit extends IAction {
     /**
@@ -15,6 +16,10 @@ export default class MoveUnit extends IAction {
     }
 
     validate(api) {
+        if (UnitActionRegistry.didAction(this.unit[symbol.default.id])) {
+            console.error(this, ' already did action!')
+            return false
+        }
         if (Math.abs(this.unit.position.y - this.newPosition.y) > 1) {
             console.error(this, ' too big distance!')
             return false
@@ -45,6 +50,7 @@ export default class MoveUnit extends IAction {
     }
 
     perform(engine) {
+        UnitActionRegistry.addAction(this.unit[symbol.default.id])
         const oldPosition = this.unit.position
         engine.field.moveObject(this.unit, this.unit.position, this.newPosition)
         this.unit[symbol.default.position] = this.newPosition
