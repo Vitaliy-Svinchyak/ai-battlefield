@@ -7,11 +7,12 @@ export default class Api {
      * @param {Field} field
      */
     constructor(field) {
+        this.field = field
         const allUnits = field.getAllUnits()
 
         this.units = {
-            1: allUnits.filter(u => u.getTeam() === 1),
-            2: allUnits.filter(u => u.getTeam() === 2),
+            1: allUnits.filter(u => u.team === 1),
+            2: allUnits.filter(u => u.team === 2),
         }
 
         this.resources = {
@@ -38,5 +39,13 @@ export default class Api {
 
     getResources(teamNumber) {
         return this.resources[teamNumber]
+    }
+
+    /**
+     * @param {Point} point
+     * @return {Empty}
+     */
+    getObject(point) {
+        return this.field.getObject(point.y, point.x)
     }
 }

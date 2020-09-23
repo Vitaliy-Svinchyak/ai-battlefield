@@ -46,24 +46,22 @@ export default class Painter {
         }
     }
 
-    draw(fieldSize, fieldMap) {
-        this.preLoadImages(
-            [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image],
-            () => {
-                if (!this.fieldReady) {
+    draw(fieldSize, fieldMap, redraws) {
+        if (!this.fieldReady) {
+            this.preLoadImages(
+                [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image],
+                () => {
                     this.drawCanvasField(fieldSize, fieldMap)
-                } else {
-                    // for (const move of this.fieldMap.movesOnThisStep) {
-                    //     const formYDraw = this.defaultY + (move.from.y * this.pointSize.y) + move.from.y
-                    //     const formXDraw = this.defaultX + (move.from.x * this.pointSize.x) + move.from.x
-                    //     this.clearRect(formXDraw, formYDraw)
-                    //
-                    //     const yDraw = this.defaultY + (move.to.y * this.pointSize.y) + move.to.y
-                    //     const xDraw = this.defaultX + (move.to.x * this.pointSize.x) + move.to.x
-                    //     this.drawHuman(xDraw, yDraw)
-                    // }
-                }
-            })
+                })
+            return
+        }
+
+        for (const point of redraws) {
+            const formYDraw = this.defaultY + (point.y * this.pointSize.y) + point.y
+            const formXDraw = this.defaultX + (point.x * this.pointSize.x) + point.x
+            this.drawImage(fieldMap.getImage(point.y, point.x), formXDraw, formYDraw)
+        }
+
     }
 
     drawCanvasField(fieldSize, fieldMap) {
@@ -92,6 +90,9 @@ export default class Painter {
     }
 
     drawImage(image, xDraw, yDraw) {
+        if (image.src === '') {
+            return this.clearRect(xDraw, yDraw)
+        }
         this.context.drawImage(image, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
     }
 

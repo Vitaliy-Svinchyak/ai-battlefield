@@ -9,7 +9,7 @@ export default class IAction {
 
     /**
      * @param {Engine} engine
-     * @return boolean
+     * @return {Point[]}
      */
     perform(engine) {
         throw new Error('Implement perform method!')

@@ -13,7 +13,7 @@ export default class Engine {
         this.field = field
 
         this.painter = new Painter(document.querySelector('#canvas-field'), this.field.size)
-        this.draw()
+        this.draw([])
     }
 
     start() {
@@ -22,28 +22,37 @@ export default class Engine {
         const ai2 = new ExampleAi()
 
         setInterval(() => {
+            let changes = []
             const actions1 = ai1.tick(api.team(1))
-            this.performActions(actions1, api)
+            changes = this.performActions(actions1, api)
 
             const actions2 = ai2.tick(api.team(2))
-            this.performActions(actions2, api)
+            changes = [...changes, ...this.performActions(actions2, api)]
             console.log('tick')
+            this.draw(changes)
         }, 1000)
     }
 
-    draw() {
-        this.painter.draw(this.field.size, this.field)
+    draw(changes) {
+        this.painter.draw(this.field.size, this.field, changes)
     }
 
     /**
      * @param {IAction[]} actions
      * @param {Api} api
+     * @return {Point[]}
      */
     performActions(actions, api) {
+        let changes = []
+
         for (const action of actions) {
             if (action.validate(api)) {
-                action.perform(this)
+                changes = [...changes, ...action.perform(this)]
+            } else {
+                console.log('Not valid action', action)
             }
         }
+
+        return changes
     }
 }

@@ -1,4 +1,5 @@
 import Peasant from "./entity/unit/Peasant.js"
+import Empty from "./entity/Empty.js"
 
 export default class Field {
     get size() {
@@ -36,5 +37,15 @@ export default class Field {
 
     getObject(y, x) {
         return this.fieldMap.get(y).get(x)
+    }
+
+    /**
+     * @param {Peasant} object
+     * @param {Point} from
+     * @param {Point} to
+     */
+    moveObject(object, from, to) {
+        this.fieldMap.get(from.y).set(from.x, new Empty())
+        this.fieldMap.get(to.y).set(to.x, object)
     }
 }

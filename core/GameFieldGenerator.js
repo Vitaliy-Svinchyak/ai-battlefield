@@ -1,7 +1,7 @@
 "use strict"
 
 import Rock from "./entity/solid/rock.js"
-import Empty from "./entity/empty.js"
+import Empty from "./entity/Empty.js"
 import Peasant from "./entity/unit/Peasant.js"
 import TownHall from "./entity/building/townHall.js"
 import Gold from "./entity/resource/gold.js"
@@ -9,9 +9,10 @@ import Food from "./entity/resource/food.js"
 import Tree from "./entity/solid/tree.js"
 import Point from "./Point.js"
 import Field from "./Field.js"
+import * as symbol from "./symbol.js"
 
 let lastNumber = 0
-const positionSymbol = Symbol('position')
+const positionSymbol = symbol.default.position
 
 const generatePeasant = (y, x, team) => {
     const peasant = new Peasant(team)

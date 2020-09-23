@@ -16,8 +16,8 @@
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
 
-    window.game = new Engine(GameFieldGenerator.gameMap(30, 30))
-    window.game.start()
+    const game = new Engine(GameFieldGenerator.gameMap(30, 30))
+    game.start()
 </script>
 </body>
 </html>
