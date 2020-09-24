@@ -24,11 +24,8 @@ export default class MoveUnit extends IAction {
     perform(engine) {
         UnitActionRegistry.addAction(this.unit[symbol.default.id])
 
-        const oldPosition = this.unit.position
         engine.field.moveObject(this.unit, this.unit.position, this.newPosition)
         this.unit[symbol.default.position] = this.newPosition
-
-        return [oldPosition, this.newPosition]
     }
 
     _validateParams(api) {

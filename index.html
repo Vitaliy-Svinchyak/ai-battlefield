@@ -10,8 +10,8 @@
 </head>
 <body>
 <div class="fog-buttons">
-    <button id="1-fog">1</button>
-    <button id="0-fog" class="active">O</button>
+    <button id="1-fog" class="active">1</button>
+    <button id="0-fog">O</button>
     <button id="2-fog">2</button>
 </div>
 <canvas id="canvas-field"></canvas>
@@ -22,11 +22,14 @@
     import Engine from "./core/Engine.js"
     import Empty from "./core/entity/Empty.js"
 
-    window.selectedTeamToView = 0
+    window.selectedTeamToView = 1
     const map = GameFieldGenerator.gameMap(30, 30)
     map.fieldMap.get(8).set(8, new Empty())
     const game = new Engine(map)
-    game.start()
+    game.onReady(() => {
+        game.start()
+    })
+
 
     document.getElementById('1-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')

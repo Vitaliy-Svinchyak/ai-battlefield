@@ -6,6 +6,7 @@ import ExampleAi from "../example/ExampleAi.js"
 import EmptyAi from "../example/EmptyAi.js"
 import UnitActionRegistry from "./api/UnitActionRegistry.js"
 import Field from "./Field.js"
+import IAction from "./api/action/IACtion.js"
 
 export default class Engine {
 
@@ -14,61 +15,59 @@ export default class Engine {
      */
     constructor(field) {
         this.field = field
+        this.api = new Api(this.field)
 
         this.painter = new Painter(document.querySelector('#canvas-field'), this.field.size)
-        this.draw([])
+    }
+
+    onReady(callback) {
+        this.painter.onReady(this.getCurrentFieldMap(), callback)
     }
 
     start() {
-        const api = new Api(this.field)
         const ai1 = new ExampleAi()
         const ai2 = new EmptyAi()
 
         setInterval(() => {
             UnitActionRegistry.clear()
-            let changes
-            const actions1 = ai1.tick(api.team(1))
-            changes = this.performActions(actions1, api)
+            const actions1 = ai1.tick(this.api.team(1))
+            this.performActions(actions1)
 
-            const actions2 = ai2.tick(api.team(2))
-            changes = [...changes, ...this.performActions(actions2, api)]
-            api.recalculateExploredMap()
+            const actions2 = ai2.tick(this.api.team(2))
+            this.performActions(actions2)
+            this.api.recalculateExploredMap()
 
-            this.draw(api, changes)
+            this.draw()
         }, 1000)
     }
 
-    draw(api, changes) {
-        let field
+    draw() {
+        this.painter.draw(this.field.size, this.getCurrentFieldMap())
+    }
+
+    getCurrentFieldMap() {
         switch (window.selectedTeamToView) {
             case 0:
-                field = this.field
-                break
+                return this.field
             case 1:
-                field = new Field(api.getMap(1))
-                break
+                return new Field(this.api.getMap(1))
             case 2:
-                field = new Field(api.getMap(2))
-                break
+                return new Field(this.api.getMap(2))
         }
-
-        this.painter.draw(this.field.size, field, changes)
     }
 
     /**
      * @param {IAction[]} actions
-     * @param {Api} api
-     * @return {Point[]}
      */
-    performActions(actions, api) {
-        let changes = []
-
+    performActions(actions) {
         for (const action of actions) {
-            if (action.validate(api)) {
-                changes = [...changes, ...action.perform(this)]
+            if (!(action instanceof IAction)) {
+                console.error(action, ' not an action!')
+            }
+
+            if (action instanceof IAction && action.validate(this.api)) {
+                action.perform(this)
             }
         }
-
-        return changes
     }
 }

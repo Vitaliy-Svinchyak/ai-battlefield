@@ -3,6 +3,7 @@ import Resources from "./Resources.js"
 import Unexplored from "../entity/Unexplored.js"
 import Point from "../Point.js"
 import Field from "../Field.js"
+import IResource from "../entity/resource/IResource.js"
 
 export default class Api {
 
@@ -45,6 +46,10 @@ export default class Api {
         return new TeamApi(teamNumber, this)
     }
 
+    /**
+     * @param {int} teamNumber
+     * @return {Map<int, Map<int, IEntity>>}
+     */
     getMap(teamNumber) {
         return this.exploredMap[teamNumber]
     }
@@ -70,8 +75,18 @@ export default class Api {
     }
 
     getResourcePoints(teamNumber) {
-        return this.getMap(teamNumber)
-        return this.resources[teamNumber]
+        const map = this.getMap(teamNumber)
+        const resources = []
+
+        for (let y = 0; y < map.size; y++) {
+            for (let x = 0; x < map.get(y).size; x++) {
+                if (map.get(y).get(x) instanceof IResource) {
+                    resources.push(map.get(y).get(x))
+                }
+            }
+        }
+
+        return resources
     }
 
     /**

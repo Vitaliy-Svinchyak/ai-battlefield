@@ -5,14 +5,11 @@ export default class ExampleAi {
      * @return {IAction[]}
      */
     tick(api) {
-        // console.log(api.getResourcePoints())
-        return []
         const units = api.getUnits()
         const unit = units[0]
-        const move = api.move(unit, unit.position.y, unit.position.x + 1)
-        const actions = [api.move(unit, 3, 4)]
+        const actions = [api.move(unit, 3, 4), api.mine(unit, api.getResourcePoints())]
 
-        if(i > actions.length){
+        if (i > actions.length - 1) {
             return []
         }
 

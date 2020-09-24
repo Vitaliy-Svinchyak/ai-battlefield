@@ -39,7 +39,7 @@ export default class TeamApi {
         return new MoveUnit(unit, new Point(y, x))
     }
 
-    mine(unit, y, x) {
-        return new Mine(unit, new Point(y, x))
+    mine(unit, resource) {
+        return new Mine(unit, resource)
     }
 }

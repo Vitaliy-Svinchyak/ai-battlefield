@@ -14,18 +14,40 @@ export default class Painter {
         this.canvas = canvas
         this.pointSize = this.calculatePointSize(fieldSize)
         this.fieldSize = fieldSize
-        this.fieldReady = false
         this.setCanvasSize(fieldSize)
     }
 
+    onReady(fieldMap, callback) {
+        this.preLoadImages(
+            [
+                new Peasant().image,
+                new Tree().image,
+                new Rock().image,
+                new TownHall().image,
+                new Food().image,
+                new Gold().image,
+                new Unexplored().image
+            ],
+            () => {
+                this.drawCanvasField(this.fieldSize, fieldMap)
+                callback()
+            }
+        )
+    }
+
     preLoadImages(arr, callback) {
-        const images = {}
         let loadedImageCount = 0
 
         for (let i = 0; i < arr.length; i++) {
             const img = arr[i]
-            img.onload = imageLoaded
-            images[arr[i]] = img
+            if (img.onload !== null) {
+                loadedImageCount++
+            } else {
+                img.onload = imageLoaded
+            }
+        }
+        if (loadedImageCount >= arr.length) {
+            callback()
         }
 
         function imageLoaded() {
@@ -36,39 +58,18 @@ export default class Painter {
         }
     }
 
-    draw(fieldSize, fieldMap, redraws) {
-        if (!this.fieldReady) {
-            this.preLoadImages(
-                [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image, new Unexplored().image],
-                () => {
-                    this.drawCanvasField(fieldSize, fieldMap)
-                })
-            return
-        }
-
-        for (const point of redraws) {
-            const formYDraw = this.defaultY + (point.y * this.pointSize.y) + point.y
-            const formXDraw = this.defaultX + (point.x * this.pointSize.x) + point.x
-            this.drawImage(fieldMap.getImage(point.y, point.x), formXDraw, formYDraw)
-        }
-
-        if (window.fullRedraw) {
-            window.fullRedraw = false
-
-            for (let y = 0; y < this.fieldSize.rows; y++) {
-                for (let x = 0; x < this.fieldSize.cells; x++) {
-                    const formYDraw = this.defaultY + (y * this.pointSize.y) + y
-                    const formXDraw = this.defaultX + (x * this.pointSize.x) + x
-                    this.clearRect(formXDraw, formYDraw)
-                    this.drawImage(fieldMap.getImage(y, x), formXDraw, formYDraw)
-                }
+    draw(fieldSize, fieldMap) {
+        for (let y = 0; y < this.fieldSize.rows; y++) {
+            for (let x = 0; x < this.fieldSize.cells; x++) {
+                const formYDraw = this.defaultY + (y * this.pointSize.y) + y
+                const formXDraw = this.defaultX + (x * this.pointSize.x) + x
+                this.clearRect(formXDraw, formYDraw)
+                this.drawImage(fieldMap.getImage(y, x), formXDraw, formYDraw)
             }
         }
-
     }
 
     drawCanvasField(fieldSize, fieldMap) {
-        this.fieldReady = true
         this.context = this.canvas.getContext("2d")
 
         if (this.canvas.width > window.innerWidth || this.canvas.height > window.innerHeight) {
