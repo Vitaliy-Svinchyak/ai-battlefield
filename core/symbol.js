@@ -4,4 +4,6 @@ export default {
     team: Symbol('team'),
     inventory: Symbol('inventory'),
     amount: Symbol('amount'),
+    gold: Symbol('gold'),
+    food: Symbol('food'),
 }

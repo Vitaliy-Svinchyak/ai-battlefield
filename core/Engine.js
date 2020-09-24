@@ -43,6 +43,7 @@ export default class Engine {
 
     draw() {
         this.painter.draw(this.field.size, this.getCurrentFieldMap())
+        this.painter.drawResources(this.api.resources)
     }
 
     getCurrentFieldMap() {
@@ -61,12 +62,10 @@ export default class Engine {
      */
     performActions(actions) {
         for (const action of actions) {
-            if (!(action instanceof IAction)) {
-                console.error(action, ' not an action!')
-            }
-
             if (action instanceof IAction && action.validate(this.api)) {
                 action.perform(this)
+            } else {
+                console.log(action, ' invalid action!')
             }
         }
     }

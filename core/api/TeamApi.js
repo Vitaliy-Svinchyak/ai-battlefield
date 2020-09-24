@@ -2,6 +2,7 @@ import MoveUnit from "./action/MoveUnit.js"
 import Point from "../Point.js"
 import * as symbol from "../symbol.js"
 import Mine from "./action/Mine.js"
+import UnloadResources from "./action/UnloadResources.js"
 
 const teamSymbol = Symbol('team')
 const apiSymbol = Symbol('team')
@@ -24,7 +25,15 @@ export default class TeamApi {
      * @return {IMovable[]}
      */
     getUnits() {
-        return this[apiSymbol].getOwnUnits(this[teamSymbol]).sort((a, b) => a[idSymbol] - b[idSymbol])
+        return this[apiSymbol].getOwnUnits(this[teamSymbol])
+            .sort((a, b) => a[idSymbol] - b[idSymbol])
+    }
+
+    /**
+     * @return {IBuilding[]}
+     */
+    getBuilding() {
+        return this[apiSymbol].getOwnBuildings(this[teamSymbol])
     }
 
     getResources() {
@@ -52,5 +61,14 @@ export default class TeamApi {
      */
     mine(unit, resource) {
         return new Mine(unit, resource)
+    }
+
+    /**
+     * @param {IMovable} unit
+     * @param {IBuilding} building
+     * @return {UnloadResources}
+     */
+    unload(unit, building) {
+        return new UnloadResources(unit, building)
     }
 }

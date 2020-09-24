@@ -9,15 +9,12 @@ body {
     background-size: 150px 150px;
 }
 
-#modal textarea {
-    width: 100vw;
-    height: 100vh;
-}
-
-.fog-buttons {
+#menu {
     padding-top: 10px;
     padding-bottom: 10px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .fog-buttons button {
@@ -40,4 +37,34 @@ body {
 
 .fog-buttons button:last-child {
     border-radius: 0 5px 5px 0;
+}
+
+#resources-1, #resources-2 {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#resources-1 {
+    float: left;
+}
+
+#resources-2 {
+    float: right;
+}
+
+.gold {
+    background-image: url("../images/gold.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 25px;
+    margin-left: 5px;
+}
+
+.food {
+    background-image: url("../images/food.png");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 25px;
 }

@@ -69,6 +69,19 @@ export default class Painter {
         }
     }
 
+    drawResources(resources) {
+        const spaceSymbol = '⠀'
+        const gold1 = resources[1].gold.toString()
+        const food1 = resources[1].food.toString()
+        document.querySelector('#resources-1 .food').innerText = food1 + spaceSymbol.repeat(3 - food1.length)
+        document.querySelector('#resources-1 .gold').innerText = gold1 + spaceSymbol.repeat(3 - gold1.length)
+
+        const gold2 = resources[2].gold.toString()
+        const food2 = resources[2].food.toString()
+        document.querySelector('#resources-2 .food').innerText = food2 + spaceSymbol.repeat(3 - food2.length)
+        document.querySelector('#resources-2 .gold').innerText = gold2 + spaceSymbol.repeat(3 - gold2.length)
+    }
+
     drawCanvasField(fieldSize, fieldMap) {
         this.context = this.canvas.getContext("2d")
 

@@ -1,5 +1,7 @@
-const goldSymbol = Symbol('gold')
-const foodSymbol = Symbol('food')
+import * as symbol from "../symbol.js"
+
+const goldSymbol = symbol.default.gold
+const foodSymbol = symbol.default.food
 
 export default class Resources {
     constructor() {

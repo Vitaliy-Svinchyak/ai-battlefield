@@ -6,12 +6,14 @@ export default class ExampleAi {
      */
     tick(api) {
         const units = api.getUnits()
+        const buildings = api.getBuilding()
         const unit = units[0]
         const mine = api.mine(unit, api.getResourcePoints()[0])
-        const actions = [api.move(unit, 3, 4), mine, mine, mine, mine, mine, mine, mine, mine, mine, mine,]
+        const unload = api.unload(unit, buildings[0])
+        const actions = [api.move(unit, 3, 4), mine, mine, mine, api.move(unit, 3, 3), unload]
 
         if (i > actions.length - 1) {
-            return []
+            i = 0
         }
 
         const currentAction = actions[i]

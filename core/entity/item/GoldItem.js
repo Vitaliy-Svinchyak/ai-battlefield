@@ -1,5 +1,5 @@
-import IItem from "./IItem.js"
+import IItemResource from "./IItemResource.js"
 
-export default class GoldItem extends IItem {
+export default class GoldItem extends IItemResource {
 
 }
