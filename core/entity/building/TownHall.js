@@ -1,13 +1,12 @@
-import IEntity from "../IEntity.js"
+import IBuilding from "./IBuilding.js"
 
 const image = new Image()
 image.src = 'images/house.png'
 
-export default class TownHall  extends IEntity{
+export default class TownHall extends IBuilding {
     image = image
 
     constructor(team) {
-        super()
-        this.team = team
+        super(team)
     }
 }

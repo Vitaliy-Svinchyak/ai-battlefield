@@ -9,6 +9,11 @@
     <link rel="apple-touch-icon icon" href="images/house.png">
 </head>
 <body>
+<div class="fog-buttons">
+    <button id="1-fog">1</button>
+    <button id="0-fog" class="active">O</button>
+    <button id="2-fog">2</button>
+</div>
 <canvas id="canvas-field"></canvas>
 
 <script type="module">
@@ -17,10 +22,30 @@
     import Engine from "./core/Engine.js"
     import Empty from "./core/entity/Empty.js"
 
+    window.selectedTeamToView = 0
     const map = GameFieldGenerator.gameMap(30, 30)
     map.fieldMap.get(8).set(8, new Empty())
     const game = new Engine(map)
     game.start()
+
+    document.getElementById('1-fog').addEventListener('click', () => {
+        document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
+        document.getElementById('1-fog').classList.add('active')
+        window.selectedTeamToView = 1
+        window.fullRedraw = true
+    })
+    document.getElementById('0-fog').addEventListener('click', () => {
+        document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
+        document.getElementById('0-fog').classList.add('active')
+        window.selectedTeamToView = 0
+        window.fullRedraw = true
+    })
+    document.getElementById('2-fog').addEventListener('click', () => {
+        document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
+        document.getElementById('2-fog').classList.add('active')
+        window.selectedTeamToView = 2
+        window.fullRedraw = true
+    })
 </script>
 </body>
 </html>

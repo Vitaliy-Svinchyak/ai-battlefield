@@ -6,26 +6,16 @@ import Tree from "./entity/solid/Tree.js"
 import TownHall from "./entity/building/TownHall.js"
 import Gold from "./entity/resource/Gold.js"
 import Food from "./entity/resource/Food.js"
+import Unexplored from "./entity/Unexplored.js"
 
 export default class Painter {
+
     constructor(canvas, fieldSize) {
         this.canvas = canvas
         this.pointSize = this.calculatePointSize(fieldSize)
+        this.fieldSize = fieldSize
         this.fieldReady = false
         this.setCanvasSize(fieldSize)
-
-        this.wallImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.wallImg.src = 'images/rock.png'
-        this.treeImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.treeImg.src = 'images/tree.png'
-        this.humanImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.humanImg.src = 'images/peasant.png'
-        this.houseImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.houseImg.src = 'images/house.png'
-        this.foodImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.foodImg.src = 'images/food.png'
-        this.goldImg = new Image(this.pointSize.x, this.pointSize.y)
-        this.goldImg.src = 'images/gold.png'
     }
 
     preLoadImages(arr, callback) {
@@ -49,7 +39,7 @@ export default class Painter {
     draw(fieldSize, fieldMap, redraws) {
         if (!this.fieldReady) {
             this.preLoadImages(
-                [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image],
+                [new Peasant().image, new Tree().image, new Rock().image, new TownHall().image, new Food().image, new Gold().image, new Unexplored().image],
                 () => {
                     this.drawCanvasField(fieldSize, fieldMap)
                 })
@@ -60,6 +50,19 @@ export default class Painter {
             const formYDraw = this.defaultY + (point.y * this.pointSize.y) + point.y
             const formXDraw = this.defaultX + (point.x * this.pointSize.x) + point.x
             this.drawImage(fieldMap.getImage(point.y, point.x), formXDraw, formYDraw)
+        }
+
+        if (window.fullRedraw) {
+            window.fullRedraw = false
+
+            for (let y = 0; y < this.fieldSize.rows; y++) {
+                for (let x = 0; x < this.fieldSize.cells; x++) {
+                    const formYDraw = this.defaultY + (y * this.pointSize.y) + y
+                    const formXDraw = this.defaultX + (x * this.pointSize.x) + x
+                    this.clearRect(formXDraw, formYDraw)
+                    this.drawImage(fieldMap.getImage(y, x), formXDraw, formYDraw)
+                }
+            }
         }
 
     }
@@ -74,6 +77,8 @@ export default class Painter {
         } else {
             this.defaultY = Math.floor((window.innerHeight - ((this.pointSize.y + 1) * fieldSize.rows)) / 2)
             this.defaultX = Math.floor((window.innerWidth - ((this.pointSize.x + 1) * fieldSize.cells)) / 2)
+            this.defaultY = 0
+            // this.defaultX = 0
         }
 
         let yDraw = this.defaultY

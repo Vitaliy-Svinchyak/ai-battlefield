@@ -3,7 +3,7 @@ import Empty from "../../entity/Empty.js"
 import * as symbol from "../../symbol.js"
 import Point from "../../Point.js"
 import UnitActionRegistry from "../UnitActionRegistry.js"
-import IMovable from "../../entity/IMovable.js"
+import IMovable from "../../entity/unit/IMovable.js"
 
 export default class MoveUnit extends IAction {
 

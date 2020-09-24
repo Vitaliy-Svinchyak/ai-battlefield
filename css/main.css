@@ -13,3 +13,31 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
+.fog-buttons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.fog-buttons button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 0;
+    padding: 5px;
+    width: 25px;
+    margin-left: -4px;
+}
+
+.fog-buttons button:focus, .fog-buttons button.active {
+    outline: none;
+    background-color: black;
+}
+
+.fog-buttons button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.fog-buttons button:last-child {
+    border-radius: 0 5px 5px 0;
+}

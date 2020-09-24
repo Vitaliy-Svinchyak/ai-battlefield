@@ -1,5 +1,6 @@
-import Peasant from "./entity/unit/Peasant.js"
 import Empty from "./entity/Empty.js"
+import IMovable from "./entity/unit/IMovable.js"
+import IBuilding from "./entity/building/IBuilding.js"
 
 export default class Field {
     get size() {
@@ -13,7 +14,6 @@ export default class Field {
      * @param {Map<int, Map<int, IEntity>>} fieldMap
      */
     constructor(fieldMap) {
-        console.log(fieldMap)
         this.fieldMap = fieldMap
     }
 
@@ -27,7 +27,22 @@ export default class Field {
         for (let y = 0; y < this.size.rows; y++) {
             for (let x = 0; x < this.size.cells; x++) {
                 const object = this.getObject(y, x)
-                if (object instanceof Peasant) {
+                if (object instanceof IMovable) {
+                    units.push(object)
+                }
+            }
+        }
+
+        return units
+    }
+
+    getAllBuildings() {
+        const units = []
+
+        for (let y = 0; y < this.size.rows; y++) {
+            for (let x = 0; x < this.size.cells; x++) {
+                const object = this.getObject(y, x)
+                if (object instanceof IBuilding) {
                     units.push(object)
                 }
             }
@@ -45,7 +60,7 @@ export default class Field {
     }
 
     /**
-     * @param {IEntity} object
+     * @param {IMovable} object
      * @param {Point} from
      * @param {Point} to
      */

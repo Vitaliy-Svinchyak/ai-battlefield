@@ -158,8 +158,9 @@ export default class GameFieldGenerator {
                 }
 
                 yMap.set(x, item)
-                field.set(y, yMap)
             }
+
+            field.set(y, yMap)
         }
 
         return field

@@ -1,8 +1,10 @@
 import MoveUnit from "./action/MoveUnit.js"
 import Point from "../Point.js"
 import * as symbol from "../symbol.js"
+import Mine from "./action/Mine.js"
 
 const teamSymbol = Symbol('team')
+const apiSymbol = Symbol('team')
 const idSymbol = symbol.default.id
 export default class TeamApi {
     /**
@@ -11,25 +13,33 @@ export default class TeamApi {
      */
     constructor(team, api) {
         this[teamSymbol] = team
-        this.api = api
+        this[apiSymbol] = api
     }
 
     getMap() {
-        return this.api.getMap(this[teamSymbol])
+        return this[apiSymbol].getMap(this[teamSymbol])
     }
 
     /**
      * @return {Peasant[]}
      */
     getUnits() {
-        return this.api.getOwnUnits(this[teamSymbol]).sort((a, b) => a[idSymbol] - b[idSymbol])
+        return this[apiSymbol].getOwnUnits(this[teamSymbol]).sort((a, b) => a[idSymbol] - b[idSymbol])
     }
 
     getResources() {
-        return this.api.getResources(this[teamSymbol])
+        return this[apiSymbol].getResources(this[teamSymbol])
+    }
+
+    getResourcePoints() {
+        return this[apiSymbol].getResourcePoints(this[teamSymbol])
     }
 
     move(unit, y, x) {
         return new MoveUnit(unit, new Point(y, x))
+    }
+
+    mine(unit, y, x) {
+        return new Mine(unit, new Point(y, x))
     }
 }
