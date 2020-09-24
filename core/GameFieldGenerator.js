@@ -4,8 +4,8 @@ import Rock from "./entity/solid/Rock.js"
 import Empty from "./entity/Empty.js"
 import Peasant from "./entity/unit/Peasant.js"
 import TownHall from "./entity/building/TownHall.js"
-import Gold from "./entity/resource/Gold.js"
-import Food from "./entity/resource/Food.js"
+import GoldSource from "./entity/resource/GoldSource.js"
+import FoodSource from "./entity/resource/FoodSource.js"
 import Tree from "./entity/solid/Tree.js"
 import Point from "./Point.js"
 import Field from "./Field.js"
@@ -28,12 +28,12 @@ const generateTownHall = (y, x, team) => {
     return hall
 }
 const generateGold = (y, x) => {
-    const gold = new Gold()
+    const gold = new GoldSource()
     gold[positionSymbol] = new Point(y, x)
     return gold
 }
 const generateFood = (y, x) => {
-    const food = new Food()
+    const food = new FoodSource()
     food[positionSymbol] = new Point(y, x)
     return food
 }

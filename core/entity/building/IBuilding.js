@@ -12,11 +12,4 @@ export default class IBuilding extends IEntity {
     get team() {
         return this[teamSymbol]
     }
-
-    /**
-     * @return {Point}
-     */
-    get position() {
-        return this[symbol.default.position]
-    }
 }

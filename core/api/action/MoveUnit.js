@@ -8,7 +8,7 @@ import IMovable from "../../entity/unit/IMovable.js"
 export default class MoveUnit extends IAction {
 
     /**
-     * @param {Peasant} unit
+     * @param {IMovable} unit
      * @param {Point} position
      */
     constructor(unit, position) {
@@ -18,7 +18,7 @@ export default class MoveUnit extends IAction {
     }
 
     validate(api) {
-        return this._validateParams(api) && this._validateAction() && this._validateMove(api)
+        return this._validateParams(api) && this._validateUnitAction(this.unit) && this._validateMove(api)
     }
 
     perform(engine) {
@@ -30,15 +30,11 @@ export default class MoveUnit extends IAction {
 
     _validateParams(api) {
         if (!this.newPosition.validate(api)) {
-            console.error(this, ' invalid params!')
+            console.error(this, ' invalid new position!')
             return false
         }
-        if (!(this.unit instanceof IMovable)) {
-            console.error(this, ' invalid params!')
-            return false
-        }
-        if (this.unit[symbol.default.id] === undefined) {
-            console.error(this, ' invalid params!')
+        if (!this.unit.validate(api)) {
+            console.error(this, ' invalid unit!')
             return false
         }
 
@@ -67,15 +63,6 @@ export default class MoveUnit extends IAction {
                 console.error(this, ' wall on the way!')
                 return false
             }
-        }
-
-        return true
-    }
-
-    _validateAction() {
-        if (UnitActionRegistry.didAction(this.unit[symbol.default.id])) {
-            console.error(this, ' already did action!')
-            return false
         }
 
         return true

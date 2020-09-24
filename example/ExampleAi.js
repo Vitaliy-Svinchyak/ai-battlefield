@@ -7,7 +7,8 @@ export default class ExampleAi {
     tick(api) {
         const units = api.getUnits()
         const unit = units[0]
-        const actions = [api.move(unit, 3, 4), api.mine(unit, api.getResourcePoints())]
+        const mine = api.mine(unit, api.getResourcePoints()[0])
+        const actions = [api.move(unit, 3, 4), mine, mine, mine, mine, mine, mine, mine, mine, mine, mine,]
 
         if (i > actions.length - 1) {
             return []

@@ -21,7 +21,7 @@ export default class TeamApi {
     }
 
     /**
-     * @return {Peasant[]}
+     * @return {IMovable[]}
      */
     getUnits() {
         return this[apiSymbol].getOwnUnits(this[teamSymbol]).sort((a, b) => a[idSymbol] - b[idSymbol])
@@ -35,10 +35,21 @@ export default class TeamApi {
         return this[apiSymbol].getResourcePoints(this[teamSymbol])
     }
 
+    /**
+     * @param {IMovable} unit
+     * @param {int} y
+     * @param {int} x
+     * @return {MoveUnit}
+     */
     move(unit, y, x) {
         return new MoveUnit(unit, new Point(y, x))
     }
 
+    /**
+     * @param {IMovable} unit
+     * @param {IResource} resource
+     * @return {Mine}
+     */
     mine(unit, resource) {
         return new Mine(unit, resource)
     }

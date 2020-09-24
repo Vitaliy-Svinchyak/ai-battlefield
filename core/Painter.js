@@ -4,8 +4,8 @@ import Peasant from "./entity/unit/Peasant.js"
 import Rock from "./entity/solid/Rock.js"
 import Tree from "./entity/solid/Tree.js"
 import TownHall from "./entity/building/TownHall.js"
-import Gold from "./entity/resource/Gold.js"
-import Food from "./entity/resource/Food.js"
+import GoldSource from "./entity/resource/GoldSource.js"
+import FoodSource from "./entity/resource/FoodSource.js"
 import Unexplored from "./entity/Unexplored.js"
 
 export default class Painter {
@@ -24,8 +24,8 @@ export default class Painter {
                 new Tree().image,
                 new Rock().image,
                 new TownHall().image,
-                new Food().image,
-                new Gold().image,
+                new FoodSource().image,
+                new GoldSource().image,
                 new Unexplored().image
             ],
             () => {

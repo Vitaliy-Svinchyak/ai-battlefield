@@ -38,7 +38,7 @@ export default class Engine {
             this.api.recalculateExploredMap()
 
             this.draw()
-        }, 1000)
+        }, 500)
     }
 
     draw() {
