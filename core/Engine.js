@@ -44,6 +44,7 @@ export default class Engine {
     draw() {
         this.painter.draw(this.field.size, this.getCurrentFieldMap())
         this.painter.drawResources(this.api.resources)
+        this.painter.drawScore(this.api)
     }
 
     getCurrentFieldMap() {

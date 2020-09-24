@@ -73,13 +73,27 @@ export default class Painter {
         const spaceSymbol = '⠀'
         const gold1 = resources[1].gold.toString()
         const food1 = resources[1].food.toString()
-        document.querySelector('#resources-1 .food').innerText = food1 + spaceSymbol.repeat(3 - food1.length)
-        document.querySelector('#resources-1 .gold').innerText = gold1 + spaceSymbol.repeat(3 - gold1.length)
+        document.querySelector('#resources-1 .food').innerText = food1 + spaceSymbol.repeat(4 - food1.length)
+        document.querySelector('#resources-1 .gold').innerText = gold1 + spaceSymbol.repeat(4 - gold1.length)
 
         const gold2 = resources[2].gold.toString()
         const food2 = resources[2].food.toString()
-        document.querySelector('#resources-2 .food').innerText = food2 + spaceSymbol.repeat(3 - food2.length)
-        document.querySelector('#resources-2 .gold').innerText = gold2 + spaceSymbol.repeat(3 - gold2.length)
+        document.querySelector('#resources-2 .food').innerText = food2 + spaceSymbol.repeat(4 - food2.length)
+        document.querySelector('#resources-2 .gold').innerText = gold2 + spaceSymbol.repeat(4 - gold2.length)
+    }
+
+    /**
+     * @param {Api} api
+     */
+    drawScore(api) {
+        let score1 = 0
+        score1 += api.getOwnBuildings(1).length * 2
+        score1 += api.getOwnUnits(1).length
+        let score2 = 0
+        score2 += api.getOwnBuildings(2).length * 2
+        score2 += api.getOwnUnits(2).length
+        document.getElementById('score-1').innerText = score1.toString()
+        document.getElementById('score-2').innerText = score2.toString()
     }
 
     drawCanvasField(fieldSize, fieldMap) {

@@ -68,3 +68,29 @@ body {
     background-repeat: no-repeat;
     padding-left: 25px;
 }
+
+.score {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.score div {
+    background-image: url("../images/star.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding: 1px 5px 1px 25px;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.score #score-1 {
+    color: red;
+}
+
+.score #score-2 {
+    color: blue;
+}
