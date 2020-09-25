@@ -2,7 +2,7 @@
 <html lang="">
 <head>
     <meta charset="utf-8">
-    <title>Life</title>
+    <title>Show me your code</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
@@ -35,13 +35,20 @@
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
     import Empty from "./core/entity/Empty.js"
+    import ExampleAi from "./example/ExampleAi.js"
+    import EmptyAi from "./example/EmptyAi.js"
 
-    window.selectedTeamToView = 1
+    window.gameSettings = {
+        gameSpeed: 500,
+        selectedTeamToView: 1
+    }
     const map = GameFieldGenerator.gameMap(30, 30)
     map.fieldMap.get(8).set(8, new Empty())
     const game = new Engine(map)
+    const ai1 = new ExampleAi()
+    const ai2 = new EmptyAi()
     game.onReady(() => {
-        game.start()
+        game.start(ai1, ai2)
     })
 
 

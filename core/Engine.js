@@ -24,21 +24,23 @@ export default class Engine {
         this.painter.onReady(this.getCurrentFieldMap(), callback)
     }
 
-    start() {
-        const ai1 = new ExampleAi()
-        const ai2 = new EmptyAi()
+    start(ai1, ai2) {
+        this.tick(ai1, ai2)
+    }
 
-        setInterval(() => {
-            UnitActionRegistry.clear()
-            const actions1 = ai1.tick(this.api.team(1))
-            this.performActions(actions1)
+    tick(ai1, ai2) {
+        UnitActionRegistry.clear()
+        const actions1 = ai1.tick(this.api.team(1))
+        this.performActions(actions1)
 
-            const actions2 = ai2.tick(this.api.team(2))
-            this.performActions(actions2)
-            this.api.recalculateExploredMap()
+        const actions2 = ai2.tick(this.api.team(2))
+        this.performActions(actions2)
+        this.api.recalculateExploredMap()
 
-            this.draw()
-        }, 500)
+        this.draw()
+        setTimeout(() => {
+            this.tick(ai1, ai2)
+        }, window.gameSettings.gameSpeed)
     }
 
     draw() {
@@ -48,7 +50,7 @@ export default class Engine {
     }
 
     getCurrentFieldMap() {
-        switch (window.selectedTeamToView) {
+        switch (window.gameSettings.selectedTeamToView) {
             case 0:
                 return this.field
             case 1:

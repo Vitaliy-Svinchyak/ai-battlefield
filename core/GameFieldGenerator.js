@@ -15,6 +15,7 @@ let lastNumber = 0
 const positionSymbol = symbol.default.position
 const idSymbol = symbol.default.id
 let id = 0
+
 const generatePeasant = (y, x, team) => {
     const peasant = new Peasant(team)
     peasant[positionSymbol] = new Point(y, x)
@@ -78,6 +79,7 @@ export default class GameFieldGenerator {
         fieldMap.get(5).set(2, generateGold(5, 2))
         fieldMap.get(3).set(5, generateFood(3, 5))
         fieldMap.get(2).set(5, generateFood(2, 5))
+        fieldMap.get(3).set(6, generatePeasant(3, 6, 2))
 
         fieldMap.get(maxY - 3).set(maxX - 3, generatePeasant(maxY - 3, maxX - 3, 2))
         fieldMap.get(maxY - 1).set(maxX - 1, generatePeasant(maxY - 1, maxX - 1, 2))
