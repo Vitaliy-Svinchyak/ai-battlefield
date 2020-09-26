@@ -10,9 +10,10 @@ export default class MoveUnit extends IAction {
     /**
      * @param {IMovable} unit
      * @param {Point} position
+     * @param {int} team
      */
-    constructor(unit, position) {
-        super()
+    constructor(unit, position, team) {
+        super(team)
         this.unit = unit
         this.newPosition = position
     }

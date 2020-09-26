@@ -2,8 +2,6 @@
 
 import Painter from "./Painter.js"
 import Api from "./api/Api.js"
-import ExampleAi from "../example/ExampleAi.js"
-import EmptyAi from "../example/EmptyAi.js"
 import UnitActionRegistry from "./api/UnitActionRegistry.js"
 import Field from "./Field.js"
 import IAction from "./api/action/IACtion.js"
@@ -31,12 +29,12 @@ export default class Engine {
     tick(ai1, ai2) {
         UnitActionRegistry.clear()
         const actions1 = ai1.tick(this.api.team(1))
-        this.performActions(actions1)
+        this.performActions(actions1, this.api.team(1))
 
         const actions2 = ai2.tick(this.api.team(2))
-        this.performActions(actions2)
-        this.api.recalculateExploredMap()
+        this.performActions(actions2, this.api.team(2))
 
+        this.api.tick()
         this.draw()
         setTimeout(() => {
             this.tick(ai1, ai2)

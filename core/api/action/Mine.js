@@ -13,10 +13,11 @@ const inventorySymbol = symbol.default.inventory
 export default class Mine extends IAction {
     /**
      * @param {IMovable} unit
-     * @param {IResource} resource
+     * @param {IResourceSource} resource
+     * @param {int} team
      */
-    constructor(unit, resource) {
-        super()
+    constructor(unit, resource, team) {
+        super(team)
         this.unit = unit
         this.resource = resource
     }

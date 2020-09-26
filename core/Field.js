@@ -60,6 +60,15 @@ export default class Field {
     }
 
     /**
+     * @param {int} y
+     * @param {int} x
+     * @param {IEntity} object
+     */
+    putObject(y, x, object) {
+        return this.fieldMap.get(y).set(x, object)
+    }
+
+    /**
      * @param {IMovable} object
      * @param {Point} from
      * @param {Point} to

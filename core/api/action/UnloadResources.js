@@ -6,7 +6,6 @@ import GoldItem from "../../entity/item/GoldItem.js"
 import FoodItem from "../../entity/item/FoodItem.js"
 import * as symbol from "../../symbol.js"
 
-
 const goldSymbol = symbol.default.gold
 const foodSymbol = symbol.default.food
 const inventorySymbol = symbol.default.inventory
@@ -15,9 +14,10 @@ export default class UnloadResources extends IAction {
     /**
      * @param {IMovable} unit
      * @param {IBuilding} building
+     * @param {int} team
      */
-    constructor(unit, building) {
-        super()
+    constructor(unit, building, team) {
+        super(team)
         this.unit = unit
         this.building = building
     }
@@ -64,6 +64,11 @@ export default class UnloadResources extends IAction {
 
         if (!(this.unit.inventory[0] instanceof IItemResource)) {
             console.error(this, ' item is not a resource!')
+            return false
+        }
+
+        if (this.building.team !== this.team) {
+            console.error(this, ' it is not your building!')
             return false
         }
 

@@ -11,14 +11,14 @@ export default class ExampleAi {
         const buildings = api.getBuilding()
         const unitForFood = units[0]
         const unitForGold = units[1]
-        const mineFood = api.mine(unitForFood, api.getResourcePoints()[0])
-        const mineGold = api.mine(unitForGold, api.getResourcePoints()[2])
-        const unloadFood = api.unload(unitForFood, buildings[0])
-        const unloadGold = api.unload(unitForGold, buildings[0])
-        const actionsFood = [api.move(unitForFood, 3, 4), mineFood, mineFood, mineFood, api.move(unitForFood, 3, 3), unloadFood]
+        const mineFood = api.actions.mine(unitForFood, api.getResourcePoints()[0])
+        const mineGold = api.actions.mine(unitForGold, api.getResourcePoints()[2])
+        const unloadFood = api.actions.unload(unitForFood, buildings[0])
+        const unloadGold = api.actions.unload(unitForGold, buildings[0])
+        const actionsFood = [api.actions.move(unitForFood, 3, 4), mineFood, mineFood, mineFood, api.actions.move(unitForFood, 3, 3), unloadFood]
 
-        const actionsGold = [api.move(unitForGold, 2, 1), api.move(unitForGold, 3, 1), api.move(unitForGold, 4, 1),
-            mineGold, mineGold, mineGold, api.move(unitForGold, 3, 1), unloadGold]
+        const actionsGold = [api.actions.move(unitForGold, 2, 1), api.actions.move(unitForGold, 3, 1), api.actions.move(unitForGold, 4, 1),
+            mineGold, mineGold, mineGold, api.actions.move(unitForGold, 3, 1), unloadGold]
 
         const actionFood = actionsFood[foodI]
         const actionGold = actionsGold[goldI]
@@ -30,6 +30,11 @@ export default class ExampleAi {
         }
         if (goldI > actionsGold.length - 1) {
             goldI = 2
+        }
+
+        if (api.getResources().enough(api.units.peasant.price)
+            && api.getPopulation() + api.units.peasant.livingPlace <= api.maximumPopulation) {
+            return [actionFood, actionGold, api.actions.createUnit(api.units.peasant)]
         }
 
         return [actionFood, actionGold]

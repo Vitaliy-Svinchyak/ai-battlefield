@@ -3,6 +3,15 @@ import * as symbol from "../../symbol.js"
 import IMovable from "../../entity/unit/IMovable.js"
 
 export default class IAction {
+
+    constructor(team) {
+        this[symbol.default.team] = team
+    }
+
+    get team() {
+        return this[symbol.default.team]
+    }
+
     /**
      * @param {Api} api
      * @return boolean
@@ -28,8 +37,14 @@ export default class IAction {
             console.error(this, ' invalid params!')
             return false
         }
+
         if (unit[symbol.default.id] === undefined) {
             console.error(this, ' invalid params!')
+            return false
+        }
+
+        if (unit.team !== this.team) {
+            console.error(this, ' it is not your unit!')
             return false
         }
 

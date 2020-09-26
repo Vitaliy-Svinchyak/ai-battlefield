@@ -21,4 +21,24 @@ export default class IMovable extends IEntity {
     get inventory() {
         return this[inventory]
     }
+
+    /**
+     * @return {Resources}
+     */
+    static get price() {
+        throw new Error('Implement price getter!')
+    }
+
+    /**
+     * @return {int}
+     */
+    static get livingPlace() {
+        throw new Error('Implement livingPlace getter!')
+    }
+    /**
+     * @return {int}
+     */
+    static get ticksForSpawn() {
+        throw new Error('Implement ticksForSpawn getter!')
+    }
 }
