@@ -58,9 +58,10 @@ export default class MoveUnit extends IAction {
         // diagonal
         if (this.unit.position.y !== this.newPosition.y && this.unit.position.x !== this.newPosition.x) {
             const wall1 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
-            const wall2 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
+            const wall2 = api.getObject(new Point(this.unit.position.y, this.newPosition.x))
 
             if (!(wall1 instanceof Empty) && !(wall2 instanceof Empty)) {
+                console.log(wall1, wall2)
                 console.error(this, ' wall on the way!')
                 return false
             }

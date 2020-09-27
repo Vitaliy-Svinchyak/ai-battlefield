@@ -5,6 +5,7 @@ import Point from "../Point.js"
 import Field from "../Field.js"
 import IResourceSource from "../entity/resource/IResourceSource.js"
 import Empty from "../entity/Empty.js"
+import UnitBuilder from "../UnitBuilder.js"
 
 export default class Api {
 
@@ -32,13 +33,9 @@ export default class Api {
      */
     constructor(field) {
         this.field = field
-        const allUnits = field.getAllUnits()
         const buildings = field.getAllBuildings()
 
-        this.units = {
-            1: allUnits.filter(u => u.team === 1),
-            2: allUnits.filter(u => u.team === 2),
-        }
+        this._indexUnits()
 
         this.buildings = {
             1: buildings.filter(u => u.team === 1),
@@ -54,8 +51,9 @@ export default class Api {
     }
 
     tick() {
-        this._recalculateExploredMap()
         this._tickForSpawn()
+        this._indexUnits()
+        this._recalculateExploredMap()
     }
 
     /**
@@ -134,7 +132,7 @@ export default class Api {
     }
 
     /**
-     * @param {IMovable} unit
+     * @param {typeof IMovable} unit
      * @param {int} ticks
      * @param {int} team
      */
@@ -162,7 +160,8 @@ export default class Api {
                 for (let y = townHall.position.y - 1; y <= townHall.position.y + 1; y++) {
                     for (let x = townHall.position.x - 1; x <= townHall.position.x + 1; x++) {
                         if (this.field.getObject(y, x) instanceof Empty) {
-                            this.field.putObject(y, x, unit)
+                            const createdUnit = UnitBuilder.buildUnit(y, x, team, unit)
+                            this.field.putObject(y, x, createdUnit)
                             unitsToSpawn.delete(unit)
                             return
                         }
@@ -211,5 +210,13 @@ export default class Api {
         }
 
         return field
+    }
+
+    _indexUnits() {
+        const allUnits = this.field.getAllUnits()
+        this.units = {
+            1: allUnits.filter(u => u.team === 1),
+            2: allUnits.filter(u => u.team === 2),
+        }
     }
 }

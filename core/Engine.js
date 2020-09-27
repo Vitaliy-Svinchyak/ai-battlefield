@@ -67,6 +67,7 @@ export default class Engine {
                 action.perform(this)
             } else {
                 console.log(action, ' invalid action!')
+                // throw 'her'
             }
         }
     }

@@ -2,7 +2,6 @@
 
 import Rock from "./entity/solid/Rock.js"
 import Empty from "./entity/Empty.js"
-import Peasant from "./entity/unit/Peasant.js"
 import TownHall from "./entity/building/TownHall.js"
 import GoldSource from "./entity/resource/GoldSource.js"
 import FoodSource from "./entity/resource/FoodSource.js"
@@ -10,18 +9,14 @@ import Tree from "./entity/solid/Tree.js"
 import Point from "./Point.js"
 import Field from "./Field.js"
 import * as symbol from "./symbol.js"
+import UnitBuilder from "./UnitBuilder.js"
+import Peasant from "./entity/unit/Peasant.js"
 
 let lastNumber = 0
 const positionSymbol = symbol.default.position
-const idSymbol = symbol.default.id
-let id = 0
 
 const generatePeasant = (y, x, team) => {
-    const peasant = new Peasant(team)
-    peasant[positionSymbol] = new Point(y, x)
-    peasant[idSymbol] = id
-    id++
-    return peasant
+    return UnitBuilder.buildUnit(y, x, team, Peasant)
 }
 const generateTownHall = (y, x, team) => {
     const hall = new TownHall(team)

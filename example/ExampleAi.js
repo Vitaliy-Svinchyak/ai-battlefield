@@ -1,3 +1,6 @@
+import Empty from "../core/entity/Empty.js"
+import Point from "../core/Point.js"
+
 let foodI = 0
 let goldI = 0
 
@@ -32,11 +35,40 @@ export default class ExampleAi {
             goldI = 2
         }
 
-        if (api.getResources().enough(api.units.peasant.price)
-            && api.getPopulation() + api.units.peasant.livingPlace <= api.maximumPopulation) {
-            return [actionFood, actionGold, api.actions.createUnit(api.units.peasant)]
+        const additionalActions = []
+
+        if (units.length > 2) {
+            const map = api.getMap()
+            for (let i = 2; i < units.length; i++) {
+                const unit = units[i]
+
+                const positions = [
+                    new Point(unit.position.y - 1, unit.position.x - 1),
+                    new Point(unit.position.y - 1, unit.position.x),
+                    new Point(unit.position.y - 1, unit.position.x + 1),
+
+                    new Point(unit.position.y, unit.position.x + 1),
+                    new Point(unit.position.y, unit.position.x - 1),
+
+
+                    new Point(unit.position.y + 1, unit.position.x - 1),
+                    new Point(unit.position.y + 1, unit.position.x),
+                    new Point(unit.position.y + 1, unit.position.x + 1),
+                ].sort(() => Math.random() - 0.5)
+                for (const pos of positions) {
+                    if (map.get(pos.y).get(pos.x) instanceof Empty) {
+                        additionalActions.push(api.actions.move(unit, pos.y, pos.x))
+                        break
+                    }
+                }
+            }
         }
 
-        return [actionFood, actionGold]
+        if (api.getResources().enough(api.units.peasant.price)
+            && api.getPopulation() + api.units.peasant.livingPlace <= api.maximumPopulation) {
+            return [actionFood, actionGold, api.actions.createUnit(api.units.peasant), ...additionalActions]
+        }
+
+        return [actionFood, actionGold, ...additionalActions]
     }
 }

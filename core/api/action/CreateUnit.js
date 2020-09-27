@@ -25,7 +25,7 @@ export default class CreateUnit extends IAction {
         resources[goldSymbol] = resources.gold - this.unit.price.gold
         resources[foodSymbol] = resources.food - this.unit.price.food
 
-        engine.api.creteDelayedSpawn(new this.unit(this.team), this.team, this.unit.ticksForSpawn)
+        engine.api.creteDelayedSpawn(this.unit, this.team, this.unit.ticksForSpawn)
     }
 
     _validateParams() {

@@ -37,6 +37,9 @@ export default class TeamApi {
         return this[teamSymbol]
     }
 
+    /**
+     * @return {Map<int, Map<int, IEntity>>}
+     */
     getMap() {
         return this[apiSymbol].getMap(this[teamSymbol])
     }
