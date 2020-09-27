@@ -55,20 +55,17 @@
     document.getElementById('1-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
         document.getElementById('1-fog').classList.add('active')
-        window.selectedTeamToView = 1
-        window.fullRedraw = true
+        window.gameSettings.selectedTeamToView = 1
     })
     document.getElementById('0-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
         document.getElementById('0-fog').classList.add('active')
-        window.selectedTeamToView = 0
-        window.fullRedraw = true
+        window.gameSettings.selectedTeamToView = 0
     })
     document.getElementById('2-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
         document.getElementById('2-fog').classList.add('active')
-        window.selectedTeamToView = 2
-        window.fullRedraw = true
+        window.gameSettings.selectedTeamToView = 2
     })
 </script>
 </body>
