@@ -11,11 +11,11 @@ export default class Engine {
     /**
      * @param {Field} field
      */
-    constructor(field) {
+    constructor(field, colorSettings) {
         this.field = field
         this.api = new Api(this.field)
 
-        this.painter = new Painter(document.querySelector('#canvas-field'), this.field.size)
+        this.painter = new Painter(document.querySelector('#canvas-field'), this.field.size, colorSettings)
     }
 
     onReady(callback) {

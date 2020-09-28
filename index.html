@@ -43,9 +43,12 @@
         gameSpeed: 500,
         selectedTeamToView: 1
     }
-    const map = GameFieldGenerator.gameMap(30, 30)
+    const map = GameFieldGenerator.gameMap(20, 20)
     map.fieldMap.get(8).set(8, new Empty())
-    const game = new Engine(map)
+    const game = new Engine(map, {
+        1: [55, 250, 30],
+        2: [133, 44, 157]
+    })
     const ai1 = new AttackAi()
     const ai2 = new EmptyAi()
     game.onReady(() => {

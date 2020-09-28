@@ -12,8 +12,9 @@ import IBuilding from "./entity/building/IBuilding.js"
 
 export default class Painter {
 
-    constructor(canvas, fieldSize) {
+    constructor(canvas, fieldSize, colorSettings) {
         this.canvas = canvas
+        this.colorSettings = colorSettings
         this.pointSize = this.calculatePointSize(fieldSize)
         this.fieldSize = fieldSize
         this.setCanvasSize(fieldSize)
@@ -141,19 +142,10 @@ export default class Painter {
         }
 
         if (entity instanceof IMovable || entity instanceof IBuilding) {
-            const thickness = 1
-            const width = this.pointSize.x + (thickness * 2)
-            const height = this.pointSize.y / 10 + (thickness * 2)
-            this.context.fillStyle = '#000'
-            this.context.fillRect(x - (thickness), y - (thickness) - 5, width, height)
-
-            this.context.fillStyle = '#ff5347'
-            const hpPercent = entity.hp / entity.maxHp
-            const hpWidth = width * hpPercent - 2
-            this.context.fillRect(x - (thickness - 1), y - (thickness - 1) - 5, hpWidth, height - 2)
+            this.drawEntityOverLay(entity, x, y)
+        } else {
+            this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
         }
-
-        this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
     }
 
     clearRect(xDraw, yDraw) {
@@ -190,5 +182,50 @@ export default class Painter {
 
         this.canvas.height = height
         this.canvas.width = width
+    }
+
+    drawEntityOverLay(entity, x, y) {
+        const image = entity.image
+        this.drawHp(entity, x, y)
+        this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
+        if (entity instanceof Peasant) {
+            this.changeColor(x, y, this.colorSettings[entity.team])
+        }
+    }
+
+    drawHp(entity, x, y) {
+        const thickness = 1
+        const width = this.pointSize.x + (thickness * 2)
+        const height = this.pointSize.y / 10 + (thickness * 2)
+        this.context.fillStyle = '#000'
+        this.context.fillRect(x - (thickness), y - (thickness) - 5, width, height)
+
+        this.context.fillStyle = '#ff5347'
+        const hpPercent = entity.hp / entity.maxHp
+        const hpWidth = width * hpPercent - 2
+        this.context.fillRect(x - (thickness - 1), y - (thickness - 1) - 5, hpWidth, height - 2)
+    }
+
+    changeColor(x, y, newColor) {
+        const imageData = this.context.getImageData(x, y, this.pointSize.x, this.pointSize.y)
+        const data = imageData.data
+
+        let was = false
+        for (let y = 0; y < this.pointSize.y; y++) {
+            for (let x = 0; x < this.pointSize.x; x++) {
+                const red = data[((this.pointSize.x * y) + x) * 4]
+                const green = data[((this.pointSize.x * y) + x) * 4 + 1]
+                const blue = data[((this.pointSize.x * y) + x) * 4 + 2]
+
+                if (green === 255 && red === 0 && blue === 0) {
+                    data[((this.pointSize.x * y) + x) * 4] = newColor[0]
+                    data[((this.pointSize.x * y) + x) * 4 + 1] = newColor[1]
+                    data[((this.pointSize.x * y) + x) * 4 + 2] = newColor[2]
+                    was = true
+                }
+            }
+        }
+
+        this.context.putImageData(imageData, x, y)
     }
 }
