@@ -4,6 +4,7 @@ import Mine from "../action/Mine.js"
 import UnloadResources from "../action/UnloadResources.js"
 import CreateUnit from "../action/CreateUnit.js"
 import * as symbol from "../../symbol.js"
+import AttackTarget from "../action/AttackTarget.js"
 
 const teamSymbol = symbol.default.team
 
@@ -52,5 +53,13 @@ export default class ActionsBuilder {
      */
     createUnit(unit) {
         return new CreateUnit(unit, this.team)
+    }
+
+    /**
+     * @param {IMovable} unit
+     * @param {IMovable|IBuilding} target
+     */
+    attack(unit, target) {
+        return new AttackTarget(unit, target)
     }
 }

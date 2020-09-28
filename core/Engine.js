@@ -66,8 +66,8 @@ export default class Engine {
             if (action instanceof IAction && action.validate(this.api)) {
                 action.perform(this)
             } else {
-                // console.log(action, ' invalid action!')
-                // throw 'her'
+                console.log(action, ' invalid action!')
+                throw 'her'
             }
         }
     }

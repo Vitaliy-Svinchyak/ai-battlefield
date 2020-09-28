@@ -19,4 +19,25 @@ export default class IEntity {
     get position() {
         return this[symbol.default.position]
     }
+
+    /**
+     * @return boolean
+     */
+    get isSolid() {
+        throw new Error('Implement isSolid method!')
+    }
+
+    /**
+     * @return boolean
+     */
+    get isEmpty() {
+        return false
+    }
+
+    /**
+     * @return {number}
+     */
+    get hp() {
+        return Infinity
+    }
 }

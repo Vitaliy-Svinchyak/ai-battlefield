@@ -8,4 +8,8 @@ export default class IResourceSource extends IEntity {
     get item() {
         throw new Error('Implement item method!')
     }
+
+    get isSolid() {
+        return true
+    }
 }

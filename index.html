@@ -37,15 +37,16 @@
     import Empty from "./core/entity/Empty.js"
     import ExampleAi from "./example/ExampleAi.js"
     import EmptyAi from "./example/EmptyAi.js"
+    import AttackAi from "./example/AttackAi.js"
 
     window.gameSettings = {
-        gameSpeed: 100,
+        gameSpeed: 500,
         selectedTeamToView: 1
     }
     const map = GameFieldGenerator.gameMap(30, 30)
     map.fieldMap.get(8).set(8, new Empty())
     const game = new Engine(map)
-    const ai1 = new ExampleAi()
+    const ai1 = new AttackAi()
     const ai2 = new EmptyAi()
     game.onReady(() => {
         game.start(ai1, ai2)

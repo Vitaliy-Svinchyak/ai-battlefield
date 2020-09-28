@@ -8,7 +8,7 @@ export default class Peasant extends IMovable {
     image = image
 
     constructor(team) {
-        super(team)
+        super(team, 10, 1)
     }
 
     static get price() {

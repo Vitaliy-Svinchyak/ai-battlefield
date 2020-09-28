@@ -6,6 +6,7 @@ import FoodSource from "../../entity/resource/FoodSource.js"
 import FoodItem from "../../entity/item/FoodItem.js"
 import GoldSource from "../../entity/resource/GoldSource.js"
 import * as symbol from "../../symbol.js"
+import Point from "../../Point.js"
 
 const amountSymbol = symbol.default.amount
 const inventorySymbol = symbol.default.inventory
@@ -23,7 +24,7 @@ export default class Mine extends IAction {
     }
 
     validate(api) {
-        return this._validateParams(api) && this._validateUnitAction(this.unit) && this._validateMine()
+        return this._validateParams(api) && this._validateUnitAction(this.unit) && this._validateMine(api)
     }
 
     _validateParams(api) {
@@ -60,7 +61,7 @@ export default class Mine extends IAction {
         return true
     }
 
-    _validateMine() {
+    _validateMine(api) {
         if (Math.abs(this.unit.position.y - this.resource.position.y) > 1) {
             console.error(this, ' too big distance!')
             return false
@@ -68,6 +69,18 @@ export default class Mine extends IAction {
         if (Math.abs(this.unit.position.x - this.resource.position.x) > 1) {
             console.error(this, ' too big distance!')
             return false
+        }
+
+        // diagonal
+        if (this.unit.position.y !== this.resource.position.y && this.unit.position.x !== this.resource.position.x) {
+            const wall1 = api.getObject(new Point(this.resource.position.y, this.unit.position.x))
+            const wall2 = api.getObject(new Point(this.unit.position.y, this.resource.position.x))
+
+            if (wall1.isSolid && wall2.isSolid) {
+                console.log(wall1, wall2)
+                console.error(this, ' wall on the way!')
+                return false
+            }
         }
 
         return true

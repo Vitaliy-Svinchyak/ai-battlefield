@@ -21,6 +21,9 @@ export default class Field {
         return this.fieldMap.get(y).get(x).image
     }
 
+    /**
+     * @return {IMovable[]}
+     */
     getAllUnits() {
         const units = []
 

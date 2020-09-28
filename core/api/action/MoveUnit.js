@@ -1,5 +1,4 @@
 import IAction from "./IACtion.js"
-import Empty from "../../entity/Empty.js"
 import * as symbol from "../../symbol.js"
 import Point from "../../Point.js"
 import UnitActionRegistry from "../UnitActionRegistry.js"
@@ -51,7 +50,7 @@ export default class MoveUnit extends IAction {
             console.error(this, ' too big distance!')
             return false
         }
-        if (!(api.getObject(this.newPosition) instanceof Empty)) {
+        if (!(api.getObject(this.newPosition).isEmpty)) {
             console.error(this, 'is not empty!')
             return false
         }
@@ -60,7 +59,7 @@ export default class MoveUnit extends IAction {
             const wall1 = api.getObject(new Point(this.newPosition.y, this.unit.position.x))
             const wall2 = api.getObject(new Point(this.unit.position.y, this.newPosition.x))
 
-            if (!(wall1 instanceof Empty) && !(wall2 instanceof Empty)) {
+            if (wall1.isSolid && wall2.isSolid) {
                 console.log(wall1, wall2)
                 console.error(this, ' wall on the way!')
                 return false

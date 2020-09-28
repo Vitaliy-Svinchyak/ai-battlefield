@@ -7,6 +7,7 @@ export default class TownHall extends IBuilding {
     image = image
 
     constructor(team) {
-        super(team)
+        super(team, 300)
     }
+
 }

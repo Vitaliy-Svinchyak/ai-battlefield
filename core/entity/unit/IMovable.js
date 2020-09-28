@@ -1,25 +1,42 @@
 import IEntity from "../IEntity.js"
 import * as symbol from "../../symbol.js"
 
+const hpSymbol = symbol.default.hp
 const teamSymbol = symbol.default.team
-const inventory = symbol.default.inventory
+const inventorySymbol = symbol.default.inventory
+const attackSymbol = symbol.default.attack
 
 export default class IMovable extends IEntity {
-    constructor(team) {
+    constructor(team, hp, attack) {
         super()
         this[teamSymbol] = team
-        this[inventory] = []
+        this[inventorySymbol] = []
+        this[hpSymbol] = hp
+        this[attackSymbol] = attack
     }
 
     get team() {
         return this[teamSymbol]
     }
 
+    get hp() {
+        return this[hpSymbol]
+    }
+
+    get attack() {
+        return this[attackSymbol]
+    }
+
+
+    get isSolid() {
+        return false
+    }
+
     /**
      * @return {IItem[]}
      */
     get inventory() {
-        return this[inventory]
+        return this[inventorySymbol]
     }
 
     /**
@@ -35,6 +52,7 @@ export default class IMovable extends IEntity {
     static get livingPlace() {
         throw new Error('Implement livingPlace getter!')
     }
+
     /**
      * @return {int}
      */

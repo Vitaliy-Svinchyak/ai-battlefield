@@ -114,7 +114,7 @@ export default class GameFieldGenerator {
             const yMap = fieldMap.get(y)
 
             for (let x = startX - 1; x <= startX + 1; x++) {
-                if (yMap.get(x) instanceof Empty && GameFieldGenerator.nearIsEmpty(y, x, fieldMap)) {
+                if (yMap.get(x).isEmpty && GameFieldGenerator.nearIsEmpty(y, x, fieldMap)) {
                     variants.push({x: x, y: y})
                 }
             }
@@ -129,7 +129,7 @@ export default class GameFieldGenerator {
             const yMap = fieldMap.get(y)
 
             for (let x = startX - 1; x <= startX + 1; x++) {
-                if (!(yMap.get(x) instanceof Empty)) {
+                if (!yMap.get(x).isEmpty) {
                     count++
                 }
             }

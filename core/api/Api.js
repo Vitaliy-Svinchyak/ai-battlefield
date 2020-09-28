@@ -4,8 +4,8 @@ import Unexplored from "../entity/Unexplored.js"
 import Point from "../Point.js"
 import Field from "../Field.js"
 import IResourceSource from "../entity/resource/IResourceSource.js"
-import Empty from "../entity/Empty.js"
 import UnitBuilder from "../UnitBuilder.js"
+import Empty from "../entity/Empty.js"
 
 export default class Api {
 
@@ -33,14 +33,9 @@ export default class Api {
      */
     constructor(field) {
         this.field = field
-        const buildings = field.getAllBuildings()
 
         this._indexUnits()
-
-        this.buildings = {
-            1: buildings.filter(u => u.team === 1),
-            2: buildings.filter(u => u.team === 2),
-        }
+        this._indexBuildings()
 
         this.exploredMap = {
             1: this._unexploredMap(),
@@ -51,6 +46,8 @@ export default class Api {
     }
 
     tick() {
+        this._removeDeadUnits()
+        this._removeDestroyedBuildings()
         this._tickForSpawn()
         this._indexUnits()
         this._recalculateExploredMap()
@@ -159,7 +156,7 @@ export default class Api {
             if (townHall !== undefined) {
                 for (let y = townHall.position.y - 1; y <= townHall.position.y + 1; y++) {
                     for (let x = townHall.position.x - 1; x <= townHall.position.x + 1; x++) {
-                        if (this.field.getObject(y, x) instanceof Empty) {
+                        if (this.field.getObject(y, x).isEmpty) {
                             const createdUnit = UnitBuilder.buildUnit(y, x, team, unit)
                             this.field.putObject(y, x, createdUnit)
                             unitsToSpawn.delete(unit)
@@ -219,4 +216,35 @@ export default class Api {
             2: allUnits.filter(u => u.team === 2),
         }
     }
+
+    _indexBuildings() {
+        const allBuildings = this.field.getAllBuildings()
+
+        this.buildings = {
+            1: allBuildings.filter(u => u.team === 1),
+            2: allBuildings.filter(u => u.team === 2),
+        }
+    }
+
+    _removeDeadUnits() {
+        const allUnits = this.field.getAllUnits()
+
+        for (const unit of allUnits) {
+            if (unit.hp <= 0) {
+                this.field.putObject(unit.position.y, unit.position.x, new Empty())
+            }
+        }
+    }
+
+    _removeDestroyedBuildings() {
+        const allBuildings = this.field.getAllBuildings()
+
+        for (const building of allBuildings) {
+            if (building.hp <= 0) {
+                this.field.putObject(building.position.y, building.position.x, new Empty())
+                throw new Error('Team ' + building.team + ' lose!')
+            }
+        }
+    }
+
 }

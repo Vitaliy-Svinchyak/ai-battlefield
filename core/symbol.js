@@ -6,4 +6,6 @@ export default {
     amount: Symbol('amount'),
     gold: Symbol('gold'),
     food: Symbol('food'),
+    hp: Symbol('hp'),
+    attack: Symbol('attack'),
 }
