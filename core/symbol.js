@@ -7,5 +7,6 @@ export default {
     gold: Symbol('gold'),
     food: Symbol('food'),
     hp: Symbol('hp'),
+    maxHp: Symbol('maxHp'),
     attack: Symbol('attack'),
 }

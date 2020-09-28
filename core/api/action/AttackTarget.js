@@ -29,7 +29,6 @@ export default class AttackTarget extends IAction {
         }
 
         this.target[hpSymbol] = newHp
-        console.log(this.target.hp)
     }
 
     _validateParams() {

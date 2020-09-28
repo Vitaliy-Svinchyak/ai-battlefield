@@ -2,6 +2,7 @@ import IEntity from "../IEntity.js"
 import * as symbol from "../../symbol.js"
 
 const hpSymbol = symbol.default.hp
+const maxHpSymbol = symbol.default.maxHp
 const teamSymbol = symbol.default.team
 const inventorySymbol = symbol.default.inventory
 const attackSymbol = symbol.default.attack
@@ -12,11 +13,16 @@ export default class IMovable extends IEntity {
         this[teamSymbol] = team
         this[inventorySymbol] = []
         this[hpSymbol] = hp
+        this[maxHpSymbol] = hp
         this[attackSymbol] = attack
     }
 
     get team() {
         return this[teamSymbol]
+    }
+
+    get maxHp() {
+        return this[maxHpSymbol]
     }
 
     get hp() {

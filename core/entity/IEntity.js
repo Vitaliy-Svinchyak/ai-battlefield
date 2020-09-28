@@ -1,7 +1,7 @@
 import * as symbol from "../symbol.js"
 
 export default class IEntity {
-
+    image = new Image()
     /**
      * @param {Api} api
      */

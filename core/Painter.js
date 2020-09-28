@@ -7,6 +7,8 @@ import TownHall from "./entity/building/TownHall.js"
 import GoldSource from "./entity/resource/GoldSource.js"
 import FoodSource from "./entity/resource/FoodSource.js"
 import Unexplored from "./entity/Unexplored.js"
+import IMovable from "./entity/unit/IMovable.js"
+import IBuilding from "./entity/building/IBuilding.js"
 
 export default class Painter {
 
@@ -58,13 +60,17 @@ export default class Painter {
         }
     }
 
+    /**
+     * @param fieldSize
+     * @param {Field} fieldMap
+     */
     draw(fieldSize, fieldMap) {
         for (let y = 0; y < this.fieldSize.rows; y++) {
             for (let x = 0; x < this.fieldSize.cells; x++) {
                 const formYDraw = this.defaultY + (y * this.pointSize.y) + y
                 const formXDraw = this.defaultX + (x * this.pointSize.x) + x
                 this.clearRect(formXDraw, formYDraw)
-                this.drawImage(fieldMap.getImage(y, x), formXDraw, formYDraw)
+                this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw)
             }
         }
     }
@@ -115,18 +121,39 @@ export default class Painter {
             let xDraw = this.defaultX
 
             for (let x = 0; x < fieldSize.cells; x++) {
-                this.drawImage(fieldMap.getImage(y, x), xDraw, yDraw)
+                this.drawEntity(fieldMap.getObject(y, x), xDraw, yDraw)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
             yDraw += this.pointSize.y + this.pointSize.margin
         }
     }
 
-    drawImage(image, xDraw, yDraw) {
+    /**
+     * @param {IEntity} entity
+     * @param x
+     * @param y
+     */
+    drawEntity(entity, x, y) {
+        const image = entity.image
+
         if (image.src === '') {
-            return this.clearRect(xDraw, yDraw)
+            return this.clearRect(x, y)
         }
-        this.context.drawImage(image, xDraw, yDraw, this.pointSize.x, this.pointSize.y)
+
+        if (entity instanceof IMovable || entity instanceof IBuilding) {
+            const thickness = 1
+            const width = this.pointSize.x + (thickness * 2)
+            const height = this.pointSize.y / 10 + (thickness * 2)
+            this.context.fillStyle = '#000'
+            this.context.fillRect(x - (thickness), y - (thickness) - 5, width, height)
+
+            this.context.fillStyle = '#ff5347'
+            const hpPercent = entity.hp / entity.maxHp
+            const hpWidth = width * hpPercent - 2
+            this.context.fillRect(x - (thickness - 1), y - (thickness - 1) - 5, hpWidth, height - 2)
+        }
+
+        this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
     }
 
     clearRect(xDraw, yDraw) {
