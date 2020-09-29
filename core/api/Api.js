@@ -6,6 +6,8 @@ import Field from "../Field.js"
 import IResourceSource from "../entity/resource/IResourceSource.js"
 import UnitBuilder from "../UnitBuilder.js"
 import Empty from "../entity/Empty.js"
+import IMovable from "../entity/unit/IMovable.js"
+import IBuilding from "../entity/building/IBuilding.js"
 
 export default class Api {
 
@@ -170,15 +172,28 @@ export default class Api {
 
     _recalculateExploredMap() {
         this._recalculateExploredMapForTeam(1)
-        this._recalculateExploredMapForTeam(2)
+        // this._recalculateExploredMapForTeam(2)
     }
 
     _recalculateExploredMapForTeam(team) {
         const units = this.getOwnUnits(team)
         const buildings = this.getOwnBuildings(team)
 
+        this._clearVisibleUnitsAndBuildings(team)
         this._recalculateExploredMapForObjects(units, 2, team)
         this._recalculateExploredMapForObjects(buildings, 3, team)
+    }
+
+    _clearVisibleUnitsAndBuildings(team) {
+        for (let y = 0; y < this.exploredMap[team].size; y++) {
+            for (let x = 0; x < this.exploredMap[team].get(y).size; x++) {
+                const object = this.exploredMap[team].get(y).get(x)
+
+                if ((object instanceof IMovable || object instanceof IBuilding) && object.team !== team) {
+                    this.exploredMap[team].get(y).set(x, new Empty())
+                }
+            }
+        }
     }
 
     _recalculateExploredMapForObjects(objects, viewDistance, team) {
