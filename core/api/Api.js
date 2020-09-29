@@ -7,7 +7,6 @@ import IResourceSource from "../entity/resource/IResourceSource.js"
 import UnitBuilder from "../UnitBuilder.js"
 import Empty from "../entity/Empty.js"
 import IMovable from "../entity/unit/IMovable.js"
-import IBuilding from "../entity/building/IBuilding.js"
 
 export default class Api {
 
@@ -44,6 +43,11 @@ export default class Api {
             2: this._unexploredMap()
         }
 
+        this.visibleMap = {
+            1: this._invisibleMap(),
+            2: this._invisibleMap()
+        }
+
         this._recalculateExploredMap()
     }
 
@@ -69,6 +73,14 @@ export default class Api {
      */
     getMap(teamNumber) {
         return this.exploredMap[teamNumber]
+    }
+
+    /**
+     * @param {int} teamNumber
+     * @return {Map<int, Map<int, boolean>>}
+     */
+    getVisibleMap(teamNumber) {
+        return this.visibleMap[teamNumber]
     }
 
     /**
@@ -172,7 +184,7 @@ export default class Api {
 
     _recalculateExploredMap() {
         this._recalculateExploredMapForTeam(1)
-        // this._recalculateExploredMapForTeam(2)
+        this._recalculateExploredMapForTeam(2)
     }
 
     _recalculateExploredMapForTeam(team) {
@@ -185,11 +197,12 @@ export default class Api {
     }
 
     _clearVisibleUnitsAndBuildings(team) {
+        this.visibleMap[team] = this._invisibleMap()
         for (let y = 0; y < this.exploredMap[team].size; y++) {
             for (let x = 0; x < this.exploredMap[team].get(y).size; x++) {
                 const object = this.exploredMap[team].get(y).get(x)
 
-                if ((object instanceof IMovable || object instanceof IBuilding) && object.team !== team) {
+                if ((object instanceof IMovable) && object.team !== team) {
                     this.exploredMap[team].get(y).set(x, new Empty())
                 }
             }
@@ -202,6 +215,7 @@ export default class Api {
                 for (let x = object.position.x - viewDistance; x <= object.position.x + viewDistance; x++) {
                     if (this.exploredMap[team].has(y) && this.exploredMap[team].get(y).has(x)) {
                         this.exploredMap[team].get(y).set(x, this.getObject(new Point(y, x)))
+                        this.visibleMap[team].get(y).set(x, true)
                     }
                 }
             }
@@ -262,4 +276,19 @@ export default class Api {
         }
     }
 
+    _invisibleMap() {
+        const field = new Map()
+
+        for (let y = 0; y <= this.field.size.rows; y++) {
+            const yMap = new Map()
+
+            for (let x = 0; x <= this.field.size.cells; x++) {
+                yMap.set(x, false)
+            }
+
+            field.set(y, yMap)
+        }
+
+        return field
+    }
 }

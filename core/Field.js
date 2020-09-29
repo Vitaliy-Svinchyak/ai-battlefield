@@ -12,13 +12,11 @@ export default class Field {
 
     /**
      * @param {Map<int, Map<int, IEntity>>} fieldMap
+     * @param {Map<int, Map<int, IEntity>>} visibleMap
      */
-    constructor(fieldMap) {
+    constructor(fieldMap,visibleMap) {
         this.fieldMap = fieldMap
-    }
-
-    getImage(y, x) {
-        return this.fieldMap.get(y).get(x).image
+        this.visibleMap = visibleMap
     }
 
     /**
@@ -79,5 +77,9 @@ export default class Field {
     moveObject(object, from, to) {
         this.fieldMap.get(from.y).set(from.x, new Empty())
         this.fieldMap.get(to.y).set(to.x, object)
+    }
+
+    isVisible(y, x) {
+        return this.visibleMap.get(y).get(x)
     }
 }

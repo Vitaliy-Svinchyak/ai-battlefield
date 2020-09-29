@@ -70,7 +70,7 @@ export default class Painter {
                 const formYDraw = this.defaultY + (y * this.pointSize.y) + y
                 const formXDraw = this.defaultX + (x * this.pointSize.x) + x
                 this.clearRect(formXDraw, formYDraw)
-                this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw)
+                this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw, !fieldMap.isVisible(y, x))
             }
         }
     }
@@ -121,7 +121,7 @@ export default class Painter {
             let xDraw = this.defaultX
 
             for (let x = 0; x < fieldSize.cells; x++) {
-                this.drawEntity(fieldMap.getObject(y, x), xDraw, yDraw)
+                this.drawEntity(fieldMap.getObject(y, x), xDraw, yDraw, false)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
             yDraw += this.pointSize.y + this.pointSize.margin
@@ -133,18 +133,28 @@ export default class Painter {
      * @param x
      * @param y
      */
-    drawEntity(entity, x, y) {
+    drawEntity(entity, x, y, drawFog) {
         const image = entity.image
 
         if (image.src === '') {
-            return this.clearRect(x, y)
+            this.clearRect(x, y)
+        } else {
+
+            if (entity instanceof IMovable || entity instanceof IBuilding) {
+                this.drawEntityOverLay(entity, x, y)
+            } else {
+                this.context.drawImage(image, x - 1, y - 1, this.pointSize.x + 2, this.pointSize.y + 2)
+            }
         }
 
-        if (entity instanceof IMovable || entity instanceof IBuilding) {
-            this.drawEntityOverLay(entity, x, y)
-        } else {
-            this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
+        if (drawFog) {
+            this.drawFogOverlay(x, y)
         }
+    }
+
+    drawFogOverlay(x, y) {
+        this.context.fillStyle = 'rgba(0,0,0,0.3)'
+        this.context.fillRect(x - 1, y - 1, this.pointSize.x + 2, this.pointSize.y + 2)
     }
 
     clearRect(xDraw, yDraw) {

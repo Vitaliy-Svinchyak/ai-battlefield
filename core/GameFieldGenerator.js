@@ -12,7 +12,6 @@ import * as symbol from "./symbol.js"
 import UnitBuilder from "./UnitBuilder.js"
 import Peasant from "./entity/unit/Peasant.js"
 
-let lastNumber = 0
 const positionSymbol = symbol.default.position
 
 const generatePeasant = (y, x, team) => {
@@ -63,7 +62,7 @@ export default class GameFieldGenerator {
 
         GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
-        return new Field(fieldMap)
+        return new Field(fieldMap, fieldMap)
     }
 
     static setCivilisations(fieldMap, maxY, maxX) {
@@ -74,7 +73,6 @@ export default class GameFieldGenerator {
         fieldMap.get(5).set(2, generateGold(5, 2))
         fieldMap.get(3).set(5, generateFood(3, 5))
         fieldMap.get(2).set(5, generateFood(2, 5))
-        fieldMap.get(6).set(3, generatePeasant(6, 3, 2))
 
         fieldMap.get(maxY - 3).set(maxX - 3, generatePeasant(maxY - 3, maxX - 3, 2))
         fieldMap.get(maxY - 1).set(maxX - 1, generatePeasant(maxY - 1, maxX - 1, 2))
@@ -164,13 +162,6 @@ export default class GameFieldGenerator {
     }
 
     static getRandomInt(min, max) {
-        if (lastNumber > max) {
-            lastNumber = 0
-        } else {
-            lastNumber++
-        }
-
-        return lastNumber
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
 }
