@@ -9,6 +9,7 @@ import FoodSource from "./entity/resource/FoodSource.js"
 import Unexplored from "./entity/Unexplored.js"
 import IMovable from "./entity/unit/IMovable.js"
 import IBuilding from "./entity/building/IBuilding.js"
+import Warrior from "./entity/unit/Warrior.js"
 
 export default class Painter {
 
@@ -24,6 +25,7 @@ export default class Painter {
         this.preLoadImages(
             [
                 new Peasant().image,
+                new Warrior().image,
                 new Tree().image,
                 new Rock().image,
                 new TownHall().image,
@@ -48,9 +50,6 @@ export default class Painter {
             } else {
                 img.onload = imageLoaded
             }
-        }
-        if (loadedImageCount >= arr.length) {
-            callback()
         }
 
         function imageLoaded() {
@@ -149,7 +148,7 @@ export default class Painter {
     }
 
     clearRect(xDraw, yDraw) {
-        this.context.clearRect(xDraw, yDraw, this.pointSize.x, this.pointSize.y)
+        this.context.clearRect(xDraw - 1, yDraw - 1, this.pointSize.x + 1, this.pointSize.y + 1)
     }
 
     calculatePointSize(fieldSize) {
@@ -157,11 +156,11 @@ export default class Painter {
         let ySize = Math.floor((window.innerWidth - fieldSize.rows) / (fieldSize.rows + 1))
 
         let size = ySize > xSize ? xSize : ySize
-        if (size < 8) {
-            size = 8
+        if (size < 20) {
+            size = 20
         }
-        if (size > 32) {
-            size = 32
+        if (size > 64) {
+            size = 64
         }
 
         return {y: size, x: size, margin: 1}
@@ -216,7 +215,7 @@ export default class Painter {
                 const green = data[((this.pointSize.x * y) + x) * 4 + 1]
                 const blue = data[((this.pointSize.x * y) + x) * 4 + 2]
 
-                if (green === 255 && red === 0 && blue === 0) {
+                if (green >= 250 && red <= 15 && blue <= 15) {
                     data[((this.pointSize.x * y) + x) * 4] = newColor[0]
                     data[((this.pointSize.x * y) + x) * 4 + 1] = newColor[1]
                     data[((this.pointSize.x * y) + x) * 4 + 2] = newColor[2]

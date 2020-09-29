@@ -2,24 +2,24 @@ import IMovable from "./IMovable.js"
 import Resources from "../../api/external/Resources.js"
 
 const image = new Image()
-image.src = 'images/peasant.png'
+image.src = 'images/warrior.png'
 
-export default class Peasant extends IMovable {
+export default class Warrior extends IMovable {
     image = image
 
     constructor(team) {
-        super(team, 10, 1)
+        super(team, 20, 2)
     }
 
     static get price() {
-        return new Resources(0, 50)
+        return new Resources(50, 50)
     }
 
     static get livingPlace() {
-        return 1
+        return 2
     }
 
     static get ticksForSpawn() {
-        return 10
+        return 20
     }
 }

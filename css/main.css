@@ -9,6 +9,10 @@ body {
     background-size: 150px 150px;
 }
 
+canvas {
+    margin-left: 50px;
+}
+
 #menu {
     padding-top: 10px;
     padding-bottom: 10px;

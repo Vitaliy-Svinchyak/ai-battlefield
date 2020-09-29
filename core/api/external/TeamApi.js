@@ -1,6 +1,7 @@
 import * as symbol from "../../symbol.js"
 import Peasant from "../../entity/unit/Peasant.js"
 import ActionsBuilder from "./ActionsBuilder.js"
+import Warrior from "../../entity/unit/Warrior.js"
 
 const teamSymbol = symbol.default.team
 const idSymbol = symbol.default.id
@@ -20,7 +21,8 @@ export default class TeamApi {
     }
 
     units = {
-        peasant: Peasant
+        peasant: Peasant,
+        warrior: Warrior
     }
 
     /**

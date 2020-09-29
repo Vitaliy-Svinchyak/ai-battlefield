@@ -65,9 +65,9 @@ export default class ExampleAi extends AI {
             }
         }
 
-        if (api.getResources().enough(api.units.peasant.price)
-            && api.getPopulation() + api.units.peasant.livingPlace <= api.maximumPopulation) {
-            return [actionFood, actionGold, api.actions.createUnit(api.units.peasant), ...additionalActions]
+        if (api.getResources().enough(api.units.warrior.price)
+            && api.getPopulation() + api.units.warrior.livingPlace <= api.maximumPopulation) {
+            return [actionFood, actionGold, api.actions.createUnit(api.units.warrior), ...additionalActions]
         }
 
         return [actionFood, actionGold, ...additionalActions]

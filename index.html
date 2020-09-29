@@ -36,14 +36,15 @@
     import Engine from "./core/Engine.js"
     import EmptyAi from "./example/EmptyAi.js"
     import AttackAi from "./example/AttackAi.js"
+    import ExampleAi from "./example/ExampleAi.js"
 
     window.gameSettings = {
         gameSpeed: 500,
         selectedTeamToView: 1
     }
-    const map = GameFieldGenerator.gameMap(20, 20)
+    const map = GameFieldGenerator.gameMap(30, 30)
 
-    const ai1 = new AttackAi(1)
+    const ai1 = new ExampleAi(1)
     const ai2 = new EmptyAi(2)
     const game = new Engine(map, {
         1: ai1.color,
@@ -56,7 +57,6 @@
     game.onReady(() => {
         game.start(ai1, ai2)
     })
-
 
     document.getElementById('1-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
