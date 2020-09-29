@@ -1,10 +1,11 @@
 import Empty from "../core/entity/Empty.js"
 import Point from "../core/Point.js"
+import AI from "../core/api/external/AI.js"
 
 let foodI = 0
 let goldI = 0
 
-export default class ExampleAi {
+export default class ExampleAi extends AI {
     /**
      * @param {TeamApi} api
      * @return {IAction[]}
@@ -70,5 +71,10 @@ export default class ExampleAi {
         }
 
         return [actionFood, actionGold, ...additionalActions]
+    }
+
+
+    get color() {
+        return [55, 150, 30]
     }
 }

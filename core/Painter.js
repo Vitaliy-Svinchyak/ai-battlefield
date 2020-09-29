@@ -186,21 +186,20 @@ export default class Painter {
 
     drawEntityOverLay(entity, x, y) {
         const image = entity.image
-        this.drawHp(entity, x, y)
+        this.drawHp(entity, x, y, this.colorSettings[entity.team])
         this.context.drawImage(image, x, y, this.pointSize.x, this.pointSize.y)
-        if (entity instanceof Peasant) {
-            this.changeColor(x, y, this.colorSettings[entity.team])
-        }
+
+        this.changeColor(x, y, this.colorSettings[entity.team])
     }
 
-    drawHp(entity, x, y) {
+    drawHp(entity, x, y, color) {
         const thickness = 1
         const width = this.pointSize.x + (thickness * 2)
         const height = this.pointSize.y / 10 + (thickness * 2)
         this.context.fillStyle = '#000'
         this.context.fillRect(x - (thickness), y - (thickness) - 5, width, height)
 
-        this.context.fillStyle = '#ff5347'
+        this.context.fillStyle = `rgb(${color.join(',')})`
         const hpPercent = entity.hp / entity.maxHp
         const hpWidth = width * hpPercent - 2
         this.context.fillRect(x - (thickness - 1), y - (thickness - 1) - 5, hpWidth, height - 2)

@@ -34,8 +34,6 @@
     "use strict"
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
-    import Empty from "./core/entity/Empty.js"
-    import ExampleAi from "./example/ExampleAi.js"
     import EmptyAi from "./example/EmptyAi.js"
     import AttackAi from "./example/AttackAi.js"
 
@@ -44,13 +42,17 @@
         selectedTeamToView: 1
     }
     const map = GameFieldGenerator.gameMap(20, 20)
-    map.fieldMap.get(8).set(8, new Empty())
+
+    const ai1 = new AttackAi(1)
+    const ai2 = new EmptyAi(2)
     const game = new Engine(map, {
-        1: [55, 250, 30],
-        2: [133, 44, 157]
+        1: ai1.color,
+        2: ai2.color
     })
-    const ai1 = new AttackAi()
-    const ai2 = new EmptyAi()
+
+    document.getElementById('score-1').style.color = `rgb(${ai1.color.join(',')})`
+    document.getElementById('score-2').style.color = `rgb(${ai2.color.join(',')})`
+
     game.onReady(() => {
         game.start(ai1, ai2)
     })
