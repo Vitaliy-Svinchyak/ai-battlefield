@@ -98,8 +98,8 @@ export default class Painter {
         score1 += api.getOwnUnits(1).warrior.length * 2
         let score2 = 0
         score2 += api.getOwnBuildings(2).townHall.length * 2
-        score2 += api.getOwnUnits(2).warrior.length
-        score2 += api.getOwnUnits(2).peasant.length * 2
+        score2 += api.getOwnUnits(2).peasant.length
+        score2 += api.getOwnUnits(2).warrior.length * 2
         document.getElementById('score-1').innerText = score1.toString()
         document.getElementById('score-2').innerText = score2.toString()
     }
