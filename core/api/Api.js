@@ -7,7 +7,11 @@ import IResourceSource from "../entity/resource/IResourceSource.js"
 import UnitBuilder from "../UnitBuilder.js"
 import Empty from "../entity/Empty.js"
 import IMovable from "../entity/unit/IMovable.js"
+import Peasant from "../entity/unit/Peasant.js"
+import Warrior from "../entity/unit/Warrior.js"
+import * as symbol from "../symbol.js"
 
+const idSymbol = symbol.default.id
 export default class Api {
 
     population = {
@@ -85,18 +89,25 @@ export default class Api {
 
     /**
      * @param {int} teamNumber
-     * @return {IMovable[]}
+     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
      */
     getOwnUnits(teamNumber) {
-        return this.units[teamNumber]
+        return {
+            peasant: this.units[teamNumber].filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            warrior: this.units[teamNumber].filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            all: this.units[teamNumber].sort((a, b) => a[idSymbol] - b[idSymbol])
+        }
     }
 
     /**
      * @param {int} teamNumber
-     * @return {IBuilding[]}
+     * @return {{townHall: TownHall[], all: IBuilding[]}}
      */
     getOwnBuildings(teamNumber) {
-        return this.buildings[teamNumber]
+        return {
+            townHall: this.buildings[teamNumber],
+            all: this.buildings[teamNumber],
+        }
     }
 
     /**
@@ -166,7 +177,8 @@ export default class Api {
         unitsToSpawn.set(unit, unitsToSpawn.get(unit) - 1)
 
         if (unitsToSpawn.get(unit) <= 0) {
-            const townHall = this.getOwnBuildings(team)[0]
+            const townHall = this.getOwnBuildings(team).townHall[0]
+
             if (townHall !== undefined) {
                 for (let y = townHall.position.y - 1; y <= townHall.position.y + 1; y++) {
                     for (let x = townHall.position.x - 1; x <= townHall.position.x + 1; x++) {
@@ -188,8 +200,8 @@ export default class Api {
     }
 
     _recalculateExploredMapForTeam(team) {
-        const units = this.getOwnUnits(team)
-        const buildings = this.getOwnBuildings(team)
+        const units = this.getOwnUnits(team).all
+        const buildings = this.getOwnBuildings(team).all
 
         this._clearVisibleUnitsAndBuildings(team)
         this._recalculateExploredMapForObjects(units, 2, team)

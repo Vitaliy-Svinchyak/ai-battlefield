@@ -11,8 +11,9 @@ export default class ExampleAi extends AI {
      * @return {IAction[]}
      */
     tick(api) {
-        const units = api.getUnits()
-        const buildings = api.getBuilding()
+        const units = api.getUnits().peasant
+        const warriors = api.getUnits().warrior
+        const buildings = api.getBuildings().townHall
         const unitForFood = units[0]
         const unitForGold = units[1]
         const mineFood = api.actions.mine(unitForFood, api.getResourcePoints()[0])
@@ -38,10 +39,10 @@ export default class ExampleAi extends AI {
 
         const additionalActions = []
 
-        if (units.length > 2) {
+        if (warriors.length > 0) {
             const map = api.getMap()
-            for (let i = 2; i < units.length; i++) {
-                const unit = units[i]
+            for (let i = 0; i < warriors.length; i++) {
+                const unit = warriors[i]
 
                 const positions = [
                     new Point(unit.position.y - 1, unit.position.x - 1),

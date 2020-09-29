@@ -4,7 +4,6 @@ import ActionsBuilder from "./ActionsBuilder.js"
 import Warrior from "../../entity/unit/Warrior.js"
 
 const teamSymbol = symbol.default.team
-const idSymbol = symbol.default.id
 const apiSymbol = Symbol('team')
 const actionsSymbol = Symbol('actions')
 
@@ -47,17 +46,16 @@ export default class TeamApi {
     }
 
     /**
-     * @return {IMovable[]}
+     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
      */
     getUnits() {
         return this[apiSymbol].getOwnUnits(this[teamSymbol])
-            .sort((a, b) => a[idSymbol] - b[idSymbol])
     }
 
     /**
-     * @return {IBuilding[]}
+     * @return {{townHall: TownHall[], all: IBuilding[]}}
      */
-    getBuilding() {
+    getBuildings() {
         return this[apiSymbol].getOwnBuildings(this[teamSymbol])
     }
 

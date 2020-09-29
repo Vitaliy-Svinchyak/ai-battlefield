@@ -93,11 +93,13 @@ export default class Painter {
      */
     drawScore(api) {
         let score1 = 0
-        score1 += api.getOwnBuildings(1).length * 2
-        score1 += api.getOwnUnits(1).length
+        score1 += api.getOwnBuildings(1).townHall.length * 2
+        score1 += api.getOwnUnits(1).peasant.length
+        score1 += api.getOwnUnits(1).warrior.length * 2
         let score2 = 0
-        score2 += api.getOwnBuildings(2).length * 2
-        score2 += api.getOwnUnits(2).length
+        score2 += api.getOwnBuildings(2).townHall.length * 2
+        score2 += api.getOwnUnits(2).warrior.length
+        score2 += api.getOwnUnits(2).peasant.length * 2
         document.getElementById('score-1').innerText = score1.toString()
         document.getElementById('score-2').innerText = score2.toString()
     }
