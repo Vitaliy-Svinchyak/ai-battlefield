@@ -11,7 +11,7 @@ import Peasant from "../entity/unit/Peasant.js"
 import Warrior from "../entity/unit/Warrior.js"
 import * as symbol from "../symbol.js"
 import TownHall from "../entity/building/TownHall.js"
-import IBuilding from "../entity/building/IBuilding"
+import IBuilding from "../entity/building/IBuilding.js"
 
 const idSymbol = symbol.default.id
 export default class Api {
