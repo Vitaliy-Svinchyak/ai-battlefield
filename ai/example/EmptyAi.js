@@ -1,4 +1,4 @@
-import AI from "../core/api/external/AI.js"
+import AI from "../../core/api/external/AI.js"
 
 export default class EmptyAi extends AI {
     tick() {

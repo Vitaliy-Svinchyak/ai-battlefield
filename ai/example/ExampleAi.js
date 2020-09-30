@@ -1,6 +1,6 @@
-import Empty from "../core/entity/Empty.js"
-import Point from "../core/Point.js"
-import AI from "../core/api/external/AI.js"
+import Empty from "../../core/entity/Empty.js"
+import Point from "../../core/Point.js"
+import AI from "../../core/api/external/AI.js"
 
 let foodI = 0
 let goldI = 0

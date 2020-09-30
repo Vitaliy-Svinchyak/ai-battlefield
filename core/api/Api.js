@@ -10,6 +10,8 @@ import IMovable from "../entity/unit/IMovable.js"
 import Peasant from "../entity/unit/Peasant.js"
 import Warrior from "../entity/unit/Warrior.js"
 import * as symbol from "../symbol.js"
+import TownHall from "../entity/building/TownHall.js"
+import IBuilding from "../entity/building/IBuilding"
 
 const idSymbol = symbol.default.id
 export default class Api {
@@ -28,6 +30,9 @@ export default class Api {
         return 50
     }
 
+    /**
+     * @type {{"1": Map<typeof IMovable, int>, "2": Map<typeof IMovable, int>}}
+     */
     unitsToSpawn = {
         1: new Map(),
         2: new Map(),
@@ -101,12 +106,59 @@ export default class Api {
 
     /**
      * @param {int} teamNumber
+     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     */
+    getEnemyUnits(teamNumber) {
+        let allUnits = []
+        const map = this.getMap(teamNumber)
+
+        for (let y = 0; y < map.size; y++) {
+            for (let x = 0; x < map.get(y).size; x++) {
+                const entity = map.get(y).get(x)
+                if (entity instanceof IMovable && entity.team !== teamNumber) {
+                    allUnits.push(entity)
+                }
+            }
+        }
+
+        return {
+            peasant: allUnits.filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            warrior: allUnits.filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            all: allUnits.sort((a, b) => a[idSymbol] - b[idSymbol])
+        }
+    }
+
+    /**
+     * @param {int} teamNumber
      * @return {{townHall: TownHall[], all: IBuilding[]}}
      */
     getOwnBuildings(teamNumber) {
         return {
-            townHall: this.buildings[teamNumber],
+            townHall: this.buildings[teamNumber].filter(u => u instanceof TownHall),
             all: this.buildings[teamNumber],
+        }
+    }
+
+    /**
+     * @param {int} teamNumber
+     * @return {{townHall: TownHall[], all: IBuilding[]}}
+     */
+    getEnemyBuildings(teamNumber) {
+        let allBuildings = []
+        const map = this.getMap(teamNumber)
+
+        for (let y = 0; y < map.size; y++) {
+            for (let x = 0; x < map.get(y).size; x++) {
+                const entity = map.get(y).get(x)
+                if (entity instanceof IBuilding && entity.team !== teamNumber) {
+                    allBuildings.push(entity)
+                }
+            }
+        }
+
+        return {
+            townHall: allBuildings.filter(u => u instanceof TownHall),
+            all: allBuildings,
         }
     }
 
@@ -151,6 +203,26 @@ export default class Api {
      */
     getObject(point) {
         return this.field.getObject(point.y, point.x)
+    }
+
+    /**
+     * @param {int} teamNumber
+     * @return {{peasant: int, warrior: int}}
+     */
+    getProductionStats(teamNumber) {
+        const response = {
+            peasant: 0,
+            warrior: 0,
+        }
+
+        for (const unit of this.unitsToSpawn[teamNumber].keys()) {
+            if (unit === Peasant) {
+                response.peasant++
+            } else if (unit === Warrior) {
+                response.warrior++
+            }
+        }
+        return response
     }
 
     /**
@@ -210,23 +282,27 @@ export default class Api {
 
     _clearVisibleUnitsAndBuildings(team) {
         this.visibleMap[team] = this._invisibleMap()
-        for (let y = 0; y < this.exploredMap[team].size; y++) {
-            for (let x = 0; x < this.exploredMap[team].get(y).size; x++) {
-                const object = this.exploredMap[team].get(y).get(x)
+        const map = this.getMap(team)
+
+        for (let y = 0; y < map.size; y++) {
+            for (let x = 0; x < map.get(y).size; x++) {
+                const object = map.get(y).get(x)
 
                 if ((object instanceof IMovable) && object.team !== team) {
-                    this.exploredMap[team].get(y).set(x, new Empty())
+                    map.get(y).set(x, new Empty())
                 }
             }
         }
     }
 
     _recalculateExploredMapForObjects(objects, viewDistance, team) {
+        const map = this.getMap(team)
+
         for (let object of objects) {
             for (let y = object.position.y - viewDistance; y <= object.position.y + viewDistance; y++) {
                 for (let x = object.position.x - viewDistance; x <= object.position.x + viewDistance; x++) {
-                    if (this.exploredMap[team].has(y) && this.exploredMap[team].get(y).has(x)) {
-                        this.exploredMap[team].get(y).set(x, this.getObject(new Point(y, x)))
+                    if (map.has(y) && map.get(y).has(x)) {
+                        map.get(y).set(x, this.getObject(new Point(y, x)))
                         this.visibleMap[team].get(y).set(x, true)
                     }
                 }

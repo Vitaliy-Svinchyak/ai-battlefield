@@ -19,6 +19,10 @@ export default class TeamApi {
         return this[actionsSymbol]
     }
 
+    get production() {
+        return this[apiSymbol].getProductionStats(this.team)
+    }
+
     units = {
         peasant: Peasant,
         warrior: Warrior
@@ -53,10 +57,24 @@ export default class TeamApi {
     }
 
     /**
+     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     */
+    getEnemyUnits() {
+        return this[apiSymbol].getEnemyUnits(this[teamSymbol])
+    }
+
+    /**
      * @return {{townHall: TownHall[], all: IBuilding[]}}
      */
     getBuildings() {
         return this[apiSymbol].getOwnBuildings(this[teamSymbol])
+    }
+
+    /**
+     * @return {{townHall: TownHall[], all: IBuilding[]}}
+     */
+    getEnemyBuildings() {
+        return this[apiSymbol].getEnemyBuildings(this[teamSymbol])
     }
 
     /**
