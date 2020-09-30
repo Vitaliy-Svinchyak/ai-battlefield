@@ -34,7 +34,9 @@ export default class Engine {
         const actions2 = ai2.tick(this.api.team(2))
         this.performActions(actions2)
 
+        // console.time('tick')
         this.api.tick()
+        // console.timeEnd('tick')
         this.draw()
         setTimeout(() => {
             this.tick(ai1, ai2)

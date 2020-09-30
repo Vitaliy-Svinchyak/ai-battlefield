@@ -10,6 +10,7 @@ import Unexplored from "./entity/Unexplored.js"
 import IMovable from "./entity/unit/IMovable.js"
 import IBuilding from "./entity/building/IBuilding.js"
 import Warrior from "./entity/unit/Warrior.js"
+import Field from "./Field.js"
 
 export default class Painter {
 
@@ -34,6 +35,7 @@ export default class Painter {
                 new Unexplored().image
             ],
             () => {
+                this.previousFieldMap = this.cloneMap(fieldMap)
                 this.drawCanvasField(this.fieldSize, fieldMap)
                 callback()
             }
@@ -69,10 +71,14 @@ export default class Painter {
             for (let x = 0; x < this.fieldSize.cells; x++) {
                 const formYDraw = this.defaultY + (y * this.pointSize.y) + y
                 const formXDraw = this.defaultX + (x * this.pointSize.x) + x
-                this.clearRect(formXDraw, formYDraw)
-                this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw, !fieldMap.isVisible(y, x))
+
+                if (this.sthHasChanged(y, x, fieldMap)) {
+                    this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw, !fieldMap.isVisible(y, x))
+                }
             }
         }
+
+        this.previousFieldMap = this.cloneMap(fieldMap)
     }
 
     drawResources(resources) {
@@ -132,16 +138,15 @@ export default class Painter {
 
     /**
      * @param {IEntity} entity
-     * @param x
-     * @param y
+     * @param {int} x
+     * @param {int} y
+     * @param {boolean} drawFog
      */
     drawEntity(entity, x, y, drawFog) {
+        this.clearRect(x, y)
         const image = entity.image
 
-        if (image.src === '') {
-            this.clearRect(x, y)
-        } else {
-
+        if (image.src !== '') {
             if (entity instanceof IMovable || entity instanceof IBuilding) {
                 this.drawEntityOverLay(entity, x, y)
             } else {
@@ -160,7 +165,7 @@ export default class Painter {
     }
 
     clearRect(xDraw, yDraw) {
-        this.context.clearRect(xDraw - 1, yDraw - 1, this.pointSize.x + 1, this.pointSize.y + 1)
+        this.context.clearRect(xDraw - 1, yDraw - 1, this.pointSize.x + 2, this.pointSize.y + 2)
     }
 
     calculatePointSize(fieldSize) {
@@ -237,5 +242,26 @@ export default class Painter {
         }
 
         this.context.putImageData(imageData, x, y)
+    }
+
+    /**
+     * @param {Field} fieldMap
+     * @return {Field}
+     */
+    cloneMap(fieldMap) {
+        const yMap = new Map()
+
+        for (let y = 0; y < fieldMap.size.rows; y++) {
+            yMap.set(y, new Map(fieldMap.fieldMap.get(y)))
+        }
+
+        return new Field(yMap, fieldMap.visibleMap)
+    }
+
+    sthHasChanged(y, x, fieldMap) {
+        return this.previousFieldMap.getObject(y, x) !== fieldMap.getObject(y, x)
+            || this.previousFieldMap.isVisible(y, x) !== fieldMap.isVisible(y, x)
+            || (this.previousFieldMap.getObject(y + 1, x) !== fieldMap.getObject(y + 1, x)
+                || this.previousFieldMap.isVisible(y + 1, x) !== fieldMap.isVisible(y + 1, x))
     }
 }

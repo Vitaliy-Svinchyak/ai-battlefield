@@ -12,9 +12,9 @@ export default class Field {
 
     /**
      * @param {Map<int, Map<int, IEntity>>} fieldMap
-     * @param {Map<int, Map<int, IEntity>>} visibleMap
+     * @param {Map<int, Map<int, boolean>>} visibleMap
      */
-    constructor(fieldMap,visibleMap) {
+    constructor(fieldMap, visibleMap) {
         this.fieldMap = fieldMap
         this.visibleMap = visibleMap
     }
