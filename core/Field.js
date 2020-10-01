@@ -79,7 +79,17 @@ export default class Field {
         this.fieldMap.get(to.y).set(to.x, object)
     }
 
+    /**
+     * @param {int} y
+     * @param {int} x
+     * @return {boolean}
+     */
     isVisible(y, x) {
+        if (this.visibleMap === null) {
+            return true
+        }
+
+        console.log(y,x)
         return this.visibleMap.get(y).get(x)
     }
 }

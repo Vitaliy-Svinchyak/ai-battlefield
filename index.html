@@ -15,7 +15,7 @@
         <span class="gold">0⠀⠀⠀</span>
     </div>
     <div class="fog-buttons">
-        <button id="1-fog" class="active">1</button>
+        <button id="1-fog">1</button>
         <button id="0-fog">O</button>
         <button id="2-fog">2</button>
     </div>
@@ -40,7 +40,7 @@
 
     window.gameSettings = {
         gameSpeed: 500,
-        selectedTeamToView: 1
+        selectedTeamToView: 0
     }
     const map = GameFieldGenerator.gameMap(30, 30)
 
@@ -57,7 +57,7 @@
     game.onReady(() => {
         game.start(ai1, ai2)
     })
-
+    document.getElementById(window.gameSettings.selectedTeamToView + '-fog').classList.add('active')
     document.getElementById('1-fog').addEventListener('click', () => {
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
         document.getElementById('1-fog').classList.add('active')

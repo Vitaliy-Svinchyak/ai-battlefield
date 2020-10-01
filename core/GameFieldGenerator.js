@@ -62,7 +62,7 @@ export default class GameFieldGenerator {
 
         GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
-        return new Field(fieldMap, fieldMap)
+        return new Field(fieldMap, null)
     }
 
     static setCivilisations(fieldMap, maxY, maxX) {
