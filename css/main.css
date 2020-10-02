@@ -79,6 +79,12 @@ canvas {
     position: fixed;
 }
 
+#export {
+    position: fixed;
+    top: 120px;
+    cursor: pointer;
+}
+
 .score div {
     background-image: url("../images/star.png");
     background-repeat: no-repeat;

@@ -10,4 +10,10 @@ export default class Rock extends IEntity {
     get isSolid() {
         return true
     }
+
+    get json() {
+        return {
+            type: 'rock'
+        }
+    }
 }

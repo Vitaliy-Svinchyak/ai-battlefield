@@ -11,4 +11,8 @@ export default class Empty extends IEntity {
     get isEmpty() {
         return true
     }
+
+    get json() {
+        return {type: 'empty'}
+    }
 }

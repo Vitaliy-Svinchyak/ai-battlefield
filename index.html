@@ -28,6 +28,9 @@
     <div id="score-1">0</div>
     <div id="score-2">0</div>
 </div>
+
+<div id="export"><img src="images/export.png" width="20"></div>
+
 <canvas id="canvas-field"></canvas>
 
 <script type="module">
@@ -37,12 +40,14 @@
     import EmptyAi from "./ai/example/EmptyAi.js"
     import AttackAi from "./ai/example/AttackAi.js"
     import ExampleAi from "./ai/example/ExampleAi.js"
+    import SaveManager from "./core/SaveManager.js"
 
     window.gameSettings = {
         gameSpeed: 500,
         selectedTeamToView: 0
     }
-    const map = GameFieldGenerator.gameMap(30, 30)
+   const map = GameFieldGenerator.gameMap(30, 30)
+   //  const map = GameFieldGenerator.fromSave(``)
 
     const ai1 = new ExampleAi(1)
     const ai2 = new EmptyAi(2)
@@ -55,7 +60,7 @@
     document.getElementById('score-2').style.color = `rgb(${ai2.color.join(',')})`
 
     game.onReady(() => {
-        game.start(ai1, ai2)
+        // game.start(ai1, ai2)
     })
     document.getElementById(window.gameSettings.selectedTeamToView + '-fog').classList.add('active')
     document.getElementById('1-fog').addEventListener('click', () => {
@@ -72,6 +77,9 @@
         document.querySelectorAll('.fog-buttons .active')[0].classList.remove('active')
         document.getElementById('2-fog').classList.add('active')
         window.gameSettings.selectedTeamToView = 2
+    })
+    document.getElementById('export').addEventListener('click', () => {
+        console.log(SaveManager.toJson(map))
     })
 </script>
 </body>

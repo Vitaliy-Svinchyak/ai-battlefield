@@ -10,4 +10,8 @@ export default class FoodSource extends IResourceSource {
     get item() {
         return new FoodItem()
     }
+
+    get json() {
+        return {type: 'foodSource'}
+    }
 }

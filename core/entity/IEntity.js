@@ -2,6 +2,7 @@ import * as symbol from "../symbol.js"
 
 export default class IEntity {
     image = new Image()
+
     /**
      * @param {Api} api
      */
@@ -39,5 +40,9 @@ export default class IEntity {
      */
     get hp() {
         return Infinity
+    }
+
+    get json() {
+        throw new Error('Implement json getter!')
     }
 }

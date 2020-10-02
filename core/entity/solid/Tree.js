@@ -10,4 +10,10 @@ export default class Tree extends IEntity {
     get isSolid() {
         return true
     }
+
+    get json() {
+        return {
+            type: 'tree'
+        }
+    }
 }

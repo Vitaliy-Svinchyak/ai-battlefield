@@ -10,4 +10,8 @@ export default class GoldSource extends IResourceSource {
     get item() {
         return new GoldItem()
     }
+
+    get json() {
+        return {type: 'goldSource'}
+    }
 }

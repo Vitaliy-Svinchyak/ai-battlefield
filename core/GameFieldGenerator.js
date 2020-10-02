@@ -11,6 +11,7 @@ import Field from "./Field.js"
 import * as symbol from "./symbol.js"
 import UnitBuilder from "./UnitBuilder.js"
 import Peasant from "./entity/unit/Peasant.js"
+import SaveManager from "./SaveManager.js"
 
 const positionSymbol = symbol.default.position
 
@@ -60,6 +61,16 @@ export default class GameFieldGenerator {
             }
         }
 
+        GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
+
+        return new Field(fieldMap, null)
+    }
+
+
+    static fromSave(mapString) {
+        const fieldMap = SaveManager.fromJson(mapString)
+        const rows = fieldMap.size
+        const cells = fieldMap.get(0).size
         GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
         return new Field(fieldMap, null)
@@ -164,4 +175,5 @@ export default class GameFieldGenerator {
     static getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
+
 }

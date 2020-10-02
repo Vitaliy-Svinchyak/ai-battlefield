@@ -1,0 +1,2947 @@
+[
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "foodSource"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "foodSource"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "goldSource"
+    },
+    {
+      "type": "goldSource"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "goldSource"
+    },
+    {
+      "type": "goldSource"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "foodSource"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "tree"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "foodSource"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "type": "rock"
+    }
+  ],
+  [
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    },
+    {
+      "type": "rock"
+    }
+  ]
+]

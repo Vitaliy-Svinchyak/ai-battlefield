@@ -1,0 +1,2 @@
+- [Как создать игровой ИИ: гайд для начинающих](https://habr.com/ru/company/pixonic/blog/428892/)
+- [STRIPS](http://aimaterials.blogspot.com/p/strips.html?m=1)
