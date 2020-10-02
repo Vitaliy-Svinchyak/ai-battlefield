@@ -69,8 +69,8 @@ export default class GameFieldGenerator {
 
     static fromSave(mapString) {
         const fieldMap = SaveManager.fromJson(mapString)
-        const rows = fieldMap.size
-        const cells = fieldMap.get(0).size
+        const rows = fieldMap.size - 1
+        const cells = fieldMap.get(0).size - 1
         GameFieldGenerator.setCivilisations(fieldMap, rows, cells)
 
         return new Field(fieldMap, null)
