@@ -89,6 +89,10 @@ export default class Field {
             return true
         }
 
+        if (!this.visibleMap.has(y)) {
+            return false
+        }
+
         return this.visibleMap.get(y).get(x)
     }
 }
