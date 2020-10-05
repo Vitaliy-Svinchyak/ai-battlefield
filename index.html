@@ -41,15 +41,16 @@
     import AttackAi from "./ai/example/AttackAi.js"
     import ExampleAi from "./ai/example/ExampleAi.js"
     import SaveManager from "./core/SaveManager.js"
+    import RushAi from "./ai/e33/RushAi.js"
 
     window.gameSettings = {
-        gameSpeed: 500,
-        selectedTeamToView: 0
+        gameSpeed: 50,
+        selectedTeamToView: 2
     }
    const map = GameFieldGenerator.gameMap(30, 30)
     // const map = GameFieldGenerator.fromSave(``)
-    const ai1 = new ExampleAi(1)
-    const ai2 = new EmptyAi(2)
+    const ai1 = new EmptyAi(1)
+    const ai2 = new RushAi(2)
     const game = new Engine(map, {
         1: ai1.color,
         2: ai2.color
@@ -59,7 +60,7 @@
     document.getElementById('score-2').style.color = `rgb(${ai2.color.join(',')})`
 
     game.onReady(() => {
-        // game.start(ai1, ai2)
+        game.start(ai1, ai2)
     })
     document.getElementById(window.gameSettings.selectedTeamToView + '-fog').classList.add('active')
     document.getElementById('1-fog').addEventListener('click', () => {

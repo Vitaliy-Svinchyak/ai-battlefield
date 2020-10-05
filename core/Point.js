@@ -31,4 +31,8 @@ export default class Point {
 
         return true
     }
+
+    toString() {
+        return this.x + ':' + this.y
+    }
 }
