@@ -313,10 +313,10 @@ export default class Api {
     _unexploredMap() {
         const field = new Map()
 
-        for (let y = 0; y <= this.field.size.rows; y++) {
+        for (let y = 0; y < this.field.size.rows; y++) {
             const yMap = new Map()
 
-            for (let x = 0; x <= this.field.size.cells; x++) {
+            for (let x = 0; x < this.field.size.cells; x++) {
                 yMap.set(x, new Unexplored())
             }
 
@@ -367,10 +367,10 @@ export default class Api {
     _invisibleMap() {
         const field = new Map()
 
-        for (let y = 0; y <= this.field.size.rows; y++) {
+        for (let y = 0; y < this.field.size.rows; y++) {
             const yMap = new Map()
 
-            for (let x = 0; x <= this.field.size.cells; x++) {
+            for (let x = 0; x < this.field.size.cells; x++) {
                 yMap.set(x, false)
             }
 
