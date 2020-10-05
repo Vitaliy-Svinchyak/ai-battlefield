@@ -89,7 +89,6 @@ export default class Field {
             return true
         }
 
-        console.log(y,x)
         return this.visibleMap.get(y).get(x)
     }
 }
