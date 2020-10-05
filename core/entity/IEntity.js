@@ -36,6 +36,13 @@ export default class IEntity {
     }
 
     /**
+     * @return boolean
+     */
+    get isExplored() {
+        return true
+    }
+
+    /**
      * @return {number}
      */
     get hp() {

@@ -259,9 +259,15 @@ export default class Painter {
     }
 
     sthHasChanged(y, x, fieldMap) {
-        return this.previousFieldMap.getObject(y, x) !== fieldMap.getObject(y, x)
+        const prevObj = this.previousFieldMap.getObject(y, x)
+        const currObj = fieldMap.getObject(y, x)
+
+        const hasHp = currObj instanceof IMovable || currObj instanceof IBuilding
+            || prevObj instanceof IMovable || prevObj instanceof IBuilding
+
+        return prevObj !== currObj
             || this.previousFieldMap.isVisible(y, x) !== fieldMap.isVisible(y, x)
             || (this.previousFieldMap.getObject(y + 1, x) !== fieldMap.getObject(y + 1, x)
-                || this.previousFieldMap.isVisible(y + 1, x) !== fieldMap.isVisible(y + 1, x))
+                || this.previousFieldMap.isVisible(y + 1, x) !== fieldMap.isVisible(y + 1, x)) || hasHp
     }
 }

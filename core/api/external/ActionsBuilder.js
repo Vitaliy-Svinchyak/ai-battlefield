@@ -22,12 +22,11 @@ export default class ActionsBuilder {
 
     /**
      * @param {IMovable} unit
-     * @param {int} y
-     * @param {int} x
+     * @param {Point} point
      * @return {MoveUnit}
      */
-    move(unit, y, x) {
-        return new MoveUnit(unit, new Point(y, x), this.team)
+    move(unit, point) {
+        return new MoveUnit(unit, point, this.team)
     }
 
     /**
