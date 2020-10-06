@@ -11,9 +11,9 @@
 <body>
 <div id="menu">
     <div id="resources-1">
-        <span class="food">0⠀⠀⠀</span>
-        <span class="gold">0⠀⠀⠀</span>
-        <span class="population">0⠀⠀⠀</span>
+        <span class="food text-with-image">0⠀⠀⠀</span>
+        <span class="gold text-with-image">0⠀⠀⠀</span>
+        <span class="population text-with-image">0⠀⠀⠀</span>
     </div>
     <div class="fog-buttons">
         <button id="1-fog">1</button>
@@ -21,9 +21,19 @@
         <button id="2-fog">2</button>
     </div>
     <div id="resources-2">
-        <span class="food">0⠀⠀⠀</span>
-        <span class="gold">0⠀⠀⠀</span>
-        <span class="population">0⠀⠀⠀</span>
+        <span class="food text-with-image">0⠀⠀⠀</span>
+        <span class="gold text-with-image">0⠀⠀⠀</span>
+        <span class="population text-with-image">0⠀⠀⠀</span>
+    </div>
+</div>
+<div id="production">
+    <div id="production1">
+        <span class="peasant text-with-image">0</span>
+        <span class="warrior text-with-image">0</span>
+    </div>
+    <div id="production2">
+        <span class="peasant text-with-image">0</span>
+        <span class="warrior text-with-image">0</span>
     </div>
 </div>
 <div class="score">
@@ -40,7 +50,6 @@
     import GameFieldGenerator from "./core/GameFieldGenerator.js"
     import Engine from "./core/Engine.js"
     import EmptyAi from "./ai/example/EmptyAi.js"
-    import AttackAi from "./ai/example/AttackAi.js"
     import ExampleAi from "./ai/example/ExampleAi.js"
     import SaveManager from "./core/SaveManager.js"
     import RushAi from "./ai/e33/RushAi.js"
@@ -51,7 +60,7 @@
     }
    const map = GameFieldGenerator.gameMap(30, 30)
     // const map = GameFieldGenerator.fromSave(``)
-    const ai1 = new EmptyAi(1)
+    const ai1 = new ExampleAi(1)
     const ai2 = new RushAi(2)
     const game = new Engine(map, {
         1: ai1.color,

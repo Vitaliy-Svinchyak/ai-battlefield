@@ -105,6 +105,27 @@ export default class Painter {
         document.querySelector('#resources-2 .population').innerText = population2 + ' / ' + maxPopulation
 
         document.getElementById('tick').innerText = tickNumber
+
+        const production1 = api.getProductionStats(1)
+        const production2 = api.getProductionStats(2)
+        this._drawProduction(production1, 1)
+        this._drawProduction(production2, 2)
+    }
+
+    _drawProduction(production, team){
+        if (production.peasant > 0) {
+            document.querySelector(`#production${team} .peasant`).innerText = production.peasant
+            document.querySelector(`#production${team} .peasant`).style.display = ''
+        } else {
+            document.querySelector(`#production${team} .peasant`).style.display = 'none'
+        }
+
+        if (production.warrior > 0) {
+            document.querySelector(`#production${team} .warrior`).innerText = production.warrior
+            document.querySelector(`#production${team} .warrior`).style.display = ''
+        } else {
+            document.querySelector(`#production${team} .warrior`).style.display = 'none'
+        }
     }
 
     /**

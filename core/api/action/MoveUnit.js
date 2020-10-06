@@ -29,6 +29,10 @@ export default class MoveUnit extends IAction {
     }
 
     _validateParams(api) {
+        if (!(this.newPosition instanceof Point)) {
+            console.error(this, ' invalid new position!')
+            return false
+        }
         if (!this.newPosition.validate(api)) {
             console.error(this, ' invalid new position!')
             return false

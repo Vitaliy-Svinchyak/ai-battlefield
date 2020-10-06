@@ -60,35 +60,27 @@ canvas {
 
 .gold {
     background-image: url("../images/gold.png");
-    background-repeat: no-repeat;
-    background-size: 20px;
-    padding-left: 25px;
     margin-left: 5px;
 }
 
 .food {
     background-image: url("../images/food.png");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    padding-left: 25px;
 }
 
 .population {
     background-image: url("../images/people.png");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    padding-left: 25px;
 }
 
 .score {
     display: flex;
     flex-direction: column;
     position: fixed;
+    top: 70px;
 }
 
 #export {
     position: fixed;
-    top: 120px;
+    top: 140px;
     cursor: pointer;
 }
 
@@ -116,4 +108,33 @@ canvas {
     position: fixed;
     bottom: 0;
     font-size: 2em;
+}
+
+#production {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#production div {
+    /*padding: 1px 5px;*/
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 5px;
+}
+
+.peasant {
+    background-image: url("../images/peasant.png");
+}
+
+.warrior {
+    background-image: url("../images/warrior.png");
+}
+
+.text-with-image {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 25px;
 }

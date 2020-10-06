@@ -20,10 +20,10 @@ export default class ExampleAi extends AI {
         const mineGold = api.actions.mine(unitForGold, api.getResourcePoints()[2])
         const unloadFood = api.actions.unload(unitForFood, buildings[0])
         const unloadGold = api.actions.unload(unitForGold, buildings[0])
-        const actionsFood = [api.actions.move(unitForFood, 3, 4), mineFood, mineFood, mineFood, api.actions.move(unitForFood, 3, 3), unloadFood]
+        const actionsFood = [api.actions.move(unitForFood, new Point(3, 4)), mineFood, mineFood, mineFood, api.actions.move(unitForFood, new Point(3, 3)), unloadFood]
 
-        const actionsGold = [api.actions.move(unitForGold, 2, 1), api.actions.move(unitForGold, 3, 1), api.actions.move(unitForGold, 4, 1),
-            mineGold, mineGold, mineGold, api.actions.move(unitForGold, 3, 1), unloadGold]
+        const actionsGold = [api.actions.move(unitForGold, new Point(2, 1)), api.actions.move(unitForGold, new Point(3, 1)), api.actions.move(unitForGold, new Point(4, 1)),
+            mineGold, mineGold, mineGold, api.actions.move(unitForGold, new Point(3, 1)), unloadGold]
 
         const actionFood = actionsFood[foodI]
         const actionGold = actionsGold[goldI]
@@ -59,7 +59,7 @@ export default class ExampleAi extends AI {
                 ].sort(() => Math.random() - 0.5)
                 for (const pos of positions) {
                     if (map.get(pos.y).get(pos.x) instanceof Empty) {
-                        additionalActions.push(api.actions.move(unit, pos.y, pos.x))
+                        additionalActions.push(api.actions.move(unit, new Point(pos.y, pos.x)))
                         break
                     }
                 }
