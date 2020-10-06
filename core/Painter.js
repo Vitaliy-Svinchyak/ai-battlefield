@@ -81,17 +81,30 @@ export default class Painter {
         this.previousFieldMap = this.cloneMap(fieldMap)
     }
 
-    drawResources(resources) {
+    /**
+     * @param {Api} api
+     * @param {int} tickNumber
+     */
+    drawInfo(api, tickNumber) {
+        const resources = api.resources
+        const maxPopulation = api.maximumPopulation
         const spaceSymbol = '⠀'
+
         const gold1 = resources[1].gold.toString()
         const food1 = resources[1].food.toString()
+        const population1 = api.getPopulation(1)
         document.querySelector('#resources-1 .food').innerText = food1 + spaceSymbol.repeat(4 - food1.length)
         document.querySelector('#resources-1 .gold').innerText = gold1 + spaceSymbol.repeat(4 - gold1.length)
+        document.querySelector('#resources-1 .population').innerText = population1 + ' / ' + maxPopulation
 
         const gold2 = resources[2].gold.toString()
         const food2 = resources[2].food.toString()
+        const population2 = api.getPopulation(2)
         document.querySelector('#resources-2 .food').innerText = food2 + spaceSymbol.repeat(4 - food2.length)
         document.querySelector('#resources-2 .gold').innerText = gold2 + spaceSymbol.repeat(4 - gold2.length)
+        document.querySelector('#resources-2 .population').innerText = population2 + ' / ' + maxPopulation
+
+        document.getElementById('tick').innerText = tickNumber
     }
 
     /**

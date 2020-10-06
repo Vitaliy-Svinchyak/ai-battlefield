@@ -10,8 +10,10 @@ export default class Engine {
 
     /**
      * @param {Field} field
+     * @param colorSettings
      */
     constructor(field, colorSettings) {
+        this.tickNumber = 0
         this.field = field
         this.api = new Api(this.field)
 
@@ -34,9 +36,8 @@ export default class Engine {
         const actions2 = ai2.tick(this.api.team(2))
         this.performActions(actions2)
 
-        // console.time('tick')
         this.api.tick()
-        // console.timeEnd('tick')
+        this.tickNumber++
         this.draw()
         setTimeout(() => {
             this.tick(ai1, ai2)
@@ -45,7 +46,7 @@ export default class Engine {
 
     draw() {
         this.painter.draw(this.field.size, this.getCurrentFieldMap())
-        this.painter.drawResources(this.api.resources)
+        this.painter.drawInfo(this.api, this.tickNumber)
         this.painter.drawScore(this.api)
     }
 

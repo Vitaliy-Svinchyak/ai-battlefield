@@ -13,6 +13,7 @@
     <div id="resources-1">
         <span class="food">0⠀⠀⠀</span>
         <span class="gold">0⠀⠀⠀</span>
+        <span class="population">0⠀⠀⠀</span>
     </div>
     <div class="fog-buttons">
         <button id="1-fog">1</button>
@@ -22,6 +23,7 @@
     <div id="resources-2">
         <span class="food">0⠀⠀⠀</span>
         <span class="gold">0⠀⠀⠀</span>
+        <span class="population">0⠀⠀⠀</span>
     </div>
 </div>
 <div class="score">
@@ -30,7 +32,7 @@
 </div>
 
 <div id="export"><img src="images/export.png" width="20"></div>
-
+<div id="tick">0</div>
 <canvas id="canvas-field"></canvas>
 
 <script type="module">
@@ -44,7 +46,7 @@
     import RushAi from "./ai/e33/RushAi.js"
 
     window.gameSettings = {
-        gameSpeed: 50,
+        gameSpeed: 500,
         selectedTeamToView: 2
     }
    const map = GameFieldGenerator.gameMap(30, 30)

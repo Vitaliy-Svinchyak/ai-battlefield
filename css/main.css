@@ -73,6 +73,13 @@ canvas {
     padding-left: 25px;
 }
 
+.population {
+    background-image: url("../images/people.png");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 25px;
+}
+
 .score {
     display: flex;
     flex-direction: column;
@@ -103,4 +110,10 @@ canvas {
 
 .score #score-2 {
     color: blue;
+}
+
+#tick {
+    position: fixed;
+    bottom: 0;
+    font-size: 2em;
 }
