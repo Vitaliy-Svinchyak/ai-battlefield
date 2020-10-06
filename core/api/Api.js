@@ -17,8 +17,8 @@ const idSymbol = symbol.default.id
 export default class Api {
 
     population = {
-        1: 2,
-        2: 2
+        1: 0,
+        2: 0
     }
 
     resources = {
@@ -332,6 +332,8 @@ export default class Api {
             1: allUnits.filter(u => u.team === 1),
             2: allUnits.filter(u => u.team === 2),
         }
+        this.population[1] = this.getOwnUnits(1).all.reduce((s, u) => s + u.livingPlace, 0)
+        this.population[2] = this.getOwnUnits(2).all.reduce((s, u) => s + u.livingPlace, 0)
     }
 
     _indexBuildings() {

@@ -59,6 +59,10 @@ export default class IMovable extends IEntity {
         throw new Error('Implement livingPlace getter!')
     }
 
+    get livingPlace() {
+        return this.constructor.livingPlace
+    }
+
     /**
      * @return {int}
      */
