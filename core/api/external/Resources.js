@@ -24,7 +24,11 @@ export default class Resources {
     /**
      * @param {Resources} resources
      */
-    enough(resources) {
+    biggerThan(resources) {
         return this.gold >= resources.gold && this.food >= resources.food
+    }
+
+    multiply(multiplier) {
+        return new Resources(this.gold * multiplier, this.food * multiplier)
     }
 }

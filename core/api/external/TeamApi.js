@@ -50,14 +50,14 @@ export default class TeamApi {
     }
 
     /**
-     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     * @return {{Peasant: Peasant[], Warrior: Warrior[], all: IMovable[]}}
      */
     getUnits() {
         return this[apiSymbol].getOwnUnits(this[teamSymbol])
     }
 
     /**
-     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     * @return {{Peasant: Peasant[], Warrior: Warrior[], all: IMovable[]}}
      */
     getEnemyUnits() {
         return this[apiSymbol].getEnemyUnits(this[teamSymbol])

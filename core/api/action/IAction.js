@@ -49,7 +49,7 @@ export default class IAction {
         }
 
         if (UnitActionRegistry.didAction(unit[symbol.default.id])) {
-            console.error(this, ' already did action!')
+            console.error(this, ' already did effect!')
             return false
         }
 

@@ -94,19 +94,19 @@ export default class Api {
 
     /**
      * @param {int} teamNumber
-     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     * @return {{Peasant: Peasant[], Warrior: Warrior[], all: IMovable[]}}
      */
     getOwnUnits(teamNumber) {
         return {
-            peasant: this.units[teamNumber].filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
-            warrior: this.units[teamNumber].filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            [Peasant.name]: this.units[teamNumber].filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            [Warrior.name]: this.units[teamNumber].filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
             all: this.units[teamNumber].sort((a, b) => a[idSymbol] - b[idSymbol])
         }
     }
 
     /**
      * @param {int} teamNumber
-     * @return {{peasant: Peasant[],warrior: Warrior[], all: IMovable[]}}
+     * @return {{Peasant: Peasant[], Warrior: Warrior[], all: IMovable[]}}
      */
     getEnemyUnits(teamNumber) {
         let allUnits = []
@@ -207,21 +207,22 @@ export default class Api {
 
     /**
      * @param {int} teamNumber
-     * @return {{peasant: int, warrior: int}}
+     * @return {{Peasant: int, Warrior: int}}
      */
     getProductionStats(teamNumber) {
         const response = {
-            peasant: 0,
-            warrior: 0,
+            [Peasant.name]: 0,
+            [Warrior.name]: 0,
         }
 
         for (const unit of this.unitsToSpawn[teamNumber].keys()) {
             if (unit === Peasant) {
-                response.peasant++
+                response[Peasant.name]++
             } else if (unit === Warrior) {
-                response.warrior++
+                response[Warrior.name]++
             }
         }
+
         return response
     }
 

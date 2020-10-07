@@ -1,4 +1,4 @@
-import IAction from "./IACtion.js"
+import IAction from "./IAction.js"
 import IMovable from "../../entity/unit/IMovable.js"
 import Peasant from "../../entity/unit/Peasant.js"
 import GoldItem from "../../entity/item/GoldItem.js"

@@ -5,12 +5,17 @@ export default class AI {
 
     /**
      * @param {TeamApi} api
-     * @return {IAction[]}
+     * @return {IEffect[]}
+     * @abstract
      */
     tick(api) {
         throw new Error('implement tick getter!')
     }
 
+    /**
+     * @return number[]
+     * @abstract
+     */
     get color() {
         throw new Error('implement color getter!')
     }

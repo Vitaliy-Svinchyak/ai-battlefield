@@ -5,7 +5,7 @@ export default class RushAi extends AI {
 
     tick(api) {
         const actions = []
-        const units = api.getUnits().peasant
+        const units = api.getUnits().Peasant
         const enemyBuildings = api.getEnemyBuildings().townHall
 
         if (enemyBuildings.length === 0) {

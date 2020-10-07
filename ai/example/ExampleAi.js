@@ -8,11 +8,11 @@ let goldI = 0
 export default class ExampleAi extends AI {
     /**
      * @param {TeamApi} api
-     * @return {IAction[]}
+     * @return {IEffect[]}
      */
     tick(api) {
-        const units = api.getUnits().peasant
-        const warriors = api.getUnits().warrior
+        const units = api.getUnits().Peasant
+        const warriors = api.getUnits().Warrior
         const buildings = api.getBuildings().townHall
         const unitForFood = units[0]
         const unitForGold = units[1]
@@ -66,9 +66,9 @@ export default class ExampleAi extends AI {
             }
         }
 
-        if (api.getResources().enough(api.units.warrior.price)
-            && api.getPopulation() + api.units.warrior.livingPlace <= api.maximumPopulation) {
-            return [actionFood, actionGold, api.actions.createUnit(api.units.warrior), ...additionalActions]
+        if (api.getResources().biggerThan(api.units.Warrior.price)
+            && api.getPopulation() + api.units.Warrior.livingPlace <= api.maximumPopulation) {
+            return [actionFood, actionGold, api.actions.createUnit(api.units.Warrior), ...additionalActions]
         }
 
         return [actionFood, actionGold, ...additionalActions]

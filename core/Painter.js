@@ -113,14 +113,14 @@ export default class Painter {
     }
 
     _drawProduction(production, team){
-        if (production.peasant > 0) {
+        if (production.Peasant > 0) {
             document.querySelector(`#production${team} .peasant`).innerText = production.peasant
             document.querySelector(`#production${team} .peasant`).style.display = ''
         } else {
             document.querySelector(`#production${team} .peasant`).style.display = 'none'
         }
 
-        if (production.warrior > 0) {
+        if (production.Warrior > 0) {
             document.querySelector(`#production${team} .warrior`).innerText = production.warrior
             document.querySelector(`#production${team} .warrior`).style.display = ''
         } else {
@@ -134,12 +134,12 @@ export default class Painter {
     drawScore(api) {
         let score1 = 0
         score1 += api.getOwnBuildings(1).townHall.length * 2
-        score1 += api.getOwnUnits(1).peasant.length
-        score1 += api.getOwnUnits(1).warrior.length * 2
+        score1 += api.getOwnUnits(1).Peasant.length
+        score1 += api.getOwnUnits(1).Warrior.length * 2
         let score2 = 0
         score2 += api.getOwnBuildings(2).townHall.length * 2
-        score2 += api.getOwnUnits(2).peasant.length
-        score2 += api.getOwnUnits(2).warrior.length * 2
+        score2 += api.getOwnUnits(2).Peasant.length
+        score2 += api.getOwnUnits(2).Warrior.length * 2
         document.getElementById('score-1').innerText = score1.toString()
         document.getElementById('score-2').innerText = score2.toString()
     }
