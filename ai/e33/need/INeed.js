@@ -1,6 +1,6 @@
 export default class INeed {
     /**
-     * @param {TeamApi} api
+     * @param {ProxyApi} api
      */
     constructor(api) {
         this.api = api
@@ -36,5 +36,13 @@ export default class INeed {
      */
     getEffectsToSatisfy() {
         throw new Error('Implement getActions method')
+    }
+
+    linearWeight(needed, current) {
+        return current / needed
+    }
+
+    rotatedWeight(weight) {
+        return 1 - weight
     }
 }

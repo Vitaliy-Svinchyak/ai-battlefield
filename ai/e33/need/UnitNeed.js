@@ -2,7 +2,7 @@ import INeed from "./INeed.js"
 
 export default class UnitNeed extends INeed {
     /**
-     * @param {TeamApi} api
+     * @param {ProxyApi} api
      * @param {typeof IMovable} unitType
      * @param {number} amount
      */

@@ -1,6 +1,6 @@
 export default class IEffect {
     /**
-     * @param {TeamApi} api
+     * @param {ProxyApi} api
      */
     constructor(api) {
         this.api = api

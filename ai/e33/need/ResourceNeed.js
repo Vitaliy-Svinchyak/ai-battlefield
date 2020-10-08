@@ -1,11 +1,11 @@
 import INeed from "./INeed.js"
 import CreateUnitEffect from "../effect/CreateUnitEffect.js"
 import Peasant from "../../../core/entity/unit/Peasant.js"
-import GetResourcesEffect from "../effect/GetResourcesEffect.js"
+import GetResourcesEffect from "../effect/MineResourcesEffect.js"
 
 export default class ResourceNeed extends INeed {
     /**
-     * @param {TeamApi} api
+     * @param {ProxyApi} api
      * @param {Resources} resources
      */
     constructor(api, resources) {
@@ -15,7 +15,7 @@ export default class ResourceNeed extends INeed {
 
     getEffects() {
         return [
-            new GetResourcesEffect()
+            new GetResourcesEffect(this.api, Peasant.price)
         ]
     }
 

@@ -5,7 +5,7 @@ export default class AI {
 
     /**
      * @param {TeamApi} api
-     * @return {IEffect[]}
+     * @return {IAction[]}
      * @abstract
      */
     tick(api) {

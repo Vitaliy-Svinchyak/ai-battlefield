@@ -5,7 +5,7 @@ export default class CreateUnitEffect extends IEffect {
     createdUnits = 0
 
     /**
-     * @param {TeamApi} api
+     * @param {ProxyApi} api
      * @param {typeof IMovable} unitType
      * @param {number} amount
      */
