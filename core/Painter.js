@@ -114,14 +114,14 @@ export default class Painter {
 
     _drawProduction(production, team){
         if (production.Peasant > 0) {
-            document.querySelector(`#production${team} .peasant`).innerText = production.peasant
+            document.querySelector(`#production${team} .peasant`).innerText = production.Peasant
             document.querySelector(`#production${team} .peasant`).style.display = ''
         } else {
             document.querySelector(`#production${team} .peasant`).style.display = 'none'
         }
 
         if (production.Warrior > 0) {
-            document.querySelector(`#production${team} .warrior`).innerText = production.warrior
+            document.querySelector(`#production${team} .warrior`).innerText = production.Warrior
             document.querySelector(`#production${team} .warrior`).style.display = ''
         } else {
             document.querySelector(`#production${team} .warrior`).style.display = 'none'

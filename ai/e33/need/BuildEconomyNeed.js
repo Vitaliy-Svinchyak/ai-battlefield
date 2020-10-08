@@ -5,6 +5,7 @@ import Resources from "../../../core/api/external/Resources.js"
 import GetResourcesEffect from "../effect/MineResourcesEffect.js"
 
 export default class BuildEconomyNeed extends INeed {
+    neededAmountOfPeasants = 7
 
     getEffects() {
         return [
@@ -14,16 +15,16 @@ export default class BuildEconomyNeed extends INeed {
 
     getEffectsToSatisfy() {
         return [
-            new CreateUnitEffect(this.api, Peasant, 8 - this.api.getUnits().Peasant.length)
+            new CreateUnitEffect(this.api, Peasant, this.neededAmountOfPeasants - this.api.getUnits().Peasant.length)
         ]
     }
 
     getWeight() {
         const currentPeasantsAmount = this.api.getUnits().Peasant.length
-        return this.rotatedWeight(this.linearWeight(8, currentPeasantsAmount))
+        return this.rotatedWeight(this.linearWeight(this.neededAmountOfPeasants, currentPeasantsAmount))
     }
 
     isSatisfied() {
-        return this.api.getUnits().Peasant.length >= 8
+        return this.api.getUnits().Peasant.length >= this.neededAmountOfPeasants
     }
 }

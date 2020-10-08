@@ -27,8 +27,7 @@ export default class CreateUnitEffect extends IEffect {
     }
 
     run() {
-        // TODO
-        return []
+        return [this.api.actions.createUnit(this.unitType)]
     }
 
     isFinished() {

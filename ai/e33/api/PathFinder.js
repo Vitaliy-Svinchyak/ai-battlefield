@@ -16,7 +16,6 @@ export default class PathFinder {
      * @private
      */
     getNextPointToTheX(startPoint, check) {
-        const map = this._api.getMap()
         let startPositions = [{parent: null, point: startPoint}]
         const usedPoints = new Map()
 
@@ -29,13 +28,15 @@ export default class PathFinder {
             for (const position of newPoints) {
                 usedPoints.set(position.point.toString(), true)
                 const point = position.point
-                if (check(map.get(point.y).get(point.x))) {
+                if (check(point)) {
                     return this._getRoot(position)
                 }
             }
 
             i++
-            if (i > 10) {
+            if (i > 30) {
+                console.dir(startPoint)
+                console.dir(check)
                 throw new Error('too long')
             }
         }
@@ -104,9 +105,9 @@ export default class PathFinder {
             return true
         }
 
-        // if (!map.get(to.y).get(to.x).isEmpty) {
-        //     return false
-        // }
+        if (!map.get(to.y).get(to.x).isEmpty) {
+            return false
+        }
 
         // diagonal
         if (from.y !== to.y && from.x !== to.x) {

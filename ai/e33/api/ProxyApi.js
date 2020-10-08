@@ -3,7 +3,6 @@ import Warrior from "../../../core/entity/unit/Warrior.js"
 import UnitsManager from "./UnitsManager.js"
 import PathFinder from "./PathFinder.js"
 import TownHall from "../../../core/entity/building/TownHall.js"
-import FoodSource from "../../../core/entity/resource/FoodSource.js"
 
 export default class ProxyApi {
     /**
@@ -104,13 +103,44 @@ export default class ProxyApi {
     getPathToNearestResourceForUnit(unit, check) {
         const resourcePoints = this.getResourcePoints().filter(check)
             .sort((a, b) => this.pathFinder.getDistanceSq(unit.position, a.position) - this.pathFinder.getDistanceSq(unit.position, b.position))
-        return this.pathFinder.getNextPointToTheX(unit.position, (p) => resourcePoints.indexOf(p) !== -1)
+
+        return this.pathFinder.getNextPointToTheX(unit.position, (p) => this._isNearby(resourcePoints, p))
     }
 
     /**
      * @param {IMovable} unit
      */
     getPathToTheNearestTownHall(unit) {
-        return this.pathFinder.getNextPointToTheX(unit.position, (p) => p instanceof TownHall)
+        const townHalls = this.getBuildings().townHall
+        return this.pathFinder.getNextPointToTheX(unit.position, (p) => this._isNearby(townHalls, p))
+    }
+
+    /**
+     * @param {Point} p
+     * @return {IEntity[]}
+     */
+    getPointsNearPoint(p) {
+        const map = this.getMap()
+
+        return [
+            map.get(p.y).get(p.x - 1),
+            map.get(p.y).get(p.x + 1),
+            map.get(p.y - 1).get(p.x + 1),
+            map.get(p.y + 1).get(p.x + 1),
+            map.get(p.y + 1).get(p.x - 1),
+            map.get(p.y - 1).get(p.x - 1),
+            map.get(p.y + 1).get(p.x),
+            map.get(p.y - 1).get(p.x),
+        ]
+    }
+
+    /**
+     * @param {IMovable[]|IBuilding[]|IResourceSource[]} entities
+     * @param {Point} point
+     * @return {boolean}
+     * @private
+     */
+    _isNearby(entities, point) {
+        return entities.filter(r => this.pathFinder.getDistanceSq(point, r.position) <= 2).length > 0
     }
 }

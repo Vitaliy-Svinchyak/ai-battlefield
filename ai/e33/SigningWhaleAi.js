@@ -12,7 +12,7 @@ export default class SigningWhaleAi extends AI {
         const proxyApi = new ProxyApi(api)
         const needs = this._getNeeds(proxyApi)
         const effects = this._getRootEffects(needs)
-        console.log(effects)
+        // console.log(effects)
 
         return this._getActions(effects)
     }

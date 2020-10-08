@@ -64,26 +64,10 @@ export default class MineResourcesEffect extends IEffect {
     }
 
     _getResourcesNearPeasant(peasant, check) {
-        return this._getPointsNearPeasant(peasant).filter(check)
+        return this.api.getPointsNearPoint(peasant.position).filter(check)
     }
 
     _getTownHallsNearPeasant(peasant) {
         return this.api.getBuildings().townHall.filter(t => this.api.pathFinder.getDistanceSq(t.position, peasant.position) <= 2)
-    }
-
-    _getPointsNearPeasant(peasant) {
-        const p = peasant.position
-        const map = this.api.getMap()
-
-        return [
-            map.get(p.y).get(p.x - 1),
-            map.get(p.y).get(p.x + 1),
-            map.get(p.y - 1).get(p.x + 1),
-            map.get(p.y + 1).get(p.x + 1),
-            map.get(p.y + 1).get(p.x - 1),
-            map.get(p.y - 1).get(p.x - 1),
-            map.get(p.y + 1).get(p.x),
-            map.get(p.y - 1).get(p.x),
-        ]
     }
 }
