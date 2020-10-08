@@ -24,36 +24,15 @@ export default class MineResourcesEffect extends IEffect {
 
     run() {
         const freePeasants = this.api.idleUnits.Peasant
-        const actions = []
+        let actions = []
 
         if (this.neededResources.gold > 0 && this.neededResources.food > 0) {
-            // TODO
+            let firstPart = freePeasants.length / 2
+            const foodPeasants = freePeasants.splice(0, firstPart)
+            actions = [...this._createMineActions(foodPeasants, FoodSource), ...this._createMineActions(freePeasants, GoldSource)]
         } else {
             const resourcePoint = this.neededResources.gold > 0 ? GoldSource : FoodSource
-
-            for (const peasant of freePeasants) {
-                const resourcesNearPeasant = this._getResourcesNearPeasant(peasant, (e) => e instanceof resourcePoint)
-                const inventoryItem = peasant.inventory.length > 0 ? peasant.inventory[0] : null
-
-                // TODO refactor new resourcePoint()
-                if (inventoryItem === null || (inventoryItem instanceof new resourcePoint().itemType && !inventoryItem.isFull())) {
-                    if (resourcesNearPeasant.length > 0) {
-                        actions.push(this.api.actions.mine(peasant, resourcesNearPeasant[0]))
-                    } else {
-                        const pointToGo = this.api.getPathToNearestResourceForUnit(peasant, (e) => e instanceof resourcePoint)
-                        actions.push(this.api.actions.move(peasant, pointToGo))
-                    }
-                } else {
-                    const townHallsNearPeasant = this._getTownHallsNearPeasant(peasant)
-
-                    if (townHallsNearPeasant.length > 0) {
-                        actions.push(this.api.actions.unload(peasant, townHallsNearPeasant[0]))
-                    } else {
-                        const pointToGo = this.api.getPathToTheNearestTownHall(peasant)
-                        actions.push(this.api.actions.move(peasant, pointToGo))
-                    }
-                }
-            }
+            actions = this._createMineActions(freePeasants, resourcePoint)
         }
 
         return actions
@@ -61,6 +40,42 @@ export default class MineResourcesEffect extends IEffect {
 
     isFinished() {
         return this.api.getResources().biggerThan(this.neededResources)
+    }
+
+    /**
+     * @param {Peasant[]} peasants
+     * @param {typeof IResourceSource} resourcePoint
+     * @return {IAction[]}
+     * @private
+     */
+    _createMineActions(peasants, resourcePoint) {
+        const actions = []
+
+        for (const peasant of peasants) {
+            const resourcesNearPeasant = this._getResourcesNearPeasant(peasant, (e) => e instanceof resourcePoint)
+            const inventoryItem = peasant.inventory.length > 0 ? peasant.inventory[0] : null
+
+            // TODO refactor new resourcePoint()
+            if (inventoryItem === null || (inventoryItem instanceof new resourcePoint().itemType && !inventoryItem.isFull())) {
+                if (resourcesNearPeasant.length > 0) {
+                    actions.push(this.api.actions.mine(peasant, resourcesNearPeasant[0]))
+                } else {
+                    const pointToGo = this.api.getPathToNearestResourceForUnit(peasant, (e) => e instanceof resourcePoint)
+                    actions.push(this.api.actions.move(peasant, pointToGo))
+                }
+            } else {
+                const townHallsNearPeasant = this._getTownHallsNearPeasant(peasant)
+
+                if (townHallsNearPeasant.length > 0) {
+                    actions.push(this.api.actions.unload(peasant, townHallsNearPeasant[0]))
+                } else {
+                    const pointToGo = this.api.getPathToTheNearestTownHall(peasant)
+                    actions.push(this.api.actions.move(peasant, pointToGo))
+                }
+            }
+        }
+
+        return actions
     }
 
     _getResourcesNearPeasant(peasant, check) {
