@@ -3,10 +3,22 @@ import Point from "../../../core/Point.js"
 export default class PathFinder {
 
     /**
+     * @type {Point[]}
+     */
+    bookedPoints = []
+
+    /**
      * @param {ProxyApi} api
      */
     constructor(api) {
         this._api = api
+    }
+
+    /**
+     * @param {Point} point
+     */
+    book(point) {
+        this.bookedPoints.push(point)
     }
 
     /**
@@ -98,6 +110,10 @@ export default class PathFinder {
         const from = position.parent.point
         const to = position.point
         if (!map.has(to.y) || !map.get(to.y).has(to.x)) {
+            return false
+        }
+
+        if (this.bookedPoints.filter(p => p.y === to.y && p.x === to.x).length > 0) {
             return false
         }
 

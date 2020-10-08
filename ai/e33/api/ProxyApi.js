@@ -3,6 +3,7 @@ import Warrior from "../../../core/entity/unit/Warrior.js"
 import UnitsManager from "./UnitsManager.js"
 import PathFinder from "./PathFinder.js"
 import TownHall from "../../../core/entity/building/TownHall.js"
+import ProxyActionsBuilder from "./ProxyActionsBuilder.js"
 
 export default class ProxyApi {
     /**
@@ -12,6 +13,7 @@ export default class ProxyApi {
         this.teamApi = teamApi
         this.unitsManager = new UnitsManager(this)
         this.pathFinder = new PathFinder(this)
+        this.actionsBuilder = new ProxyActionsBuilder(teamApi.actions, this.unitsManager, this.pathFinder)
     }
 
     get maximumPopulation() {
@@ -19,10 +21,10 @@ export default class ProxyApi {
     }
 
     /**
-     * @return {ActionsBuilder}
+     * @return {ProxyActionsBuilder}
      */
     get actions() {
-        return this.teamApi.actions
+        return this.actionsBuilder
     }
 
     get production() {
