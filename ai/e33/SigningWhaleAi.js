@@ -1,6 +1,7 @@
 import AI from "../../core/api/external/AI.js"
 import BuildEconomyNeed from "./need/BuildEconomyNeed.js"
 import ProxyApi from "./api/ProxyApi.js"
+import ProtectHomeNeed from "./need/ProtectHomeNeed.js"
 
 export default class SigningWhaleAi extends AI {
 
@@ -12,6 +13,7 @@ export default class SigningWhaleAi extends AI {
         const proxyApi = new ProxyApi(api)
         const needs = this._getNeeds(proxyApi)
         const effects = this._getRootEffects(needs)
+        // console.log('------')
         // console.log(effects)
 
         return this._getActions(effects)
@@ -25,6 +27,7 @@ export default class SigningWhaleAi extends AI {
     _getNeeds(api) {
         return [
             new BuildEconomyNeed(api),
+            new ProtectHomeNeed(api),
             // new DefeatEnemyNeed(api)
         ]
     }
@@ -37,6 +40,7 @@ export default class SigningWhaleAi extends AI {
     _getRootEffects(needs) {
         // TODO prevent endless needs
         needs = needs.sort((a, b) => b.getWeight() - a.getWeight())
+        // console.log(needs)
         let effectsToReturn = []
 
         for (const need of needs) {
@@ -45,6 +49,7 @@ export default class SigningWhaleAi extends AI {
 
                 for (const effect of effects) {
                     if (effect.canRun()) {
+                        // console.log('satisfied', need, effect)
                         effectsToReturn.push(effect)
                     } else {
                         effectsToReturn = [...effectsToReturn, ...this._getRootEffects(effect.getNeeds())]
@@ -55,6 +60,7 @@ export default class SigningWhaleAi extends AI {
 
                 for (const effect of effects) {
                     if (effect.canRun()) {
+                        // console.log('not satisfied', need, effect)
                         effectsToReturn.push(effect)
                     } else {
                         effectsToReturn = [...effectsToReturn, ...this._getRootEffects(effect.getNeeds())]

@@ -1,6 +1,5 @@
 import INeed from "./INeed.js"
 import CreateUnitEffect from "../effect/CreateUnitEffect.js"
-import Peasant from "../../../core/entity/unit/Peasant.js"
 import GetResourcesEffect from "../effect/MineResourcesEffect.js"
 
 export default class ResourceNeed extends INeed {
@@ -15,13 +14,13 @@ export default class ResourceNeed extends INeed {
 
     getEffects() {
         return [
-            new GetResourcesEffect(this.api, Peasant.price)
+            new GetResourcesEffect(this.api, this.neededResources)
         ]
     }
 
     getEffectsToSatisfy() {
         return [
-            new CreateUnitEffect(this.api, Peasant, 1)
+            new CreateUnitEffect(this.api, this.api.units.peasant, 1)
         ]
     }
 

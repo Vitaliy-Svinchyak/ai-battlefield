@@ -25,7 +25,6 @@ export default class PathFinder {
      * @param {Point} startPoint
      * @param {Function} check
      * @return {Point}
-     * @private
      */
     getNextPointToTheX(startPoint, check) {
         let startPositions = [{parent: null, point: startPoint}]

@@ -39,10 +39,26 @@ export default class INeed {
     }
 
     linearWeight(needed, current) {
-        return current / needed
+        return this._borderWeight(current / needed)
     }
 
     rotatedWeight(weight) {
         return 1 - weight
+    }
+
+    quadraticWeight() {
+
+    }
+
+    logisticWeight() {
+
+    }
+
+    customWeight() {
+
+    }
+
+    _borderWeight(weight) {
+        return weight > 1 ? 1 : weight < 0 ? 0 : weight
     }
 }

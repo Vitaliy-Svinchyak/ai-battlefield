@@ -1,5 +1,5 @@
 import IEffect from "./IEffect.js"
-import UnitNeed from "../need/UnitNeed.js"
+import CreateUnitNeed from "../need/CreateUnitNeed.js"
 import Peasant from "../../../core/entity/unit/Peasant.js"
 import GoldSource from "../../../core/entity/resource/GoldSource.js"
 import FoodSource from "../../../core/entity/resource/FoodSource.js"
@@ -19,7 +19,7 @@ export default class MineResourcesEffect extends IEffect {
     }
 
     getNeeds() {
-        return [new UnitNeed(this.api, Peasant, 1)]
+        return [new CreateUnitNeed(this.api, Peasant, 1)]
     }
 
     run() {
@@ -36,10 +36,6 @@ export default class MineResourcesEffect extends IEffect {
         }
 
         return actions
-    }
-
-    isFinished() {
-        return this.api.getResources().biggerThan(this.neededResources)
     }
 
     /**

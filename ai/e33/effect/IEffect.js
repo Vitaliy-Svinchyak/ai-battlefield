@@ -29,12 +29,4 @@ export default class IEffect {
     run() {
         throw new Error('Implement run method')
     }
-
-    /**
-     * @return {boolean}
-     * @abstract
-     */
-    isFinished() {
-        throw new Error('Implement isFinished method')
-    }
 }

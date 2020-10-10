@@ -2,8 +2,6 @@ import IEffect from "./IEffect.js"
 import ResourceNeed from "../need/ResourceNeed.js"
 
 export default class CreateUnitEffect extends IEffect {
-    createdUnits = 0
-
     /**
      * @param {ProxyApi} api
      * @param {typeof IMovable} unitType
@@ -28,9 +26,5 @@ export default class CreateUnitEffect extends IEffect {
 
     run() {
         return [this.api.actions.createUnit(this.unitType)]
-    }
-
-    isFinished() {
-        return this.createdUnits >= this.requiredAmount
     }
 }

@@ -122,8 +122,8 @@ export default class Api {
         }
 
         return {
-            peasant: allUnits.filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
-            warrior: allUnits.filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            [Peasant.name]: allUnits.filter(u => u instanceof Peasant).sort((a, b) => a[idSymbol] - b[idSymbol]),
+            [Warrior.name]: allUnits.filter(u => u instanceof Warrior).sort((a, b) => a[idSymbol] - b[idSymbol]),
             all: allUnits.sort((a, b) => a[idSymbol] - b[idSymbol])
         }
     }

@@ -1,6 +1,6 @@
 import INeed from "./INeed.js"
 
-export default class UnitNeed extends INeed {
+export default class CreateUnitNeed extends INeed {
     /**
      * @param {ProxyApi} api
      * @param {typeof IMovable} unitType
