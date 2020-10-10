@@ -5,7 +5,7 @@ import Resources from "../../../core/api/external/Resources.js"
 import GetResourcesEffect from "../effect/MineResourcesEffect.js"
 
 export default class BuildEconomyNeed extends INeed {
-    neededAmountOfPeasants = 6
+    neededAmountOfPeasants = 7
 
     getEffects() {
         return [

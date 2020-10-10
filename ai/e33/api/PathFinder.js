@@ -30,6 +30,7 @@ export default class PathFinder {
     getNextPointToTheX(startPoint, check) {
         let startPositions = [{parent: null, point: startPoint}]
         const usedPoints = new Map()
+        const maxRadius = this._api.getMap().size
 
         let i = 0
         while (true) {
@@ -46,10 +47,11 @@ export default class PathFinder {
             }
 
             i++
-            if (i > 30) {
-                console.dir(startPoint)
-                console.dir(check)
-                throw new Error('too long')
+            if (i > maxRadius) {
+                // console.dir(startPoint)
+                // console.dir(check)
+                // console.error('too long')
+                return null
             }
         }
     }

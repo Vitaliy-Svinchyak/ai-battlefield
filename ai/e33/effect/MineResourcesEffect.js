@@ -61,7 +61,9 @@ export default class MineResourcesEffect extends IEffect {
                     actions.push(this.api.actions.mine(peasant, resourcesNearPeasant[0]))
                 } else {
                     const pointToGo = this.api.getPathToNearestResourceForUnit(peasant, (e) => e instanceof resourcePoint)
-                    actions.push(this.api.actions.move(peasant, pointToGo))
+                    if (pointToGo != null) {
+                        actions.push(this.api.actions.move(peasant, pointToGo))
+                    }
                 }
             } else {
                 const townHallsNearPeasant = this._getTownHallsNearPeasant(peasant)
@@ -70,7 +72,9 @@ export default class MineResourcesEffect extends IEffect {
                     actions.push(this.api.actions.unload(peasant, townHallsNearPeasant[0]))
                 } else {
                     const pointToGo = this.api.getPathToTheNearestTownHall(peasant)
-                    actions.push(this.api.actions.move(peasant, pointToGo))
+                    if (pointToGo != null) {
+                        actions.push(this.api.actions.move(peasant, pointToGo))
+                    }
                 }
             }
         }
