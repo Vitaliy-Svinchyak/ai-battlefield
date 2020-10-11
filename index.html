@@ -53,14 +53,16 @@
     import ExampleAi from "./ai/example/ExampleAi.js"
     import SaveManager from "./core/SaveManager.js"
     import RushAi from "./ai/e33/RushAi.js"
+    import EnhancedAi from "./ai/vegas/EnhancedAi.js"
 
     window.gameSettings = {
-        gameSpeed: 500,
+        gameSpeed: 40,
         selectedTeamToView: 2
     }
    const map = GameFieldGenerator.gameMap(30, 30)
     // const map = GameFieldGenerator.fromSave(``)
-    const ai1 = new ExampleAi(1)
+    // const ai1 = new ExampleAi(1)
+    const ai1 = new EnhancedAi(1)
     const ai2 = new RushAi(2)
     const game = new Engine(map, {
         1: ai1.color,
