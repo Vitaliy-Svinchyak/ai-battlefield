@@ -11,6 +11,8 @@ import IMovable from "./entity/unit/IMovable.js"
 import IBuilding from "./entity/building/IBuilding.js"
 import Warrior from "./entity/unit/Warrior.js"
 import Field from "./Field.js"
+import Point from "./Point.js"
+import PathFinder from "../ai/e33/api/PathFinder.js"
 
 export default class Painter {
 
@@ -112,7 +114,7 @@ export default class Painter {
         this._drawProduction(production2, 2)
     }
 
-    _drawProduction(production, team){
+    _drawProduction(production, team) {
         if (production.Peasant > 0) {
             document.querySelector(`#production${team} .peasant`).innerText = production.Peasant
             document.querySelector(`#production${team} .peasant`).style.display = ''

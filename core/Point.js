@@ -35,4 +35,22 @@ export default class Point {
     toString() {
         return this.x + ':' + this.y
     }
+
+    equals(point) {
+        return this.x === point.x && this.y === point.y
+    }
+
+    neighbors() {
+        return [
+            new Point(this.y, this.x + 1),
+            new Point(this.y, this.x - 1),
+            new Point(this.y - 1, this.x),
+            new Point(this.y + 1, this.x),
+
+            new Point(this.y + 1, this.x - 1),
+            new Point(this.y + 1, this.x + 1),
+            new Point(this.y - 1, this.x - 1),
+            new Point(this.y - 1, this.x + 1),
+        ]
+    }
 }

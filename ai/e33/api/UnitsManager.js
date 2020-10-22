@@ -20,7 +20,7 @@ export default class UnitsManager {
     get idleUnits() {
         return {
             [Peasant.name]: this.api.getUnits().Peasant.filter(u => this.busyUnits[Peasant.name].indexOf(u) === -1),
-            [Warrior.name]: this.api.getUnits().Peasant.filter(u => this.busyUnits[Warrior.name].indexOf(u) === -1),
+            [Warrior.name]: this.api.getUnits().Warrior.filter(u => this.busyUnits[Warrior.name].indexOf(u) === -1),
             all: this.api.getUnits().all.filter(u => this.busyUnits[u.constructor.name].indexOf(u) === -1)
         }
     }

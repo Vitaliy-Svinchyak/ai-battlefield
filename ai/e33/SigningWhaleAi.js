@@ -2,6 +2,7 @@ import AI from "../../core/api/external/AI.js"
 import BuildEconomyNeed from "./need/BuildEconomyNeed.js"
 import ProxyApi from "./api/ProxyApi.js"
 import ProtectHomeNeed from "./need/ProtectHomeNeed.js"
+import DefeatEnemyNeed from "./need/DefeatEnemyNeed.js"
 
 export default class SigningWhaleAi extends AI {
 
@@ -28,7 +29,7 @@ export default class SigningWhaleAi extends AI {
         return [
             new BuildEconomyNeed(api),
             new ProtectHomeNeed(api),
-            // new DefeatEnemyNeed(api)
+            new DefeatEnemyNeed(api)
         ]
     }
 

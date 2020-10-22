@@ -21,6 +21,46 @@ export default class PathFinder {
         this.bookedPoints.push(point)
     }
 
+    getNextPointToTheNearestPoint(startPoint, endPoints) {
+        let startPositions = [{parent: null, point: startPoint}]
+        let nearestPoint = null
+        let nearestDistance = Infinity
+        const usedPoints = new Map()
+        const maxRadius = this._api.getMap().size
+
+        let i = 0
+        while (true) {
+            const newPoints = this._getVariants(startPositions, usedPoints)
+                .filter((p) => this._filterValidPositions(p))
+            startPositions = newPoints
+
+            for (const position of newPoints) {
+                usedPoints.set(position.point.toString(), true)
+                const point = position.point
+
+                if (endPoints.filter(p => p.equals(point)).length > 0) {
+                    return this._getRoot(position)
+                } else {
+                    for (const endPoint of endPoints) {
+                        const distance = this.getDistanceSq(endPoint, point)
+
+                        if (distance < nearestDistance) {
+                            nearestPoint = point
+                            nearestDistance = distance
+                        }
+                    }
+                }
+            }
+
+            i++
+            if (i > maxRadius) {
+                return this._getRoot(nearestPoint)
+            }
+        }
+
+        return null
+    }
+
     /**
      * @param {Point} startPoint
      * @param {Function} check
@@ -40,6 +80,7 @@ export default class PathFinder {
             for (const position of newPoints) {
                 usedPoints.set(position.point.toString(), true)
                 const point = position.point
+
                 if (check(point)) {
                     return this._getRoot(position)
                 }
@@ -47,9 +88,6 @@ export default class PathFinder {
 
             i++
             if (i > maxRadius) {
-                // console.dir(startPoint)
-                // console.dir(check)
-                // console.error('too long')
                 return null
             }
         }
@@ -77,17 +115,7 @@ export default class PathFinder {
 
         for (const position of points) {
             const point = position.point
-            const variantsFromPoint = [
-                new Point(point.y, point.x + 1),
-                new Point(point.y, point.x - 1),
-                new Point(point.y - 1, point.x),
-                new Point(point.y + 1, point.x),
-
-                new Point(point.y + 1, point.x - 1),
-                new Point(point.y + 1, point.x + 1),
-                new Point(point.y - 1, point.x - 1),
-                new Point(point.y - 1, point.x + 1),
-            ].filter(p =>
+            const variantsFromPoint = point.neighbors().filter(p =>
                 usedPoints.get(p.toString()) === undefined
                 && usedOnThisStepPoints.get(p.toString()) === undefined)
 
@@ -140,11 +168,19 @@ export default class PathFinder {
     }
 
     /**
-     * @param {{parent:Object,point:Point}} position
+     * @param {{parent:Object,point:Point}|null} position
      * @return {Point}
      * @private
      */
     _getRoot(position) {
+        if (position === null) {
+            return null
+        }
+
+        if (position.parent == null) {
+            return position.point
+        }
+
         while (position.parent.parent !== null) {
             position = position.parent
         }

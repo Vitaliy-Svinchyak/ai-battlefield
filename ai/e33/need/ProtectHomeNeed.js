@@ -1,6 +1,7 @@
 import INeed from "./INeed.js"
 import CreateUnitEffect from "../effect/CreateUnitEffect.js"
 import ProtectHomeEffect from "../effect/ProtectHomeEffect.js"
+import CreateDefenciveCircleEffect from "../effect/CreateDefenciveCircleEffect.js"
 
 export default class ProtectHomeNeed extends INeed {
 
@@ -15,11 +16,14 @@ export default class ProtectHomeNeed extends INeed {
 
         if (leftPlace > this.api.units.warrior.livingPlace) {
             return [
-                new CreateUnitEffect(this.api, this.api.units.warrior, 1)
+                new CreateUnitEffect(this.api, this.api.units.warrior, 1),
+                new CreateDefenciveCircleEffect(this.api)
             ]
         }
 
-        return []
+        return [
+            new CreateDefenciveCircleEffect(this.api)
+        ]
     }
 
     getWeight() {
@@ -27,6 +31,7 @@ export default class ProtectHomeNeed extends INeed {
         if (enemyValue === 0) {
             return 0
         }
+
         return this.linearWeight(enemyValue, this.api.squadValuer.getMyValueOnMyBase())
     }
 
