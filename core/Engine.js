@@ -30,22 +30,23 @@ export default class Engine {
 
     tick(ai1, ai2) {
         UnitActionRegistry.clear()
+        let performedActions = []
         const actions1 = ai1.tick(this.api.team(1))
-        this.performActions(actions1)
+        performedActions = [...this.performActions(actions1)]
 
         const actions2 = ai2.tick(this.api.team(2))
-        this.performActions(actions2)
+        performedActions = [...performedActions, ...this.performActions(actions2)]
 
         this.api.tick()
         this.tickNumber++
-        this.draw()
+        this.draw(performedActions)
         setTimeout(() => {
             this.tick(ai1, ai2)
         }, window.gameSettings.gameSpeed)
     }
 
-    draw() {
-        this.painter.draw(this.field.size, this.getCurrentFieldMap())
+    draw(performedActions) {
+        this.painter.draw(this.field.size, this.getCurrentFieldMap(), performedActions)
         this.painter.drawInfo(this.api, this.tickNumber)
         this.painter.drawScore(this.api)
     }
@@ -63,15 +64,21 @@ export default class Engine {
 
     /**
      * @param {IAction[]} actions
+     * @return {IAction[]}
      */
     performActions(actions) {
+        const performedActions = []
+
         for (const action of actions) {
             if (action instanceof IAction && action.validate(this.api)) {
                 action.perform(this)
+                performedActions.push(action)
             } else {
                 // console.log(effect, ' invalid effect!')
                 // throw 'her'
             }
         }
+
+        return performedActions
     }
 }

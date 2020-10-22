@@ -11,8 +11,7 @@ import IMovable from "./entity/unit/IMovable.js"
 import IBuilding from "./entity/building/IBuilding.js"
 import Warrior from "./entity/unit/Warrior.js"
 import Field from "./Field.js"
-import Point from "./Point.js"
-import PathFinder from "../ai/e33/api/PathFinder.js"
+import MoveUnit from "./api/action/MoveUnit.js"
 
 export default class Painter {
 
@@ -67,18 +66,63 @@ export default class Painter {
     /**
      * @param fieldSize
      * @param {Field} fieldMap
+     * @param {IAction[]} performedActions
      */
-    draw(fieldSize, fieldMap) {
+    draw(fieldSize, fieldMap, performedActions) {
+        const entitiesToAnimate = []
+        for (const action of performedActions) {
+            if (action instanceof MoveUnit) {
+                entitiesToAnimate.push(action.unit)
+            }
+        }
+
+        const gameSpeed = window.gameSettings.gameSpeed
+        const maxFrames = 10
+        const minFrameTime = 16
+        let frames = Math.round(gameSpeed / minFrameTime)
+
+        if (frames > maxFrames) {
+            frames = maxFrames
+        }
+
+        let frameTime = Math.floor(gameSpeed / frames)
+        console.log(frames, frameTime)
+
         for (let y = 0; y < this.fieldSize.rows; y++) {
             for (let x = 0; x < this.fieldSize.cells; x++) {
-                const formYDraw = this.defaultY + (y * this.pointSize.y) + y
-                const formXDraw = this.defaultX + (x * this.pointSize.x) + x
-
                 if (this.sthHasChanged(y, x, fieldMap)) {
-                    this.drawEntity(fieldMap.getObject(y, x), formXDraw, formYDraw, !fieldMap.isVisible(y, x))
+                    const entity = fieldMap.getObject(y, x)
+                    const drawFog = !fieldMap.isVisible(y, x)
+
+                    if (entitiesToAnimate.filter(e => e === entity).length === 0) {
+                        this.drawEntity(entity, x, y, drawFog)
+                    }
                 }
             }
         }
+
+        let frame = 0
+        const interval = setInterval(() => {
+            frame++
+
+            for (const action of performedActions) {
+                if (action instanceof MoveUnit) {
+                    const entity = action.unit
+                    this.animateEntityMove(
+                        entity,
+                        fieldMap,
+                        action.oldPosition,
+                        action.newPosition,
+                        frame,
+                        frames
+                    )
+                }
+            }
+
+            if (frame === frames) {
+                clearInterval(interval)
+            }
+        }, frameTime)
 
         this.previousFieldMap = this.cloneMap(fieldMap)
     }
@@ -165,7 +209,7 @@ export default class Painter {
             let xDraw = this.defaultX
 
             for (let x = 0; x < fieldSize.cells; x++) {
-                this.drawEntity(fieldMap.getObject(y, x), xDraw, yDraw, false)
+                this.drawEntity(fieldMap.getObject(y, x), x, y, false)
                 xDraw += this.pointSize.x + this.pointSize.margin
             }
             yDraw += this.pointSize.y + this.pointSize.margin
@@ -173,13 +217,58 @@ export default class Painter {
     }
 
     /**
+     * @param entity
+     * @param {Field} fieldMap
+     * @param oldPosition
+     * @param newPosition
+     * @param frame
+     * @param frames
+     */
+    animateEntityMove(entity, fieldMap, oldPosition, newPosition, frame, frames) {
+        const yMovePerFrame = (newPosition.y - oldPosition.y) / frames
+        const xMovePerFrame = (newPosition.x - oldPosition.x) / frames
+
+        const currentY = oldPosition.y + (yMovePerFrame * (frame))
+        const currentX = oldPosition.x + (xMovePerFrame * (frame))
+
+        const prevStepY = oldPosition.y + (yMovePerFrame * (frame - 1))
+        const prevStepX = oldPosition.x + (xMovePerFrame * (frame - 1))
+
+        this.clearRect(prevStepX, prevStepY)
+        const prevStepY2 = oldPosition.y + (yMovePerFrame * (frame - 2))
+        const prevStepX2 = oldPosition.x + (xMovePerFrame * (frame - 2))
+
+        this.clearRect(prevStepX2, prevStepY2)
+        const drawFog = !fieldMap.isVisible(newPosition.y, newPosition.x)
+        this.clearRect(oldPosition.x, oldPosition.y - 1)
+
+        // if (oldPosition.y - 1 !== newPosition.y) {
+        for (const pos of oldPosition.neighbors()) {
+
+            if (!pos.equals(newPosition) && !pos.equals(oldPosition)) {
+                this.drawEntity(
+                    fieldMap.getObject(pos.y, pos.x),
+                    pos.x,
+                    pos.y,
+                    !fieldMap.isVisible(pos.y, pos.x)
+                )
+            }
+        }
+        // }
+
+        this.drawEntity(entity, currentX, currentY, drawFog)
+    }
+
+    /**
      * @param {IEntity} entity
-     * @param {int} x
-     * @param {int} y
+     * @param {int} eX
+     * @param {int} eY
      * @param {boolean} drawFog
      */
-    drawEntity(entity, x, y, drawFog) {
-        this.clearRect(x, y)
+    drawEntity(entity, eX, eY, drawFog) {
+        this.clearRect(eX, eY)
+        const y = this.defaultY + (eY * this.pointSize.y) + eY
+        const x = this.defaultX + (eX * this.pointSize.x) + eX
         const image = entity.image
 
         if (image.src !== '') {
@@ -200,7 +289,9 @@ export default class Painter {
         this.context.fillRect(x - 1, y - 1, this.pointSize.x + 2, this.pointSize.y + 2)
     }
 
-    clearRect(xDraw, yDraw) {
+    clearRect(eX, eY) {
+        const yDraw = this.defaultY + (eY * this.pointSize.y) + eY
+        const xDraw = this.defaultX + (eX * this.pointSize.x) + eX
         this.context.clearRect(xDraw - 1, yDraw - 1, this.pointSize.x + 2, this.pointSize.y + 2)
     }
 

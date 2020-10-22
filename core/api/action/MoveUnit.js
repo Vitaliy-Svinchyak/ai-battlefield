@@ -14,6 +14,7 @@ export default class MoveUnit extends IAction {
     constructor(unit, position, team) {
         super(team)
         this.unit = unit
+        this.oldPosition = unit.position
         this.newPosition = position
     }
 
