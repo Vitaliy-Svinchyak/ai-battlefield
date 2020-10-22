@@ -4,7 +4,7 @@ import ProxyApi from "./api/ProxyApi.js"
 import ProtectHomeNeed from "./need/ProtectHomeNeed.js"
 import DefeatEnemyNeed from "./need/DefeatEnemyNeed.js"
 
-export default class SigningWhaleAi extends AI {
+export default class SingingWhaleAi extends AI {
 
     get color() {
         return [0, 88, 186]
