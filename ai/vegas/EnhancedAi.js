@@ -7,7 +7,7 @@ export default class EnhancedAi extends AI {
 
     tick(api) {
         const actions = []
-        const units = api.getUnits().peasant
+        const units = api.getUnits().Peasant
         const enemyBuildings = api.getEnemyBuildings().townHall
         const enemyUnits = api.getEnemyUnits().all
         //TODO change howManyAttacks to killedUnits count

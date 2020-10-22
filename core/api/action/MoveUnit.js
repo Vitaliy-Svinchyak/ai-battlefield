@@ -1,4 +1,4 @@
-import IAction from "./IACtion.js"
+import IAction from "./IAction.js"
 import * as symbol from "../../symbol.js"
 import Point from "../../Point.js"
 import UnitActionRegistry from "../UnitActionRegistry.js"

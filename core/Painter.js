@@ -11,6 +11,8 @@ import IMovable from "./entity/unit/IMovable.js"
 import IBuilding from "./entity/building/IBuilding.js"
 import Warrior from "./entity/unit/Warrior.js"
 import Field from "./Field.js"
+import Point from "./Point.js"
+import PathFinder from "../ai/e33/api/PathFinder.js"
 
 export default class Painter {
 
@@ -112,16 +114,16 @@ export default class Painter {
         this._drawProduction(production2, 2)
     }
 
-    _drawProduction(production, team){
-        if (production.peasant > 0) {
-            document.querySelector(`#production${team} .peasant`).innerText = production.peasant
+    _drawProduction(production, team) {
+        if (production.Peasant > 0) {
+            document.querySelector(`#production${team} .peasant`).innerText = production.Peasant
             document.querySelector(`#production${team} .peasant`).style.display = ''
         } else {
             document.querySelector(`#production${team} .peasant`).style.display = 'none'
         }
 
-        if (production.warrior > 0) {
-            document.querySelector(`#production${team} .warrior`).innerText = production.warrior
+        if (production.Warrior > 0) {
+            document.querySelector(`#production${team} .warrior`).innerText = production.Warrior
             document.querySelector(`#production${team} .warrior`).style.display = ''
         } else {
             document.querySelector(`#production${team} .warrior`).style.display = 'none'
@@ -134,12 +136,12 @@ export default class Painter {
     drawScore(api) {
         let score1 = 0
         score1 += api.getOwnBuildings(1).townHall.length * 2
-        score1 += api.getOwnUnits(1).peasant.length
-        score1 += api.getOwnUnits(1).warrior.length * 2
+        score1 += api.getOwnUnits(1).Peasant.length
+        score1 += api.getOwnUnits(1).Warrior.length * 2
         let score2 = 0
         score2 += api.getOwnBuildings(2).townHall.length * 2
-        score2 += api.getOwnUnits(2).peasant.length
-        score2 += api.getOwnUnits(2).warrior.length * 2
+        score2 += api.getOwnUnits(2).Peasant.length
+        score2 += api.getOwnUnits(2).Warrior.length * 2
         document.getElementById('score-1').innerText = score1.toString()
         document.getElementById('score-2').innerText = score2.toString()
     }

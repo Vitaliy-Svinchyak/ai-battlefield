@@ -4,7 +4,7 @@ import Painter from "./Painter.js"
 import Api from "./api/Api.js"
 import UnitActionRegistry from "./api/UnitActionRegistry.js"
 import Field from "./Field.js"
-import IAction from "./api/action/IACtion.js"
+import IAction from "./api/action/IAction.js"
 
 export default class Engine {
 
@@ -69,7 +69,7 @@ export default class Engine {
             if (action instanceof IAction && action.validate(this.api)) {
                 action.perform(this)
             } else {
-                // console.log(action, ' invalid action!')
+                // console.log(effect, ' invalid effect!')
                 // throw 'her'
             }
         }

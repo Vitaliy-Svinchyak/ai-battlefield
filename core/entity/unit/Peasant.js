@@ -15,6 +15,13 @@ export default class Peasant extends IMovable {
         return new Resources(0, 50)
     }
 
+    /**
+     * @return {IItemResource[]}
+     */
+    get inventory() {
+        return super.inventory
+    }
+
     static get livingPlace() {
         return 1
     }

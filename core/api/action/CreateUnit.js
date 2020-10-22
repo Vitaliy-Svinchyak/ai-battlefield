@@ -1,4 +1,4 @@
-import IAction from "./IACtion.js"
+import IAction from "./IAction.js"
 import IMovable from "../../entity/unit/IMovable.js"
 import * as symbol from "../../symbol.js"
 
@@ -43,7 +43,7 @@ export default class CreateUnit extends IAction {
      * @private
      */
     _validateCreation(api) {
-        if (!api.getResources(this.team).enough(this.unit.price)) {
+        if (!api.getResources(this.team).biggerThan(this.unit.price)) {
             console.error(this, 'not enough resources!')
             return false
         }

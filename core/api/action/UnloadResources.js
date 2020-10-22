@@ -1,4 +1,4 @@
-import IAction from "./IACtion.js"
+import IAction from "./IAction.js"
 import Peasant from "../../entity/unit/Peasant.js"
 import TownHall from "../../entity/building/TownHall.js"
 import IItemResource from "../../entity/item/IItemResource.js"
